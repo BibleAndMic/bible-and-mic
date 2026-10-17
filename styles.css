@@ -14,3 +14,8 @@ a{color:inherit;text-decoration:none}.app-shell{max-width:760px;margin:auto;min-
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .cross-icon{position:relative;display:block;width:12px;height:18px;margin:auto}.cross-icon:before,.cross-icon:after{content:"";position:absolute;background:currentColor;border-radius:1px}.cross-icon:before{width:2px;height:16px;left:5px;top:1px}.cross-icon:after{width:10px;height:2px;left:1px;top:6px}
+
+
+/* Featured song artwork */
+.cover-art{background:#080808 url("featured-cover.jpg") center/cover no-repeat;border-color:#342e20}
+.cover-art:before,.cover-cross,.cover-text{display:none}

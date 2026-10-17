@@ -4,9 +4,9 @@
 // ============================================================
 const site = {
   featuredSong: {
-    title: "Featured Song",
+    title: "He's Working on Me",
     artist: "B&M | Bible & Mic",
-    audio: "assets/featured-song.mp3"
+    audio: "featured-song.mp3"
   },
 
   lyrics: `Your featured-song lyrics go here.\n\nPaste the full lyrics into this section when you're ready.`,
