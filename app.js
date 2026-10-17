@@ -9,23 +9,23 @@ const site = {
     audio: "featured-song.mp3"
   },
 
-  lyrics: `Your featured-song lyrics go here.\n\nPaste the full lyrics into this section when you're ready.`,
+  lyrics: `COMING SOON\n\nLyrics and the story behind the music are on the way.`,
 
   story: [
-    "This is where your testimony goes — written in your voice, as much or as little as you want to share publicly.",
-    "Version 1 keeps this intentionally simple. Later we can add photos, a timeline, video testimony, Scripture, or a full About page."
+    "Christ changed everything. I was lost thinking I was found, living life my way while calling it faith. Jesus met me in the mess, gave me a new direction, a new purpose, and showed me what a real relationship with Him looks like.",
+    "I’m still a work in progress. Just a dude from Minnesota with a Bible and a mic, pointing people to the One who changed my life."
   ],
 
   updates: [
     {
       date: "OCT 2026",
-      title: "B&M | Bible & Mic is getting a home.",
-      text: "The first version of the site is being built: music, lyrics, testimony and updates — all in one place."
+      title: "Crazy 4 Christ — out now.",
+      text: "My newest release is live. Faith over fear, all glory to God."
     },
     {
-      date: "COMING NEXT",
-      title: "More music. More story.",
-      text: "Future versions can add a full song library, videos, releases, social links, notifications and more."
+      date: "SEP 2026",
+      title: "He’s Working on Me — released.",
+      text: "A reminder that God is still shaping, rebuilding, and working on me every day."
     }
   ]
 };
@@ -37,7 +37,7 @@ document.getElementById("coverTitle").textContent = site.featuredSong.title.toUp
 
 const lyricsEl = document.getElementById("lyricsBody");
 lyricsEl.textContent = site.lyrics;
-if (site.lyrics.startsWith("Your featured-song")) lyricsEl.classList.add("placeholder");
+if (site.lyrics.startsWith("COMING SOON")) lyricsEl.classList.add("placeholder");
 
 const storyEl = document.getElementById("storyBody");
 site.story.forEach(text => {
