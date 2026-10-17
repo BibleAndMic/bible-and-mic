@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#090909" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#050505" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Bible & Mic" />
-  <meta name="description" content="B&M | Bible & Mic — Christian hip-hop, testimony, lyrics and updates." />
+  <meta name="description" content="B&M | Bible & Mic — Christian hip-hop, testimony, music and video." />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="icon-180.png" />
@@ -15,87 +15,139 @@
   <title>B&M | Bible & Mic</title>
 </head>
 <body>
+  <div class="noise" aria-hidden="true"></div>
   <div class="app-shell">
     <header class="topbar">
       <a class="brand" href="#home" aria-label="Bible & Mic home">
-        <span class="brand-mark">B&amp;M</span>
-        <span class="brand-copy"><strong>BIBLE &amp; MIC</strong><small>TESTIMONY • FAITH • MUSIC</small></span>
+        <span class="brand-monogram">B&amp;M</span>
+        <span class="brand-text"><b>BIBLE &amp; MIC</b><small>TESTIMONY · FAITH · MUSIC</small></span>
       </a>
-      <span class="live-dot" aria-label="Independent music">LIVE</span>
+      <a class="top-pill" href="#music"><span></span> LISTEN</a>
     </header>
 
     <main>
       <section id="home" class="hero page-section">
-        <div class="eyebrow">CHRISTIAN HIP-HOP • MINNESOTA</div>
-        <h1>FAITH<br><span>OVER FEAR.</span></h1>
-        <p class="hero-copy">Music with a message that points to Jesus.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#featured">▶ Listen now</a>
-          <a class="btn btn-ghost" href="#story">My story</a>
-        </div>
-        <div class="verse-card">
-          <span>THE MISSION</span>
-          <p>Just a dude from Minnesota with a Bible and a mic.</p>
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <div class="eyebrow"><span class="pulse-dot"></span> CHRISTIAN HIP-HOP · MINNESOTA</div>
+          <h1>FAITH<br><em>OVER FEAR.</em></h1>
+          <p>Testimony in every bar. Music with a message that points to Jesus.</p>
+          <div class="hero-actions">
+            <button class="primary-cta" data-play="featured-song.mp3" data-title="He's Working on Me" data-art="featured-cover.jpg">▶ PLAY LATEST</button>
+            <a class="secondary-cta" href="#story">MY STORY ↘</a>
+          </div>
+          <div class="mission-line"><span>THE MISSION</span><strong>Just a dude from Minnesota with a Bible and a mic.</strong></div>
         </div>
       </section>
 
-      <section id="featured" class="page-section section-block">
-        <div class="section-kicker">FEATURED</div>
-        <div class="cover-art" aria-hidden="true">
-          <div class="cover-cross"></div>
-          <div class="cover-text"><small>B&amp;M PRESENTS</small><strong id="coverTitle">FEATURED SONG</strong><span>BIBLE &amp; MIC</span></div>
-        </div>
-        <div class="track-meta">
-          <div>
-            <h2 id="songTitle">Featured Song</h2>
-            <p id="songArtist">B&amp;M | Bible &amp; Mic</p>
-          </div>
-          <span class="pill">NEW</span>
+      <section class="marquee" aria-label="Bible and Mic themes">
+        <div><span>FAITH OVER FEAR</span><i>✦</i><span>ALL GLORY TO GOD</span><i>✦</i><span>BIBLE &amp; MIC</span><i>✦</i><span>NEW CREATION</span><i>✦</i></div>
+      </section>
+
+      <section id="music" class="section page-section">
+        <div class="section-head">
+          <div><span class="kicker">MUSIC</span><h2>Press play.<br>Stay awhile.</h2></div>
+          <span class="count">03 TRACKS</span>
         </div>
 
-        <div class="player-card">
-          <audio id="audio" preload="metadata"></audio>
-          <div class="player-row">
-            <button id="playBtn" class="play-btn" aria-label="Play featured song">▶</button>
-            <div class="player-main">
-              <div class="time-row"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
-              <input id="seek" class="seek" type="range" min="0" max="100" value="0" aria-label="Seek through song" />
+        <article class="feature-track track-card" data-src="featured-song.mp3" data-title="He's Working on Me" data-art="featured-cover.jpg">
+          <div class="feature-art"><img src="featured-cover.jpg" alt="He's Working on Me cover art" /></div>
+          <div class="feature-copy">
+            <span class="release-tag">FEATURED RELEASE</span>
+            <h3>He’s Working on Me</h3>
+            <p>B&amp;M | Bible &amp; Mic</p>
+            <div class="track-controls">
+              <button class="round-play" aria-label="Play He's Working on Me">▶</button>
+              <div class="track-line"><div class="track-line-fill"></div></div>
+              <span class="track-time">0:00</span>
             </div>
           </div>
-          <p id="audioNote" class="audio-note">Add your MP3 to <strong>assets/featured-song.mp3</strong> to activate the player.</p>
+          <div class="feature-glow"></div>
+        </article>
+
+        <div class="song-grid">
+          <article class="track-card small-track g2m" data-src="good2me.mp3" data-title="Good2Me" data-art="">
+            <div class="letter-art"><span>G2M</span><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="small-copy"><span class="release-tag">RELEASE</span><h3>Good2Me</h3><p>B&amp;M | Bible &amp; Mic</p></div>
+            <button class="square-play" aria-label="Play Good2Me">▶</button>
+          </article>
+          <article class="track-card small-track c4c" data-src="crazy-4-christ.mp3" data-title="Crazy 4 Christ" data-art="">
+            <div class="letter-art"><span>C4C</span><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="small-copy"><span class="release-tag red">NEW</span><h3>Crazy 4 Christ</h3><p>B&amp;M | Bible &amp; Mic</p></div>
+            <button class="square-play" aria-label="Play Crazy 4 Christ">▶</button>
+          </article>
         </div>
       </section>
 
-      <section id="lyrics" class="page-section section-block">
-        <div class="section-kicker">LYRICS</div>
-        <h2>Words behind the record.</h2>
-        <div id="lyricsBody" class="lyrics-card"></div>
+      <section id="watch" class="section page-section watch-section">
+        <div class="section-head">
+          <div><span class="kicker">WATCH</span><h2>See the message.</h2></div>
+          <span class="count">VIDEO</span>
+        </div>
+        <div class="video-shell">
+          <div class="video-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/DwiKgE4oprw?playsinline=1&rel=0" title="B&M music video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="video-meta"><div><span>CRAZY 4 CHRIST</span><strong>Watch without leaving the site.</strong></div><a href="https://youtube.com/shorts/DwiKgE4oprw" target="_blank" rel="noopener">OPEN YOUTUBE ↗</a></div>
+        </div>
       </section>
 
-      <section id="story" class="page-section section-block">
-        <div class="section-kicker">MY STORY</div>
+      <section id="lyrics" class="section page-section">
+        <span class="kicker">LYRICS</span>
+        <div class="coming-card">
+          <div class="coming-icon">“</div>
+          <div><h2>Words behind<br>the record.</h2><p>Lyrics and the story behind the music are on the way.</p><span>COMING SOON</span></div>
+        </div>
+      </section>
+
+      <section id="story" class="section page-section story-section">
+        <span class="kicker">MY STORY</span>
         <h2>More than music.</h2>
         <div class="story-card">
-          <div class="story-number">01</div>
-          <div id="storyBody"></div>
+          <span class="story-num">01</span>
+          <div>
+            <p class="lead">Christ changed everything.</p>
+            <p>I was lost thinking I was found, living life my way while calling it faith. Jesus met me in the mess, gave me a new direction, a new purpose, and showed me what a real relationship with Him looks like.</p>
+            <p>I’m still a work in progress. Just a dude from Minnesota with a Bible and a mic, pointing people to the One who changed my life.</p>
+          </div>
         </div>
       </section>
 
-      <section id="updates" class="page-section section-block updates-section">
-        <div class="section-kicker">UPDATES</div>
-        <h2>What’s happening.</h2>
-        <div id="updatesList" class="updates-list"></div>
+      <section id="updates" class="section page-section">
+        <div class="section-head"><div><span class="kicker">UPDATES</span><h2>What’s happening.</h2></div></div>
+        <div class="updates-grid">
+          <article><time>OCT 2026</time><span class="update-dot"></span><h3>Crazy 4 Christ — out now.</h3><p>Faith over fear. All glory to God.</p></article>
+          <article><time>SEP 2026</time><span class="update-dot"></span><h3>He’s Working on Me — released.</h3><p>A reminder that God is still shaping, rebuilding, and working on me every day.</p></article>
+        </div>
+      </section>
+
+      <section id="connect" class="section connect-section page-section">
+        <span class="kicker">CONNECT</span>
+        <h2>Follow the journey.</h2>
+        <div class="link-stack">
+          <a href="https://www.bandlab.com/dat1mixeddude" target="_blank" rel="noopener"><span>BANDLAB</span><b>Hear more music</b><i>↗</i></a>
+          <a href="https://youtube.com/shorts/DwiKgE4oprw" target="_blank" rel="noopener"><span>YOUTUBE</span><b>Watch the latest</b><i>↗</i></a>
+        </div>
+        <p class="footer-line">B&amp;M | BIBLE &amp; MIC <span>•</span> ALL GLORY TO GOD</p>
       </section>
     </main>
 
+    <div id="miniPlayer" class="mini-player" aria-live="polite">
+      <div class="mini-art" id="miniArt"><span>B&amp;M</span></div>
+      <div class="mini-copy"><small>NOW PLAYING</small><strong id="miniTitle">Choose a track</strong></div>
+      <button id="miniPlay" aria-label="Play or pause current song">▶</button>
+      <div class="mini-progress"><div id="miniProgress"></div></div>
+    </div>
+
     <nav class="bottom-nav" aria-label="Primary navigation">
       <a href="#home" class="nav-item active" data-target="home"><span>⌂</span><small>Home</small></a>
-      <a href="#featured" class="nav-item" data-target="featured"><span>▶</span><small>Music</small></a>
-      <a href="#lyrics" class="nav-item" data-target="lyrics"><span>≡</span><small>Lyrics</small></a>
-      <a href="#story" class="nav-item" data-target="story"><span class="cross-icon" aria-hidden="true"></span><small>Story</small></a>
-      <a href="#updates" class="nav-item" data-target="updates"><span>•</span><small>Updates</small></a>
+      <a href="#music" class="nav-item" data-target="music"><span>▶</span><small>Music</small></a>
+      <a href="#watch" class="nav-item" data-target="watch"><span>▣</span><small>Watch</small></a>
+      <a href="#story" class="nav-item" data-target="story"><span>✝</span><small>Story</small></a>
+      <a href="#connect" class="nav-item" data-target="connect"><span>↗</span><small>Connect</small></a>
     </nav>
   </div>
+  <audio id="globalAudio" preload="metadata"></audio>
   <script src="app.js"></script>
 </body>
 </html>
