@@ -107,11 +107,10 @@ const verses = [
 const verseCard = document.getElementById('verseCard');
 const verseRef = document.getElementById('verseRef');
 const verseText = document.getElementById('verseText');
-const verseCount = document.getElementById('verseCount');
 const verseProgress = document.getElementById('verseProgress');
 let verseIndex = 0;
 let verseTimer;
-const VERSE_MS = 8000;
+const VERSE_MS = 12000;
 
 function showVerse(index){
   if(!verseCard) return;
@@ -121,7 +120,6 @@ function showVerse(index){
     const v = verses[verseIndex];
     verseRef.textContent = v.ref;
     verseText.textContent = v.text;
-    verseCount.textContent = `${verseIndex + 1} / ${verses.length} · NIV`;
     verseCard.classList.remove('changing');
     verseProgress.classList.remove('run');
     void verseProgress.offsetWidth;
