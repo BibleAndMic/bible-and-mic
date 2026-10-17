@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090909" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Bible & Mic" />
+  <meta name="description" content="B&M | Bible & Mic — Christian hip-hop, testimony, lyrics and updates." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/icon-180.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>B&M | Bible & Mic</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Bible & Mic home">
+        <span class="brand-mark">B&amp;M</span>
+        <span class="brand-copy"><strong>BIBLE &amp; MIC</strong><small>FAITH • STORY • MUSIC</small></span>
+      </a>
+      <span class="live-dot" aria-label="Independent music">LIVE</span>
+    </header>
+
+    <main>
+      <section id="home" class="hero page-section">
+        <div class="eyebrow">CHRISTIAN HIP-HOP • MINNESOTA</div>
+        <h1>FAITH IN THE<br><span>FRONT ROW.</span></h1>
+        <p class="hero-copy">Music with a message. A real story. All glory to God.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#featured">▶ Listen now</a>
+          <a class="btn btn-ghost" href="#story">My story</a>
+        </div>
+        <div class="verse-card">
+          <span>THE MISSION</span>
+          <p>Use the mic to point beyond the mic.</p>
+        </div>
+      </section>
+
+      <section id="featured" class="page-section section-block">
+        <div class="section-kicker">FEATURED</div>
+        <div class="cover-art" aria-hidden="true">
+          <div class="cover-cross"></div>
+          <div class="cover-text"><small>B&amp;M PRESENTS</small><strong id="coverTitle">FEATURED SONG</strong><span>BIBLE &amp; MIC</span></div>
+        </div>
+        <div class="track-meta">
+          <div>
+            <h2 id="songTitle">Featured Song</h2>
+            <p id="songArtist">B&amp;M | Bible &amp; Mic</p>
+          </div>
+          <span class="pill">NEW</span>
+        </div>
+
+        <div class="player-card">
+          <audio id="audio" preload="metadata"></audio>
+          <div class="player-row">
+            <button id="playBtn" class="play-btn" aria-label="Play featured song">▶</button>
+            <div class="player-main">
+              <div class="time-row"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
+              <input id="seek" class="seek" type="range" min="0" max="100" value="0" aria-label="Seek through song" />
+            </div>
+          </div>
+          <p id="audioNote" class="audio-note">Add your MP3 to <strong>assets/featured-song.mp3</strong> to activate the player.</p>
+        </div>
+      </section>
+
+      <section id="lyrics" class="page-section section-block">
+        <div class="section-kicker">LYRICS</div>
+        <h2>Words behind the record.</h2>
+        <div id="lyricsBody" class="lyrics-card"></div>
+      </section>
+
+      <section id="story" class="page-section section-block">
+        <div class="section-kicker">MY STORY</div>
+        <h2>More than music.</h2>
+        <div class="story-card">
+          <div class="story-number">01</div>
+          <div id="storyBody"></div>
+        </div>
+      </section>
+
+      <section id="updates" class="page-section section-block updates-section">
+        <div class="section-kicker">UPDATES</div>
+        <h2>What’s happening.</h2>
+        <div id="updatesList" class="updates-list"></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Primary navigation">
+      <a href="#home" class="nav-item active" data-target="home"><span>⌂</span><small>Home</small></a>
+      <a href="#featured" class="nav-item" data-target="featured"><span>▶</span><small>Music</small></a>
+      <a href="#lyrics" class="nav-item" data-target="lyrics"><span>≡</span><small>Lyrics</small></a>
+      <a href="#story" class="nav-item" data-target="story"><span>✝</span><small>Story</small></a>
+      <a href="#updates" class="nav-item" data-target="updates"><span>•</span><small>Updates</small></a>
+    </nav>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
