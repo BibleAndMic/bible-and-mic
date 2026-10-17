@@ -1,6 +1,5 @@
 // ============================================================
 // B&M | BIBLE & MIC — EASY CONTENT CONFIG
-// For most updates, change ONLY this section.
 // ============================================================
 const site = {
   featuredSong: {
@@ -8,6 +7,23 @@ const site = {
     artist: "B&M | Bible & Mic",
     audio: "featured-song.mp3"
   },
+
+  moreSongs: [
+    {
+      title: "Good2Me",
+      artist: "B&M | Bible & Mic",
+      audio: "good2me.mp3",
+      mark: "G2M",
+      tag: "RELEASE"
+    },
+    {
+      title: "Crazy 4 Christ",
+      artist: "B&M | Bible & Mic",
+      audio: "crazy-4-christ.mp3",
+      mark: "C4C",
+      tag: "NEW"
+    }
+  ],
 
   lyrics: `COMING SOON\n\nLyrics and the story behind the music are on the way.`,
 
@@ -30,7 +46,76 @@ const site = {
   ]
 };
 
-// ---------- Render content ----------
+// ---------- Helpers ----------
+const fmt = seconds => {
+  if (!Number.isFinite(seconds)) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+};
+
+const allPlayers = [];
+function stopOtherPlayers(currentAudio) {
+  allPlayers.forEach(({ audio, button, card }) => {
+    if (audio !== currentAudio && !audio.paused) {
+      audio.pause();
+      button.textContent = "▶";
+      card.classList.remove("is-playing");
+    }
+  });
+}
+
+function wirePlayer({ audio, button, seek, current, duration, card, note }) {
+  const player = { audio, button, seek, current, duration, card };
+  allPlayers.push(player);
+
+  audio.addEventListener("loadedmetadata", () => {
+    duration.textContent = fmt(audio.duration);
+    if (note) {
+      note.textContent = "Ready to play.";
+      note.classList.add("ready");
+    }
+  });
+
+  audio.addEventListener("timeupdate", () => {
+    current.textContent = fmt(audio.currentTime);
+    if (audio.duration) seek.value = (audio.currentTime / audio.duration) * 100;
+  });
+
+  audio.addEventListener("ended", () => {
+    button.textContent = "▶";
+    card.classList.remove("is-playing");
+    seek.value = 0;
+    current.textContent = "0:00";
+  });
+
+  audio.addEventListener("error", () => {
+    if (note) note.textContent = "Audio file not found yet.";
+  });
+
+  button.addEventListener("click", async () => {
+    if (audio.paused) {
+      stopOtherPlayers(audio);
+      try {
+        await audio.play();
+        button.textContent = "❚❚";
+        card.classList.add("is-playing");
+      } catch (e) {
+        if (note) note.textContent = "Tap again after the song finishes loading.";
+      }
+    } else {
+      audio.pause();
+      button.textContent = "▶";
+      card.classList.remove("is-playing");
+    }
+  });
+
+  seek.addEventListener("input", () => {
+    if (audio.duration) audio.currentTime = (seek.value / 100) * audio.duration;
+  });
+}
+
+// ---------- Render main content ----------
 document.getElementById("songTitle").textContent = site.featuredSong.title;
 document.getElementById("songArtist").textContent = site.featuredSong.artist;
 document.getElementById("coverTitle").textContent = site.featuredSong.title.toUpperCase();
@@ -60,45 +145,84 @@ site.updates.forEach(item => {
   updatesEl.appendChild(card);
 });
 
-// ---------- Audio player ----------
+// ---------- Featured player ----------
 const audio = document.getElementById("audio");
 const playBtn = document.getElementById("playBtn");
 const seek = document.getElementById("seek");
 const currentTime = document.getElementById("currentTime");
 const duration = document.getElementById("duration");
 const audioNote = document.getElementById("audioNote");
+const featuredCard = document.querySelector(".player-card");
 audio.src = site.featuredSong.audio;
 
-const fmt = seconds => {
-  if (!Number.isFinite(seconds)) return "0:00";
-  const m = Math.floor(seconds / 60);
-  const s = Math.floor(seconds % 60).toString().padStart(2, "0");
-  return `${m}:${s}`;
-};
+// Add a subtle animated equalizer to the featured player.
+const featuredEq = document.createElement("div");
+featuredEq.className = "mini-eq";
+featuredEq.setAttribute("aria-hidden", "true");
+featuredEq.innerHTML = "<i></i><i></i><i></i><i></i><i></i><i></i>";
+featuredCard.prepend(featuredEq);
 
-audio.addEventListener("loadedmetadata", () => {
-  duration.textContent = fmt(audio.duration);
-  audioNote.textContent = "Ready to play.";
-  audioNote.classList.add("ready");
+wirePlayer({
+  audio,
+  button: playBtn,
+  seek,
+  current: currentTime,
+  duration,
+  card: featuredCard,
+  note: audioNote
 });
-audio.addEventListener("error", () => {
-  audioNote.innerHTML = 'Add your MP3 to <strong>assets/featured-song.mp3</strong> to activate the player.';
-});
-audio.addEventListener("timeupdate", () => {
-  currentTime.textContent = fmt(audio.currentTime);
-  if (audio.duration) seek.value = (audio.currentTime / audio.duration) * 100;
-});
-audio.addEventListener("ended", () => { playBtn.textContent = "▶"; });
 
-playBtn.addEventListener("click", async () => {
-  if (audio.paused) {
-    try { await audio.play(); playBtn.textContent = "❚❚"; } catch (e) { audioNote.textContent = "Add the featured MP3 first, then the player will work."; }
-  } else {
-    audio.pause(); playBtn.textContent = "▶";
-  }
-});
-seek.addEventListener("input", () => {
-  if (audio.duration) audio.currentTime = (seek.value / 100) * audio.duration;
+// ---------- More music ----------
+const featuredSection = document.getElementById("featured");
+const moreWrap = document.createElement("div");
+moreWrap.className = "more-music";
+moreWrap.innerHTML = `
+  <div class="more-music-head">
+    <span class="section-kicker">MORE MUSIC</span>
+    <span class="library-count">${site.moreSongs.length + 1} TRACKS</span>
+  </div>
+  <div class="track-stack" id="trackStack"></div>
+`;
+featuredSection.appendChild(moreWrap);
+const trackStack = moreWrap.querySelector("#trackStack");
+
+site.moreSongs.forEach((song, index) => {
+  const card = document.createElement("article");
+  card.className = "music-card";
+  card.innerHTML = `
+    <div class="music-mark" aria-hidden="true">
+      <span>${song.mark}</span>
+      <b></b><b></b><b></b><b></b>
+    </div>
+    <div class="music-info">
+      <div class="music-title-row">
+        <div>
+          <h3>${song.title}</h3>
+          <p>${song.artist}</p>
+        </div>
+        <span class="music-tag">${song.tag}</span>
+      </div>
+      <audio preload="metadata" src="${song.audio}"></audio>
+      <div class="music-controls">
+        <button class="music-play" aria-label="Play ${song.title}">▶</button>
+        <div class="music-timeline">
+          <div class="time-row"><span class="music-current">0:00</span><span class="music-duration">0:00</span></div>
+          <input class="seek music-seek" type="range" min="0" max="100" value="0" aria-label="Seek through ${song.title}">
+        </div>
+      </div>
+      <div class="music-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  `;
+  trackStack.appendChild(card);
+
+  wirePlayer({
+    audio: card.querySelector("audio"),
+    button: card.querySelector(".music-play"),
+    seek: card.querySelector(".music-seek"),
+    current: card.querySelector(".music-current"),
+    duration: card.querySelector(".music-duration"),
+    card
+  });
 });
 
 // ---------- Bottom-nav active state ----------

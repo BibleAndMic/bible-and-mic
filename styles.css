@@ -19,3 +19,23 @@ a{color:inherit;text-decoration:none}.app-shell{max-width:760px;margin:auto;min-
 /* Featured song artwork */
 .cover-art{background:#080808 url("featured-cover.jpg") center/cover no-repeat;border-color:#342e20}
 .cover-art:before,.cover-cross,.cover-text{display:none}
+
+
+/* ==========================================================
+   B&M MULTI-TRACK PLAYER
+   ========================================================== */
+.player-card{position:relative;overflow:hidden;isolation:isolate}
+.player-card:before{content:"";position:absolute;inset:-80% -20%;background:radial-gradient(circle,rgba(233,217,154,.13),transparent 48%);opacity:.25;transform:translateX(-25%);transition:opacity .35s ease;z-index:-1}
+.player-card.is-playing:before{opacity:1;animation:playerGlow 3.8s ease-in-out infinite alternate}
+.mini-eq{height:18px;display:flex;align-items:flex-end;gap:3px;margin:0 0 10px 62px;opacity:.4}
+.mini-eq i,.music-eq i{display:block;width:3px;height:6px;border-radius:999px;background:var(--accent);transform-origin:bottom;animation:eqBounce .75s ease-in-out infinite alternate;animation-play-state:paused}
+.mini-eq i:nth-child(2),.music-eq i:nth-child(2){animation-delay:.12s}.mini-eq i:nth-child(3),.music-eq i:nth-child(3){animation-delay:.3s}.mini-eq i:nth-child(4),.music-eq i:nth-child(4){animation-delay:.18s}.mini-eq i:nth-child(5),.music-eq i:nth-child(5){animation-delay:.42s}.mini-eq i:nth-child(6),.music-eq i:nth-child(6){animation-delay:.08s}.music-eq i:nth-child(7){animation-delay:.34s}.music-eq i:nth-child(8){animation-delay:.22s}
+.is-playing .mini-eq i,.is-playing .music-eq i{animation-play-state:running}
+.more-music{margin-top:30px;padding-top:26px;border-top:1px solid #222}
+.more-music-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.library-count{font-size:8px;letter-spacing:.16em;color:#6f6b61}
+.track-stack{display:grid;gap:12px}.music-card{position:relative;display:grid;grid-template-columns:82px 1fr;gap:14px;padding:12px;border:1px solid #262626;background:linear-gradient(135deg,#131313,#0b0b0b);overflow:hidden;isolation:isolate;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}.music-card:after{content:"";position:absolute;width:160px;height:160px;right:-90px;top:-90px;border-radius:50%;background:radial-gradient(circle,rgba(233,217,154,.18),transparent 68%);opacity:.28;z-index:-1;transition:opacity .3s ease,transform .3s ease}.music-card.is-playing{border-color:#665d3f;box-shadow:0 12px 34px rgba(0,0,0,.34),inset 0 0 0 1px rgba(233,217,154,.05)}.music-card.is-playing:after{opacity:.9;transform:scale(1.35)}
+.music-mark{height:82px;border:1px solid #3b3526;background:linear-gradient(145deg,#19170f,#0b0b0b);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.music-mark span{font-size:22px;font-weight:950;letter-spacing:-.06em;color:var(--accent);text-shadow:0 0 18px rgba(233,217,154,.25);z-index:2}.music-mark b{position:absolute;bottom:8px;width:3px;background:#e9d99a55;border-radius:999px}.music-mark b:nth-of-type(1){left:12px;height:13px}.music-mark b:nth-of-type(2){left:20px;height:24px}.music-mark b:nth-of-type(3){right:20px;height:18px}.music-mark b:nth-of-type(4){right:12px;height:30px}
+.music-info{min-width:0}.music-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.music-title-row h3{font-size:17px;margin:2px 0 3px;letter-spacing:-.03em}.music-title-row p{font-size:10px;margin:0;color:var(--muted)}.music-tag{font-size:7px;letter-spacing:.13em;padding:5px 6px;border:1px solid #4b442f;color:var(--accent);border-radius:999px;white-space:nowrap}.music-controls{display:flex;align-items:center;gap:10px;margin-top:12px}.music-play{width:34px;height:34px;border-radius:50%;border:1px solid #494234;background:#f5f0e4;color:#0b0b0b;font-size:13px;flex:0 0 auto}.music-timeline{flex:1;min-width:0}.music-timeline .time-row{margin-bottom:3px}.music-seek{height:16px}.music-eq{height:14px;margin:7px 0 0 44px;display:flex;align-items:flex-end;gap:3px;opacity:.28}.music-card.is-playing .music-eq{opacity:.78}
+@keyframes eqBounce{0%{height:3px;opacity:.45}100%{height:14px;opacity:1}}@keyframes playerGlow{0%{transform:translateX(-25%) scale(.9)}100%{transform:translateX(25%) scale(1.15)}}
+@media(max-width:390px){.music-card{grid-template-columns:70px 1fr}.music-mark{height:70px}.music-mark span{font-size:19px}.music-title-row h3{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.mini-eq i,.music-eq i,.player-card.is-playing:before{animation:none!important}}
