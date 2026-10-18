@@ -17,14 +17,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="B&M | Bible & Mic" />
   <meta property="og:description" content="Christian hip-hop rooted in faith, testimony, and truth." />
-  <meta property="og:image" content="https://coreyconroyf.github.io/bible-and-mic/home-hero.jpg" />
+  <meta property="og:image" content="https://bibleandmic.github.io/bible-and-mic/home-hero.jpg" />
   <meta property="og:image:alt" content="B&M | Bible & Mic" />
-  <meta property="og:url" content="https://coreyconroyf.github.io/bible-and-mic/" />
+  <meta property="og:url" content="https://bibleandmic.github.io/bible-and-mic/" />
   <meta property="og:site_name" content="B&M" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="B&M | Bible & Mic" />
   <meta name="twitter:description" content="Christian hip-hop rooted in faith, testimony, and truth." />
-  <meta name="twitter:image" content="https://coreyconroyf.github.io/bible-and-mic/home-hero.jpg" />
+  <meta name="twitter:image" content="https://bibleandmic.github.io/bible-and-mic/home-hero.jpg" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -66,6 +66,25 @@
         </div>
         <p id="verseText">“If anyone is in Christ, the new creation has come: The old has gone, the new is here!”</p>
         <div class="verse-progress" aria-hidden="true"><i id="verseProgress"></i></div>
+      </section>
+
+      <section id="daily" class="daily-walk" aria-label="Daily Walk">
+        <div class="daily-head">
+          <div><span class="kicker">DAILY WALK</span><h2>Nothing fancy.<br>Just the walk.</h2></div>
+          <p>Life, faith, music, and the little things God uses along the way.</p>
+        </div>
+        <div class="daily-strip" id="dailyStrip" aria-label="Swipe through recent moments">
+          <button class="daily-story" data-story="0"><span class="daily-ring"><img src="daily/in-the-word.jpg" alt="Bible study moment"></span><small>In the Word</small></button>
+          <button class="daily-story" data-story="1"><span class="daily-ring"><img src="daily/fresh-air.jpg" alt="Quiet outdoor moment"></span><small>Fresh Air</small></button>
+          <button class="daily-story" data-story="2"><span class="daily-ring"><img src="daily/only-by-grace.jpg" alt="Only by Grace"></span><small>Only by Grace</small></button>
+          <button class="daily-story" data-story="3"><span class="daily-ring"><img src="daily/redeemed.jpg" alt="Bible and music moment"></span><small>Still Growing</small></button>
+          <button class="daily-story" data-story="4"><span class="daily-ring video-thumb"><video src="daily/life-lately.mp4" poster="daily/life-lately-poster.jpg" muted playsinline preload="metadata"></video><i>▶</i></span><small>Life Lately</small></button>
+          <button class="daily-story" data-story="5"><span class="daily-ring"><img src="daily/little-reminders.jpg" alt="Small reminder of faith"></span><small>Little Things</small></button>
+          <button class="daily-story" data-story="6"><span class="daily-ring"><img src="daily/quiet-companion.jpg" alt="Cat resting on Bible"></span><small>Quiet Moments</small></button>
+          <button class="daily-story" data-story="7"><span class="daily-ring"><img src="daily/new-growth.jpg" alt="Small plants growing"></span><small>New Growth</small></button>
+          <button class="daily-story" data-story="8"><span class="daily-ring"><img src="daily/small-beauty.jpg" alt="Yellow flower"></span><small>Small Beauty</small></button>
+        </div>
+        <div class="daily-note">A few real moments. One day at a time.</div>
       </section>
 
       <section id="music" class="section page-section">
@@ -151,11 +170,27 @@
         <div class="link-stack">
           <a href="https://www.bandlab.com/dat1mixeddude" target="_blank" rel="noopener"><span>BANDLAB</span><b>Hear more music</b><i>↗</i></a>
           <a href="https://youtube.com/shorts/DwiKgE4oprw" target="_blank" rel="noopener"><span>YOUTUBE</span><b>Watch the latest</b><i>↗</i></a>
+          <a href="https://x.com/D1MD4" target="_blank" rel="noopener"><span>X / TWITTER</span><b>@D1MD4 · EmptyTomb</b><i>↗</i></a>
+          <a href="https://www.facebook.com/share/1EANfu4xZQ/?mibextid=wwXIfr" target="_blank" rel="noopener"><span>FACEBOOK</span><b>Datdude Daone</b><i>↗</i></a>
         </div>
+        <a class="latest-social" href="https://www.facebook.com/share/p/1A4wqgWw7f/?mibextid=wwXIfr" target="_blank" rel="noopener">
+          <span>LATEST SOCIAL</span><strong>See the newest Facebook post</strong><i>↗</i>
+        </a>
         <p class="purpose-line">This isn’t about building a platform. It’s about pointing people to Christ.</p>
         <p class="footer-line">B&amp;M | BIBLE &amp; MIC <span>•</span> ALL GLORY TO GOD</p>
       </section>
     </main>
+
+
+    <div class="story-viewer" id="storyViewer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Daily Walk story viewer">
+      <div class="story-progress" id="storyProgress"></div>
+      <button class="story-close" id="storyClose" aria-label="Close Daily Walk">×</button>
+      <button class="story-zone story-prev" id="storyPrev" aria-label="Previous story"></button>
+      <button class="story-zone story-next" id="storyNext" aria-label="Next story"></button>
+      <div class="story-stage" id="storyStage"></div>
+      <div class="story-caption"><span id="storyLabel">Daily Walk</span><p id="storyCaption">One day at a time.</p></div>
+      <button class="story-sound" id="storySound" aria-label="Turn video sound on">🔇</button>
+    </div>
 
     <div id="miniPlayer" class="mini-player" aria-live="polite">
       <div class="mini-art" id="miniArt"><span>B&amp;M</span></div>

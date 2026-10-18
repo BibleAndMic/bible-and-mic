@@ -145,3 +145,66 @@ if(verseCard){
 }
 
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
+
+// Daily Walk — lightweight story viewer. Photos advance slowly; videos play muted inline.
+const dailyStories = [
+  {type:'image',src:'daily/in-the-word.jpg',label:'IN THE WORD',caption:'Still learning.'},
+  {type:'image',src:'daily/fresh-air.jpg',label:'FRESH AIR',caption:'Grateful for simple moments.'},
+  {type:'image',src:'daily/only-by-grace.jpg',label:'ONLY BY GRACE',caption:'Nothing to prove. Everything to thank Him for.'},
+  {type:'image',src:'daily/redeemed.jpg',label:'STILL GROWING',caption:'Trying to keep Christ at the center.'},
+  {type:'video',src:'daily/life-lately.mp4',label:'LIFE LATELY',caption:'One day at a time.'},
+  {type:'image',src:'daily/little-reminders.jpg',label:'LITTLE THINGS',caption:'Small reminders. Big grace.'},
+  {type:'image',src:'daily/quiet-companion.jpg',label:'QUIET MOMENTS',caption:'God has been good.'},
+  {type:'image',src:'daily/new-growth.jpg',label:'NEW GROWTH',caption:'Still growing.'},
+  {type:'image',src:'daily/small-beauty.jpg',label:'SMALL BEAUTY',caption:'His fingerprints are everywhere.'}
+];
+const storyViewer=document.getElementById('storyViewer');
+const storyStage=document.getElementById('storyStage');
+const storyLabel=document.getElementById('storyLabel');
+const storyCaption=document.getElementById('storyCaption');
+const storyProgress=document.getElementById('storyProgress');
+const storySound=document.getElementById('storySound');
+let storyIndex=0, storyTimer=null, storyVideo=null;
+const PHOTO_MS=8000;
+function buildStoryProgress(){
+  storyProgress.innerHTML=dailyStories.map((_,i)=>`<span data-p="${i}"><i></i></span>`).join('');
+}
+function setStoryProgress(ms){
+  [...storyProgress.children].forEach((el,i)=>{el.className=i<storyIndex?'done':i===storyIndex?'active':'';el.style.setProperty('--story-ms',`${ms}ms`);});
+}
+function clearStoryMedia(){
+  clearTimeout(storyTimer);
+  if(storyVideo){storyVideo.pause();storyVideo=null;}
+  storyViewer.classList.remove('has-video');
+}
+function showStory(i){
+  clearStoryMedia();
+  storyIndex=(i+dailyStories.length)%dailyStories.length;
+  const item=dailyStories[storyIndex];
+  storyLabel.textContent=item.label;
+  storyCaption.textContent=item.caption;
+  storyStage.innerHTML='';
+  if(item.type==='video'){
+    const v=document.createElement('video');
+    v.src=item.src;v.playsInline=true;v.muted=true;v.autoplay=true;v.controls=false;v.preload='auto';
+    storyStage.appendChild(v);storyVideo=v;storyViewer.classList.add('has-video');storySound.textContent='🔇';
+    v.addEventListener('loadedmetadata',()=>setStoryProgress(Math.max(3000,Math.min((v.duration||12)*1000,20000))));
+    v.addEventListener('ended',()=>showStory(storyIndex+1));
+    v.play().catch(()=>{});
+  }else{
+    const img=document.createElement('img');img.src=item.src;img.alt=item.label;storyStage.appendChild(img);
+    setStoryProgress(PHOTO_MS);storyTimer=setTimeout(()=>showStory(storyIndex+1),PHOTO_MS);
+  }
+}
+function openStory(i){
+  buildStoryProgress();storyViewer.classList.add('open');storyViewer.setAttribute('aria-hidden','false');document.body.classList.add('story-open');showStory(i);
+}
+function closeStory(){
+  clearStoryMedia();storyViewer.classList.remove('open','has-video');storyViewer.setAttribute('aria-hidden','true');document.body.classList.remove('story-open');storyStage.innerHTML='';
+}
+document.querySelectorAll('[data-story]').forEach(btn=>btn.addEventListener('click',()=>openStory(Number(btn.dataset.story))));
+document.getElementById('storyClose')?.addEventListener('click',closeStory);
+document.getElementById('storyPrev')?.addEventListener('click',()=>showStory(storyIndex-1));
+document.getElementById('storyNext')?.addEventListener('click',()=>showStory(storyIndex+1));
+storySound?.addEventListener('click',()=>{if(!storyVideo)return;storyVideo.muted=!storyVideo.muted;storySound.textContent=storyVideo.muted?'🔇':'🔊';});
+document.addEventListener('keydown',e=>{if(!storyViewer?.classList.contains('open'))return;if(e.key==='Escape')closeStory();if(e.key==='ArrowRight')showStory(storyIndex+1);if(e.key==='ArrowLeft')showStory(storyIndex-1);});
