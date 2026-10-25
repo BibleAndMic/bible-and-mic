@@ -208,3 +208,32 @@ document.getElementById('storyPrev')?.addEventListener('click',()=>showStory(sto
 document.getElementById('storyNext')?.addEventListener('click',()=>showStory(storyIndex+1));
 storySound?.addEventListener('click',()=>{if(!storyVideo)return;storyVideo.muted=!storyVideo.muted;storySound.textContent=storyVideo.muted?'🔇':'🔊';});
 document.addEventListener('keydown',e=>{if(!storyViewer?.classList.contains('open'))return;if(e.key==='Escape')closeStory();if(e.key==='ArrowRight')showStory(storyIndex+1);if(e.key==='ArrowLeft')showStory(storyIndex-1);});
+
+// Song title + producer credit refresh
+const featuredTrack = document.querySelector('.feature-track');
+if(featuredTrack){
+  featuredTrack.dataset.title = "He's Working on Me";
+  const title = featuredTrack.querySelector('h3');
+  const credit = featuredTrack.querySelector('.feature-copy > p');
+  const play = featuredTrack.querySelector('.round-play');
+  if(title) title.textContent = "He’s Working on Me";
+  if(credit) credit.textContent = 'Prod. by Syndrome';
+  if(play) play.setAttribute('aria-label', "Play He's Working on Me");
+}
+
+const heroPlay = document.querySelector('[data-play="featured-song.mp3"]');
+if(heroPlay) heroPlay.dataset.title = "He's Working on Me";
+
+const c4cTrack = document.querySelector('.track-card.c4c');
+if(c4cTrack){
+  c4cTrack.dataset.title = 'Crazy 4 Christ';
+  const title = c4cTrack.querySelector('h3');
+  const credit = c4cTrack.querySelector('.small-copy > p');
+  const play = c4cTrack.querySelector('.square-play');
+  if(title) title.textContent = 'Crazy 4 Christ';
+  if(credit) credit.textContent = 'Prod. by Morgan';
+  if(play) play.setAttribute('aria-label', 'Play Crazy 4 Christ');
+}
+
+const videoTitle = document.querySelector('.video-meta span');
+if(videoTitle) videoTitle.textContent = 'CRAZY 4 CHRIST · PROD. BY MORGAN';
