@@ -1,4 +1,17 @@
-/* B&M homepage hero — studio portrait + Faith Over Fear lockup. */
+/* B&M homepage — Concept 1: centered Faith Over Fear studio hero. */
+main{display:flex;flex-direction:column}
+main>.hero{order:1}
+main>#music{order:2}
+main>.marquee{order:3}
+main>.verse-card{order:4}
+main>#daily{order:5}
+main>#watch{order:6}
+main>#lyrics{order:7}
+main>#story{order:8}
+main>#updates{order:9}
+main>.install-card{order:10}
+main>#connect{order:11}
+
 .hero{
   position:relative!important;
   min-height:720px!important;
@@ -8,7 +21,7 @@
   background-image:url("corey-studio-hero.jpg")!important;
   background-repeat:no-repeat!important;
   background-size:cover!important;
-  background-position:68% center!important;
+  background-position:72% center!important;
   overflow:hidden!important;
   align-items:stretch!important;
 }
@@ -17,8 +30,8 @@
   position:absolute!important;
   inset:0!important;
   background:
-    linear-gradient(90deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.56) 30%,rgba(0,0,0,.10) 64%,rgba(0,0,0,.04) 100%),
-    linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.02) 43%,rgba(0,0,0,.42) 76%,#050505 100%)!important;
+    radial-gradient(circle at 52% 14%,rgba(231,164,68,.10),transparent 28%),
+    linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.03) 30%,rgba(0,0,0,.12) 55%,rgba(0,0,0,.72) 83%,#050505 100%)!important;
   z-index:1!important;
 }
 .hero:after{display:none!important}
@@ -28,34 +41,35 @@
   width:100%!important;
   display:flex!important;
   flex-direction:column!important;
-  justify-content:flex-end!important;
-  align-items:flex-start!important;
-  padding:104px 20px calc(82px + env(safe-area-inset-bottom))!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  padding:112px 20px calc(82px + env(safe-area-inset-bottom))!important;
   position:relative!important;
   z-index:3!important;
+  text-align:center!important;
 }
-.eyebrow{margin-bottom:12px!important;text-shadow:0 2px 14px #000!important}
+.eyebrow{display:none!important}
 .faith-lockup{
-  width:min(252px,64vw)!important;
-  margin:0 0 16px!important;
+  width:min(300px,78vw)!important;
+  margin:38px auto 0!important;
   display:grid!important;
   grid-template-rows:auto auto auto!important;
   gap:3px!important;
   line-height:.78!important;
-  filter:drop-shadow(0 10px 24px rgba(0,0,0,.65))!important;
+  filter:drop-shadow(0 12px 28px rgba(0,0,0,.72))!important;
 }
 .faith-lockup:before,.faith-lockup:after{content:none!important;display:none!important}
 .faith-word{
   display:block!important;
   color:#f4f1e8!important;
   font-family:Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif!important;
-  font-size:clamp(62px,18vw,102px)!important;
+  font-size:clamp(70px,20vw,112px)!important;
   font-weight:900!important;
   letter-spacing:-.055em!important;
   line-height:.78!important;
   text-transform:uppercase!important;
   -webkit-text-stroke:0!important;
-  text-shadow:0 4px 24px rgba(0,0,0,.65)!important;
+  text-shadow:0 5px 24px rgba(0,0,0,.72)!important;
 }
 .faith-top{transform:none!important}
 .faith-over{
@@ -63,64 +77,64 @@
   align-items:center!important;
   justify-content:center!important;
   width:100%!important;
-  min-height:29px!important;
+  min-height:30px!important;
   padding:4px 14px 5px!important;
-  background:#070707!important;
-  border:1px solid rgba(244,241,232,.32)!important;
-  color:#f4f1e8!important;
-  font-size:clamp(11px,3.4vw,16px)!important;
-  font-weight:900!important;
+  background:#f4f1e8!important;
+  border:0!important;
+  color:#070707!important;
+  font-size:clamp(11px,3.3vw,16px)!important;
+  font-weight:950!important;
   letter-spacing:.58em!important;
   line-height:1!important;
   text-indent:.58em!important;
-  box-shadow:0 5px 18px rgba(0,0,0,.42)!important;
+  box-shadow:0 5px 18px rgba(0,0,0,.38)!important;
 }
 .faith-bottom{transform:rotate(180deg)!important;transform-origin:center!important}
 .hero-content>p{
-  max-width:300px!important;
-  margin:0 0 16px!important;
+  max-width:330px!important;
+  margin:auto auto 16px!important;
   color:#eee8dd!important;
   font-size:15px!important;
   line-height:1.45!important;
+  text-align:center!important;
   text-shadow:0 3px 18px #000!important;
 }
-.hero-actions{gap:8px!important;flex-wrap:wrap!important}
-.primary-cta,.secondary-cta{height:43px!important;padding:0 14px!important}
-.mission-line{
-  max-width:340px!important;
-  margin-top:20px!important;
-  background:linear-gradient(90deg,rgba(0,0,0,.52),transparent)!important;
-}
+.hero-actions{gap:10px!important;justify-content:center!important;flex-wrap:nowrap!important;width:100%!important}
+.primary-cta,.secondary-cta{height:44px!important;padding:0 15px!important;white-space:nowrap!important}
+.mission-line{display:none!important}
+#music{padding-top:38px!important;border-top:1px solid #242019!important;background:linear-gradient(180deg,#090807 0,#050505 110px)!important}
+
 @media(max-width:430px){
   .hero{
     min-height:720px!important;
     height:100svh!important;
     background-size:auto 100%!important;
-    background-position:67% center!important;
+    background-position:74% center!important;
   }
   .hero:before{
     background:
-      linear-gradient(90deg,rgba(0,0,0,.74) 0%,rgba(0,0,0,.46) 43%,rgba(0,0,0,.05) 82%),
-      linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.02) 42%,rgba(0,0,0,.44) 74%,#050505 100%)!important;
+      radial-gradient(circle at 52% 14%,rgba(231,164,68,.10),transparent 28%),
+      linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.02) 34%,rgba(0,0,0,.10) 55%,rgba(0,0,0,.70) 82%,#050505 100%)!important;
   }
-  .hero-content{padding:94px 18px calc(86px + env(safe-area-inset-bottom))!important}
-  .faith-lockup{width:min(226px,61vw)!important;margin-bottom:14px!important}
-  .faith-word{font-size:clamp(56px,16.8vw,74px)!important}
-  .faith-over{min-height:27px!important;padding:4px 12px!important;font-size:11px!important}
-  .hero-content>p{max-width:280px!important;font-size:14px!important;margin-bottom:14px!important}
-  .mission-line{margin-top:16px!important;max-width:300px!important}
+  .hero-content{padding:92px 18px calc(84px + env(safe-area-inset-bottom))!important}
+  .faith-lockup{width:min(284px,76vw)!important;margin-top:34px!important}
+  .faith-word{font-size:clamp(68px,19.2vw,84px)!important}
+  .faith-over{min-height:28px!important;padding:4px 12px!important;font-size:11px!important}
+  .hero-content>p{max-width:300px!important;font-size:14px!important;margin-bottom:14px!important}
+  #music{padding-top:34px!important}
 }
 @media(max-width:375px){
-  .hero{background-position:69% center!important}
-  .faith-lockup{width:210px!important}
-  .faith-word{font-size:60px!important}
+  .hero{background-position:75% center!important}
+  .faith-lockup{width:260px!important;margin-top:28px!important}
+  .faith-word{font-size:72px!important}
   .hero-content>p{font-size:13px!important}
   .primary-cta,.secondary-cta{font-size:9px!important;padding:0 12px!important}
 }
 @media(min-width:660px){
-  .hero{background-position:62% center!important}
-  .hero-content{padding:120px 32px 96px!important}
-  .faith-lockup{width:292px!important}
-  .faith-word{font-size:100px!important}
+  .hero{background-position:66% center!important}
+  .hero-content{padding:116px 32px 96px!important}
+  .faith-lockup{width:330px!important;margin-top:42px!important}
+  .faith-word{font-size:112px!important}
+  #music{padding-top:46px!important}
 }
 @media(prefers-reduced-motion:reduce){.faith-lockup{filter:none!important}}
