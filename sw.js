@@ -1,4 +1,4 @@
-const CACHE='bible-and-mic-v25';
+const CACHE='bible-and-mic-v26';
 const CORE=['./','index.html','styles.css','base-styles.css','hero-polish.css','app.js','manifest.webmanifest','corey-studio-hero.jpg','home-hero.jpg','featured-cover.jpg','icon-180.png','icon-192.png','icon-512.png','in-the-word.jpg','fresh-air.jpg','only-by-grace.jpg','redeemed.jpg','life-lately-poster.jpg','little-reminders.jpg','quiet-companion.jpg','new-growth.jpg','small-beauty.jpg'];
 
 self.addEventListener('install',e=>{
