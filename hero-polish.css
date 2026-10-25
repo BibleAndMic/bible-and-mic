@@ -2,8 +2,8 @@
 .hero{
   position:relative!important;
   min-height:720px!important;
-  height:92svh!important;
-  max-height:900px!important;
+  height:100svh!important;
+  max-height:920px!important;
   background-color:#050505!important;
   background-image:url("corey-studio-hero.jpg")!important;
   background-repeat:no-repeat!important;
@@ -17,8 +17,8 @@
   position:absolute!important;
   inset:0!important;
   background:
-    linear-gradient(90deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.58) 29%,rgba(0,0,0,.10) 63%,rgba(0,0,0,.06) 100%),
-    linear-gradient(180deg,rgba(0,0,0,.14) 0%,rgba(0,0,0,.02) 45%,rgba(0,0,0,.46) 78%,#050505 100%)!important;
+    linear-gradient(90deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.56) 30%,rgba(0,0,0,.10) 64%,rgba(0,0,0,.04) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.02) 43%,rgba(0,0,0,.42) 76%,#050505 100%)!important;
   z-index:1!important;
 }
 .hero:after{display:none!important}
@@ -30,25 +30,26 @@
   flex-direction:column!important;
   justify-content:flex-end!important;
   align-items:flex-start!important;
-  padding:110px 20px 28px!important;
+  padding:104px 20px calc(82px + env(safe-area-inset-bottom))!important;
   position:relative!important;
   z-index:3!important;
 }
-.eyebrow{margin-bottom:14px!important;text-shadow:0 2px 14px #000!important}
+.eyebrow{margin-bottom:12px!important;text-shadow:0 2px 14px #000!important}
 .faith-lockup{
-  width:min(260px,66vw)!important;
-  margin:0 0 18px!important;
+  width:min(252px,64vw)!important;
+  margin:0 0 16px!important;
   display:grid!important;
   grid-template-rows:auto auto auto!important;
-  gap:4px!important;
+  gap:3px!important;
   line-height:.78!important;
   filter:drop-shadow(0 10px 24px rgba(0,0,0,.65))!important;
 }
+.faith-lockup:before,.faith-lockup:after{content:none!important;display:none!important}
 .faith-word{
   display:block!important;
   color:#f4f1e8!important;
   font-family:Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif!important;
-  font-size:clamp(64px,19vw,108px)!important;
+  font-size:clamp(62px,18vw,102px)!important;
   font-weight:900!important;
   letter-spacing:-.055em!important;
   line-height:.78!important;
@@ -60,27 +61,24 @@
 .faith-over{
   display:flex!important;
   align-items:center!important;
-  justify-content:space-around!important;
+  justify-content:center!important;
   width:100%!important;
-  min-height:31px!important;
-  padding:4px 18px 5px!important;
+  min-height:29px!important;
+  padding:4px 14px 5px!important;
   background:#070707!important;
-  border:1px solid rgba(244,241,232,.34)!important;
+  border:1px solid rgba(244,241,232,.32)!important;
   color:#f4f1e8!important;
-  font-size:clamp(12px,3.7vw,18px)!important;
+  font-size:clamp(11px,3.4vw,16px)!important;
   font-weight:900!important;
-  letter-spacing:.66em!important;
+  letter-spacing:.58em!important;
   line-height:1!important;
-  text-indent:.66em!important;
+  text-indent:.58em!important;
   box-shadow:0 5px 18px rgba(0,0,0,.42)!important;
 }
-.faith-bottom{
-  transform:rotate(180deg)!important;
-  transform-origin:center!important;
-}
+.faith-bottom{transform:rotate(180deg)!important;transform-origin:center!important}
 .hero-content>p{
-  max-width:310px!important;
-  margin:0 0 18px!important;
+  max-width:300px!important;
+  margin:0 0 16px!important;
   color:#eee8dd!important;
   font-size:15px!important;
   line-height:1.45!important;
@@ -89,40 +87,40 @@
 .hero-actions{gap:8px!important;flex-wrap:wrap!important}
 .primary-cta,.secondary-cta{height:43px!important;padding:0 14px!important}
 .mission-line{
-  max-width:360px!important;
-  margin-top:24px!important;
+  max-width:340px!important;
+  margin-top:20px!important;
   background:linear-gradient(90deg,rgba(0,0,0,.52),transparent)!important;
 }
 @media(max-width:430px){
   .hero{
-    min-height:700px!important;
-    height:92svh!important;
+    min-height:720px!important;
+    height:100svh!important;
     background-size:auto 100%!important;
     background-position:67% center!important;
   }
   .hero:before{
     background:
-      linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.44) 45%,rgba(0,0,0,.06) 82%),
-      linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.02) 42%,rgba(0,0,0,.48) 76%,#050505 100%)!important;
+      linear-gradient(90deg,rgba(0,0,0,.74) 0%,rgba(0,0,0,.46) 43%,rgba(0,0,0,.05) 82%),
+      linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.02) 42%,rgba(0,0,0,.44) 74%,#050505 100%)!important;
   }
-  .hero-content{padding:96px 18px 24px!important}
-  .faith-lockup{width:min(238px,63vw)!important;margin-bottom:15px!important}
-  .faith-word{font-size:clamp(58px,17.5vw,78px)!important}
+  .hero-content{padding:94px 18px calc(86px + env(safe-area-inset-bottom))!important}
+  .faith-lockup{width:min(226px,61vw)!important;margin-bottom:14px!important}
+  .faith-word{font-size:clamp(56px,16.8vw,74px)!important}
   .faith-over{min-height:27px!important;padding:4px 12px!important;font-size:11px!important}
-  .hero-content>p{max-width:275px!important;font-size:14px!important;margin-bottom:15px!important}
-  .mission-line{margin-top:18px!important;max-width:310px!important}
+  .hero-content>p{max-width:280px!important;font-size:14px!important;margin-bottom:14px!important}
+  .mission-line{margin-top:16px!important;max-width:300px!important}
 }
 @media(max-width:375px){
   .hero{background-position:69% center!important}
-  .faith-lockup{width:218px!important}
-  .faith-word{font-size:62px!important}
+  .faith-lockup{width:210px!important}
+  .faith-word{font-size:60px!important}
   .hero-content>p{font-size:13px!important}
   .primary-cta,.secondary-cta{font-size:9px!important;padding:0 12px!important}
 }
 @media(min-width:660px){
   .hero{background-position:62% center!important}
-  .hero-content{padding:120px 32px 38px!important}
-  .faith-lockup{width:300px!important}
-  .faith-word{font-size:104px!important}
+  .hero-content{padding:120px 32px 96px!important}
+  .faith-lockup{width:292px!important}
+  .faith-word{font-size:100px!important}
 }
 @media(prefers-reduced-motion:reduce){.faith-lockup{filter:none!important}}
