@@ -145,17 +145,17 @@ if(verseCard){
 
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
 
-// Daily Walk — lightweight story viewer. Photos advance slowly; videos play muted inline.
+// Daily Walk — lightweight story viewer. Photos advance slowly; video stays permanently muted.
 const dailyStories = [
-  {type:'image',src:'daily/in-the-word.jpg',label:'IN THE WORD',caption:'Still learning.'},
-  {type:'image',src:'daily/fresh-air.jpg',label:'FRESH AIR',caption:'Grateful for simple moments.'},
-  {type:'image',src:'daily/only-by-grace.jpg',label:'ONLY BY GRACE',caption:'Nothing to prove. Everything to thank Him for.'},
-  {type:'image',src:'daily/redeemed.jpg',label:'STILL GROWING',caption:'Trying to keep Christ at the center.'},
-  {type:'video',src:'daily/life-lately.mp4',label:'LIFE LATELY',caption:'One day at a time.'},
-  {type:'image',src:'daily/little-reminders.jpg',label:'LITTLE THINGS',caption:'Small reminders. Big grace.'},
-  {type:'image',src:'daily/quiet-companion.jpg',label:'QUIET MOMENTS',caption:'God has been good.'},
-  {type:'image',src:'daily/new-growth.jpg',label:'NEW GROWTH',caption:'Still growing.'},
-  {type:'image',src:'daily/small-beauty.jpg',label:'SMALL BEAUTY',caption:'His fingerprints are everywhere.'}
+  {type:'image',src:'in-the-word.jpg',label:'IN THE WORD',caption:'Still learning.'},
+  {type:'image',src:'fresh-air.jpg',label:'FRESH AIR',caption:'Grateful for simple moments.'},
+  {type:'image',src:'only-by-grace.jpg',label:'ONLY BY GRACE',caption:'Nothing to prove. Everything to thank Him for.'},
+  {type:'image',src:'redeemed.jpg',label:'STILL GROWING',caption:'Trying to keep Christ at the center.'},
+  {type:'video',src:'life-lately.mp4',label:'LIFE LATELY',caption:'One day at a time.'},
+  {type:'image',src:'little-reminders.jpg',label:'LITTLE THINGS',caption:'Small reminders. Big grace.'},
+  {type:'image',src:'quiet-companion.jpg',label:'QUIET MOMENTS',caption:'God has been good.'},
+  {type:'image',src:'new-growth.jpg',label:'NEW GROWTH',caption:'Still growing.'},
+  {type:'image',src:'small-beauty.jpg',label:'SMALL BEAUTY',caption:'His fingerprints are everywhere.'}
 ];
 const storyViewer=document.getElementById('storyViewer');
 const storyStage=document.getElementById('storyStage');
@@ -163,6 +163,7 @@ const storyLabel=document.getElementById('storyLabel');
 const storyCaption=document.getElementById('storyCaption');
 const storyProgress=document.getElementById('storyProgress');
 const storySound=document.getElementById('storySound');
+if(storySound){storySound.hidden=true;storySound.style.display='none';storySound.setAttribute('aria-hidden','true');storySound.tabIndex=-1;}
 let storyIndex=0, storyTimer=null, storyVideo=null;
 const PHOTO_MS=8000;
 function buildStoryProgress(){
@@ -173,7 +174,7 @@ function setStoryProgress(ms){
 }
 function clearStoryMedia(){
   clearTimeout(storyTimer);
-  if(storyVideo){storyVideo.pause();storyVideo=null;}
+  if(storyVideo){storyVideo.muted=true;storyVideo.pause();storyVideo=null;}
   storyViewer.classList.remove('has-video');
 }
 function showStory(i){
@@ -185,8 +186,9 @@ function showStory(i){
   storyStage.innerHTML='';
   if(item.type==='video'){
     const v=document.createElement('video');
-    v.src=item.src;v.playsInline=true;v.muted=true;v.autoplay=true;v.controls=false;v.preload='auto';
-    storyStage.appendChild(v);storyVideo=v;storyViewer.classList.add('has-video');storySound.textContent='🔇';
+    v.src=item.src;v.playsInline=true;v.muted=true;v.defaultMuted=true;v.autoplay=true;v.controls=false;v.preload='auto';v.volume=0;
+    v.addEventListener('volumechange',()=>{if(!v.muted || v.volume!==0){v.muted=true;v.volume=0;}});
+    storyStage.appendChild(v);storyVideo=v;storyViewer.classList.add('has-video');
     v.addEventListener('loadedmetadata',()=>setStoryProgress(Math.max(3000,Math.min((v.duration||12)*1000,20000))));
     v.addEventListener('ended',()=>showStory(storyIndex+1));
     v.play().catch(()=>{});
@@ -205,7 +207,6 @@ document.querySelectorAll('[data-story]').forEach(btn=>btn.addEventListener('cli
 document.getElementById('storyClose')?.addEventListener('click',closeStory);
 document.getElementById('storyPrev')?.addEventListener('click',()=>showStory(storyIndex-1));
 document.getElementById('storyNext')?.addEventListener('click',()=>showStory(storyIndex+1));
-storySound?.addEventListener('click',()=>{if(!storyVideo)return;storyVideo.muted=!storyVideo.muted;storySound.textContent=storyVideo.muted?'🔇':'🔊';});
 document.addEventListener('keydown',e=>{if(!storyViewer?.classList.contains('open'))return;if(e.key==='Escape')closeStory();if(e.key==='ArrowRight')showStory(storyIndex+1);if(e.key==='ArrowLeft')showStory(storyIndex-1);});
 
 // Song title + producer credit refresh
