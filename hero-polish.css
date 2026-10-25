@@ -1,32 +1,37 @@
-/* B&M mobile hero — compact mobile-first composition. */
+/* B&M mobile hero — compact, cinematic, text-first composition. */
 .hero{
-  height:clamp(700px,88svh,820px)!important;
+  height:clamp(680px,84svh,770px)!important;
   min-height:0!important;
   background-color:#050505!important;
   background-repeat:no-repeat!important;
-  background-size:cover!important;
-  background-position:62% 32%!important;
+  background-size:74% auto!important;
+  background-position:96% 84px!important;
+  align-items:flex-end!important;
 }
 .hero:before{
-  background:linear-gradient(180deg,rgba(5,5,5,.02) 0%,rgba(5,5,5,.10) 22%,rgba(5,5,5,.36) 42%,rgba(5,5,5,.76) 68%,#050505 100%)!important;
+  background:
+    linear-gradient(180deg,rgba(5,5,5,.16) 0%,rgba(5,5,5,.20) 18%,rgba(5,5,5,.46) 42%,rgba(5,5,5,.82) 68%,#050505 100%),
+    linear-gradient(90deg,#050505 0%,rgba(5,5,5,.84) 24%,rgba(5,5,5,.36) 58%,rgba(5,5,5,.18) 100%)!important;
 }
 .hero:after{
-  background:radial-gradient(circle at 66% 17%,rgba(231,210,143,.16),transparent 24%)!important;
+  background:radial-gradient(circle at 78% 21%,rgba(231,210,143,.10),transparent 22%)!important;
 }
 .hero-shade{
-  background:linear-gradient(90deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.08) 55%,rgba(0,0,0,.24) 100%)!important;
+  background:
+    radial-gradient(circle at 78% 44%,rgba(0,0,0,.36),rgba(0,0,0,.12) 34%,transparent 55%),
+    linear-gradient(90deg,rgba(0,0,0,.54) 0%,rgba(0,0,0,.22) 52%,rgba(0,0,0,.34) 100%)!important;
 }
 .hero-content{
-  padding:76px 20px 24px!important;
+  padding:72px 20px 24px!important;
 }
 
-/* Faith / Over / Fear — fully contained cross, no clipping. */
+/* Faith / Over / Fear — fully contained cross, weighted toward the message. */
 .faith-lockup{
   position:relative!important;
   display:block!important;
-  width:min(76vw,330px)!important;
-  padding-left:42px!important;
-  margin:10px 0 16px 10px!important;
+  width:min(74vw,320px)!important;
+  padding-left:46px!important;
+  margin:8px 0 14px 14px!important;
   line-height:1!important;
   letter-spacing:-.045em!important;
   overflow:visible!important;
@@ -34,9 +39,9 @@
 .faith-lockup:before{
   content:"";
   position:absolute;
-  left:18px;
-  top:0;
-  bottom:0;
+  left:20px;
+  top:-5px;
+  bottom:-4px;
   width:2px;
   background:var(--gold);
   box-shadow:0 0 8px rgba(231,210,143,.18);
@@ -44,9 +49,9 @@
 .faith-lockup:after{
   content:"";
   position:absolute;
-  left:0;
-  top:clamp(52px,13.5vw,68px);
-  width:min(62vw,270px);
+  left:2px;
+  top:clamp(50px,12.8vw,66px);
+  width:min(60vw,260px);
   height:2px;
   background:var(--gold);
   box-shadow:0 0 8px rgba(231,210,143,.15);
@@ -58,13 +63,13 @@
   text-shadow:0 8px 30px #000;
 }
 .faith-lockup .faith-top,.faith-lockup .faith-bottom{
-  font-size:clamp(44px,12.8vw,66px)!important;
+  font-size:clamp(42px,12vw,62px)!important;
   font-weight:950!important;
   line-height:.92!important;
 }
-.faith-lockup .faith-top{margin-bottom:16px!important}
+.faith-lockup .faith-top{margin-bottom:15px!important}
 .faith-lockup .faith-over{
-  font-size:clamp(22px,6vw,30px)!important;
+  font-size:clamp(21px,5.7vw,29px)!important;
   font-weight:300!important;
   letter-spacing:-.02em!important;
   line-height:1!important;
@@ -97,18 +102,18 @@
 @keyframes bmTicker{to{transform:translateX(-50%)}}
 
 @media(max-width:430px){
-  .hero{height:clamp(690px,86svh,790px)!important;background-position:63% 30%!important}
-  .hero-content{padding:72px 18px 22px!important}
-  .faith-lockup{width:74vw!important;margin-left:8px!important;padding-left:40px!important}
-  .faith-lockup:before{left:17px!important}
-  .faith-lockup:after{left:0!important;width:60vw!important}
+  .hero{height:clamp(665px,82svh,750px)!important;background-size:70% auto!important;background-position:100% 88px!important}
+  .hero-content{padding:70px 18px 22px!important}
+  .faith-lockup{width:72vw!important;margin-left:12px!important;padding-left:44px!important}
+  .faith-lockup:before{left:19px!important}
+  .faith-lockup:after{left:1px!important;width:58vw!important}
 }
 @media(max-width:370px){
-  .hero{height:clamp(670px,84svh,760px)!important;background-position:64% 28%!important}
-  .faith-lockup{width:72vw!important;padding-left:38px!important;margin-left:7px!important}
-  .faith-lockup:after{width:58vw!important}
+  .hero{height:clamp(650px,80svh,730px)!important;background-size:68% auto!important;background-position:100% 86px!important}
+  .faith-lockup{width:70vw!important;padding-left:42px!important;margin-left:10px!important}
+  .faith-lockup:after{width:56vw!important}
 }
 @media(min-width:660px){
-  .hero{height:min(820px,88svh)!important;background-position:60% 30%!important}
-  .faith-lockup{width:340px!important}
+  .hero{height:min(780px,84svh)!important;background-size:58% auto!important;background-position:92% 76px!important}
+  .faith-lockup{width:330px!important}
 }
