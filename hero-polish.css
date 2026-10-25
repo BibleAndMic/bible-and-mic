@@ -19,11 +19,11 @@ main>#connect{order:11}
   max-height:980px!important;
   background-color:#050505!important;
   background-image:
-    linear-gradient(180deg,rgba(0,0,0,.10) 0%,rgba(0,0,0,.02) 56%,rgba(0,0,0,.16) 72%,rgba(0,0,0,.50) 88%,#050505 100%),
-    url("bm-hero-hd.jpg")!important;
+    url("hero-slice-01.webp"),url("hero-slice-02.webp"),url("hero-slice-03.webp"),url("hero-slice-04.webp"),url("hero-slice-05.webp"),url("hero-slice-06.webp"),url("hero-slice-07.webp"),url("hero-slice-08.webp"),url("hero-slice-09.webp"),url("hero-slice-10.webp"),url("hero-slice-11.webp"),url("hero-slice-12.webp")!important;
   background-repeat:no-repeat!important;
-  background-size:cover!important;
-  background-position:center center!important;
+  background-size:auto 8.333333%!important;
+  background-position:
+    center 0%,center 9.0909%,center 18.1818%,center 27.2727%,center 36.3636%,center 45.4545%,center 54.5455%,center 63.6364%,center 72.7273%,center 81.8182%,center 90.9091%,center 100%!important;
   overflow:hidden!important;
   align-items:stretch!important;
 }
@@ -34,8 +34,9 @@ main>#connect{order:11}
   z-index:1!important;
   pointer-events:none!important;
   background:
-    radial-gradient(circle at 50% 10%,rgba(255,181,70,.14),transparent 31%),
-    linear-gradient(90deg,rgba(0,0,0,.12),transparent 22%,transparent 78%,rgba(0,0,0,.12))!important;
+    radial-gradient(circle at 50% 10%,rgba(255,181,70,.12),transparent 31%),
+    linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.01) 60%,rgba(0,0,0,.10) 77%,rgba(0,0,0,.34) 91%,#050505 100%),
+    linear-gradient(90deg,rgba(0,0,0,.10),transparent 22%,transparent 78%,rgba(0,0,0,.10))!important;
 }
 .hero:after{display:none!important}
 .hero-shade{display:none!important}
@@ -114,7 +115,7 @@ main>#connect{order:11}
 #music{padding-top:34px!important;border-top:1px solid #242019!important;background:linear-gradient(180deg,#090807 0,#050505 110px)!important}
 
 @media(max-width:430px){
-  .hero{min-height:100svh!important;height:100svh!important;background-position:center center!important}
+  .hero{min-height:100svh!important;height:100svh!important}
   .hero-content{padding:92px 18px calc(82px + env(safe-area-inset-bottom))!important}
   .faith-lockup{width:min(286px,77vw)!important;margin-top:34px!important}
   .faith-word{font-size:clamp(67px,19vw,84px)!important}
@@ -128,7 +129,6 @@ main>#connect{order:11}
   .primary-cta,.secondary-cta{font-size:9px!important;padding:0 12px!important}
 }
 @media(min-width:660px){
-  .hero{background-position:center 44%!important}
   .hero-content{padding:116px 32px 94px!important}
   .faith-lockup{width:330px!important;margin-top:40px!important}
   .faith-word{font-size:110px!important}
