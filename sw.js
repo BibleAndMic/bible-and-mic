@@ -1,4 +1,4 @@
-const CACHE='bible-and-mic-v12';
+const CACHE='bible-and-mic-v13';
 const CORE=['./','index.html','styles.css','app.js','manifest.webmanifest','home-hero.jpg','featured-cover.jpg','icon-180.png','icon-192.png','icon-512.png','in-the-word.jpg','fresh-air.jpg','only-by-grace.jpg','redeemed.jpg','life-lately-poster.jpg','little-reminders.jpg','quiet-companion.jpg','new-growth.jpg','small-beauty.jpg'];
 
 self.addEventListener('install',e=>{
