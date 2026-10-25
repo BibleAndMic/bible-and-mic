@@ -81,7 +81,6 @@ const obs=new IntersectionObserver(entries=>{
 },{rootMargin:'-30% 0px -58% 0px',threshold:[0,.15,.45]});
 sections.forEach(s=>obs.observe(s));
 
-
 // Rotating Scripture card — intentionally slow enough to read.
 const verses = [
   {ref:'2 CORINTHIANS 5:17', text:'“If anyone is in Christ, the new creation has come: The old has gone, the new is here!”'},
@@ -223,6 +222,17 @@ if(featuredTrack){
 
 const heroPlay = document.querySelector('[data-play="featured-song.mp3"]');
 if(heroPlay) heroPlay.dataset.title = "He's Working on Me";
+
+const good2MeTrack = document.querySelector('.track-card.g2m');
+if(good2MeTrack){
+  good2MeTrack.dataset.title = 'Good2Me';
+  const title = good2MeTrack.querySelector('h3');
+  const credit = good2MeTrack.querySelector('.small-copy > p');
+  const play = good2MeTrack.querySelector('.square-play');
+  if(title) title.textContent = 'Good2Me';
+  if(credit) credit.textContent = 'Prod. by Jake Angel';
+  if(play) play.setAttribute('aria-label', 'Play Good2Me');
+}
 
 const c4cTrack = document.querySelector('.track-card.c4c');
 if(c4cTrack){
