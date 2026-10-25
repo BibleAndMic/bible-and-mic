@@ -25,6 +25,27 @@
   <meta name="twitter:title" content="B&M | Bible & Mic" />
   <meta name="twitter:description" content="Christian hip-hop rooted in faith, testimony, and truth." />
   <meta name="twitter:image" content="https://bibleandmic.github.io/bible-and-mic/home-hero.jpg" />
+  <style>
+    .install-card{margin:0 20px 52px;padding:24px 22px;border:1px solid #29251d;background:linear-gradient(145deg,#11100d,#090909);position:relative;overflow:hidden}
+    .install-card:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-90px;top:-105px;background:radial-gradient(circle,#e7d28f22,transparent 68%);pointer-events:none}
+    .install-card .install-kicker{font-size:8px;letter-spacing:.22em;color:#e7d28f;font-weight:800}
+    .install-card h3{font-size:30px;line-height:.98;letter-spacing:-.05em;margin:10px 0 10px}
+    .install-card p{font-size:12px;line-height:1.6;color:#98938a;margin:0 0 18px;max-width:330px}
+    .install-btn{height:42px;padding:0 15px;border:1px solid #494239;background:#f4f1e8;color:#070707;font-size:9px;font-weight:900;letter-spacing:.1em}
+    .install-sheet{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;justify-content:center;background:#000b;backdrop-filter:blur(8px);padding:12px}
+    .install-sheet.open{display:flex}
+    .install-panel{width:min(720px,100%);background:#0d0d0d;border:1px solid #302c24;border-radius:18px 18px 8px 8px;padding:22px 20px calc(20px + env(safe-area-inset-bottom));box-shadow:0 -18px 60px #000}
+    .install-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .install-panel .install-kicker{font-size:8px;letter-spacing:.22em;color:#e7d28f;font-weight:800}
+    .install-panel h3{font-size:28px;line-height:1;margin:9px 0 8px;letter-spacing:-.045em}
+    .install-panel>p{color:#918c83;font-size:12px;line-height:1.55;margin:0 0 18px}
+    .install-close{border:0;background:#181818;color:#ddd;width:34px;height:34px;border-radius:50%;font-size:20px}
+    .install-step{display:flex;align-items:center;gap:12px;padding:14px 0;border-top:1px solid #232323}
+    .install-step:first-of-type{border-top:0}
+    .install-step span{width:28px;height:28px;border:1px solid #4a4332;border-radius:50%;display:grid;place-items:center;color:#e7d28f;font-size:10px;font-weight:800;flex:0 0 auto}
+    .install-step b{font-size:13px;display:block;margin-bottom:3px}.install-step small{font-size:10px;color:#8f8a80;line-height:1.4}
+    @media(min-width:660px){.install-card{margin-left:32px;margin-right:32px}}
+  </style>
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -56,21 +77,12 @@
         </div>
       </section>
 
-      <section class="marquee" aria-label="Bible and Mic themes">
-        <div><span>FAITH OVER FEAR</span><i>✦</i><span>ALL GLORY TO GOD</span><i>✦</i><span>BIBLE &amp; MIC</span><i>✦</i><span>NEW CREATION</span><i>✦</i></div>
-      </section>
+      <section class="marquee" aria-label="Bible and Mic themes"><div><span>FAITH OVER FEAR</span><i>✦</i><span>ALL GLORY TO GOD</span><i>✦</i><span>BIBLE &amp; MIC</span><i>✦</i><span>NEW CREATION</span><i>✦</i></div></section>
 
-      <section class="verse-card" id="verseCard" aria-label="Rotating Bible verse" tabindex="0">
-        <div class="verse-topline"><span id="verseRef">2 CORINTHIANS 5:17</span></div>
-        <p id="verseText">“If anyone is in Christ, the new creation has come: The old has gone, the new is here!”</p>
-        <div class="verse-progress" aria-hidden="true"><i id="verseProgress"></i></div>
-      </section>
+      <section class="verse-card" id="verseCard" aria-label="Rotating Bible verse" tabindex="0"><div class="verse-topline"><span id="verseRef">2 CORINTHIANS 5:17</span></div><p id="verseText">“If anyone is in Christ, the new creation has come: The old has gone, the new is here!”</p><div class="verse-progress" aria-hidden="true"><i id="verseProgress"></i></div></section>
 
       <section id="daily" class="daily-walk" aria-label="Daily Walk">
-        <div class="daily-head">
-          <div><span class="kicker">DAILY WALK</span><h2>Nothing fancy.<br>Just the walk.</h2></div>
-          <p>Life, faith, music, and the little things God uses along the way.</p>
-        </div>
+        <div class="daily-head"><div><span class="kicker">DAILY WALK</span><h2>Nothing fancy.<br>Just the walk.</h2></div><p>Life, faith, music, and the little things God uses along the way.</p></div>
         <div class="daily-strip" id="dailyStrip" aria-label="Swipe through recent moments">
           <button class="daily-story" data-story="0"><span class="daily-ring"><img src="in-the-word.jpg" alt="Bible study moment"></span><small>In the Word</small></button>
           <button class="daily-story" data-story="1"><span class="daily-ring"><img src="fresh-air.jpg" alt="Quiet outdoor moment"></span><small>Fresh Air</small></button>
@@ -86,36 +98,28 @@
       </section>
 
       <section id="music" class="section page-section">
-        <div class="section-head">
-          <div><span class="kicker">MUSIC</span><h2>Press play.<br>Stay awhile.</h2></div>
-          <span class="count">03 TRACKS</span>
-        </div>
-        <article class="feature-track track-card" data-src="featured-song.mp3" data-title="He's Working on Me" data-art="featured-cover.jpg">
-          <div class="feature-art"><img src="featured-cover.jpg" alt="He's Working on Me cover art" /></div>
-          <div class="feature-copy">
-            <span class="release-tag">FEATURED RELEASE</span>
-            <h3>He’s Working on Me</h3>
-            <p>Prod. by Syndrome</p>
-            <div class="track-controls"><button class="round-play" aria-label="Play He's Working on Me">▶</button><div class="track-line"><div class="track-line-fill"></div></div><span class="track-time">0:00</span></div>
-          </div>
-          <div class="feature-glow"></div>
-        </article>
+        <div class="section-head"><div><span class="kicker">MUSIC</span><h2>Press play.<br>Stay awhile.</h2></div><span class="count">03 TRACKS</span></div>
+        <article class="feature-track track-card" data-src="featured-song.mp3" data-title="He's Working on Me" data-art="featured-cover.jpg"><div class="feature-art"><img src="featured-cover.jpg" alt="He's Working on Me cover art" /></div><div class="feature-copy"><span class="release-tag">FEATURED RELEASE</span><h3>He’s Working on Me</h3><p>Prod. by Syndrome</p><div class="track-controls"><button class="round-play" aria-label="Play He's Working on Me">▶</button><div class="track-line"><div class="track-line-fill"></div></div><span class="track-time">0:00</span></div></div><div class="feature-glow"></div></article>
         <div class="song-grid">
           <article class="track-card small-track g2m" data-src="good2me.mp3" data-title="Good2Me" data-art=""><div class="letter-art"><span>G2M</span><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div><div class="small-copy"><span class="release-tag">RELEASE</span><h3>Good2Me</h3><p>Prod. by Jake Angel</p></div><button class="square-play" aria-label="Play Good2Me">▶</button></article>
           <article class="track-card small-track c4c" data-src="crazy-4-christ.mp3" data-title="Crazy 4 Christ" data-art=""><div class="letter-art"><span>C4C</span><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div><div class="small-copy"><span class="release-tag red">NEW</span><h3>Crazy 4 Christ</h3><p>Prod. by Morgan</p></div><button class="square-play" aria-label="Play Crazy 4 Christ">▶</button></article>
         </div>
       </section>
 
-      <section id="watch" class="section page-section watch-section">
-        <div class="section-head"><div><span class="kicker">WATCH</span><h2>See the message.</h2></div><span class="count">VIDEO</span></div>
-        <div class="video-shell"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/DwiKgE4oprw?playsinline=1&rel=0" title="B&M music video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="video-meta"><div><span>CRAZY 4 CHRIST · PROD. BY MORGAN</span><strong>Watch without leaving the site.</strong></div><a href="https://youtube.com/shorts/DwiKgE4oprw" target="_blank" rel="noopener">OPEN YOUTUBE ↗</a></div></div>
-      </section>
+      <section id="watch" class="section page-section watch-section"><div class="section-head"><div><span class="kicker">WATCH</span><h2>See the message.</h2></div><span class="count">VIDEO</span></div><div class="video-shell"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/DwiKgE4oprw?playsinline=1&rel=0" title="B&M music video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="video-meta"><div><span>CRAZY 4 CHRIST · PROD. BY MORGAN</span><strong>Watch without leaving the site.</strong></div><a href="https://youtube.com/shorts/DwiKgE4oprw" target="_blank" rel="noopener">OPEN YOUTUBE ↗</a></div></div></section>
 
       <section id="lyrics" class="section page-section"><span class="kicker">LYRICS</span><div class="coming-card"><div class="coming-icon">“</div><div><h2>Words behind<br>the record.</h2><p>Lyrics and the story behind the music are on the way.</p><span>COMING SOON</span></div></div></section>
 
       <section id="story" class="section page-section story-section"><span class="kicker">MY STORY</span><h2>More than music.</h2><div class="story-card"><span class="story-num">01</span><div><p class="lead">Christ changed everything.</p><p>I was lost thinking I was found, living life my way while calling it faith. Jesus met me in the mess, gave me a new direction, a new purpose, and showed me what a real relationship with Him looks like.</p><p>I’m still a work in progress. Just a dude from Minnesota with a Bible and a mic, pointing people to the One who changed my life.</p></div></div></section>
 
       <section id="updates" class="section page-section"><div class="section-head"><div><span class="kicker">UPDATES</span><h2>What’s happening.</h2></div></div><div class="updates-grid"><article><time>OCT 2026</time><span class="update-dot"></span><h3>Crazy 4 Christ — out now.</h3><p>Faith over fear. All glory to God.</p></article><article><time>SEP 2026</time><span class="update-dot"></span><h3>He’s Working on Me — released.</h3><p>A reminder that God is still shaping, rebuilding, and working on me every day.</p></article></div></section>
+
+      <section class="install-card" aria-label="Add Bible and Mic to your home screen">
+        <span class="install-kicker">TAKE B&amp;M WITH YOU</span>
+        <h3>One tap away.</h3>
+        <p>Add Bible &amp; Mic to your home screen and open it like an app.</p>
+        <button class="install-btn" id="openInstall">ADD TO HOME SCREEN</button>
+      </section>
 
       <section id="connect" class="section connect-section page-section">
         <span class="kicker">CONNECT</span><h2>Follow the journey.</h2>
@@ -131,6 +135,21 @@
       </section>
     </main>
 
+    <div class="install-sheet" id="installSheet" aria-hidden="true">
+      <div class="install-panel" role="dialog" aria-modal="true" aria-label="Add B&M to home screen">
+        <div class="install-panel-head"><div><span class="install-kicker">B&amp;M ON YOUR HOME SCREEN</span><h3>Keep it close.</h3></div><button class="install-close" id="closeInstall" aria-label="Close">×</button></div>
+        <p>Two quick steps. No app store needed.</p>
+        <div id="iosInstall">
+          <div class="install-step"><span>1</span><div><b>Tap Share</b><small>Use the Share button in Safari.</small></div></div>
+          <div class="install-step"><span>2</span><div><b>Add to Home Screen</b><small>Scroll down, tap it, then choose Add.</small></div></div>
+        </div>
+        <div id="androidInstall" hidden>
+          <div class="install-step"><span>1</span><div><b>Open the browser menu</b><small>Tap the three-dot menu.</small></div></div>
+          <div class="install-step"><span>2</span><div><b>Add to Home screen</b><small>Choose Add to Home screen or Install app.</small></div></div>
+        </div>
+      </div>
+    </div>
+
     <div class="story-viewer" id="storyViewer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Daily Walk story viewer"><div class="story-progress" id="storyProgress"></div><button class="story-close" id="storyClose" aria-label="Close Daily Walk">×</button><button class="story-zone story-prev" id="storyPrev" aria-label="Previous story"></button><button class="story-zone story-next" id="storyNext" aria-label="Next story"></button><div class="story-stage" id="storyStage"></div><div class="story-caption"><span id="storyLabel">Daily Walk</span><p id="storyCaption">One day at a time.</p></div><button class="story-sound" id="storySound" aria-label="Turn video sound on">🔇</button></div>
 
     <div id="miniPlayer" class="mini-player" aria-live="polite"><div class="mini-art" id="miniArt"><span>B&amp;M</span></div><div class="mini-copy"><small>NOW PLAYING</small><strong id="miniTitle">Choose a track</strong></div><button id="miniPlay" aria-label="Play or pause current song">▶</button><div class="mini-progress"><div id="miniProgress"></div></div></div>
@@ -139,5 +158,21 @@
   </div>
   <audio id="globalAudio" preload="metadata"></audio>
   <script src="app.js"></script>
+  <script>
+    (()=>{
+      const open=document.getElementById('openInstall');
+      const sheet=document.getElementById('installSheet');
+      const close=document.getElementById('closeInstall');
+      const ios=document.getElementById('iosInstall');
+      const android=document.getElementById('androidInstall');
+      const isAndroid=/Android/i.test(navigator.userAgent);
+      if(isAndroid){ios.hidden=true;android.hidden=false;}
+      const show=()=>{sheet.classList.add('open');sheet.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'};
+      const hide=()=>{sheet.classList.remove('open');sheet.setAttribute('aria-hidden','true');document.body.style.overflow=''};
+      open?.addEventListener('click',show);close?.addEventListener('click',hide);
+      sheet?.addEventListener('click',e=>{if(e.target===sheet)hide()});
+      document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});
+    })();
+  </script>
 </body>
 </html>
