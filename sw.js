@@ -1,5 +1,5 @@
-const CACHE='bible-and-mic-v13';
-const CORE=['./','index.html','styles.css','app.js','manifest.webmanifest','home-hero.jpg','featured-cover.jpg','icon-180.png','icon-192.png','icon-512.png','in-the-word.jpg','fresh-air.jpg','only-by-grace.jpg','redeemed.jpg','life-lately-poster.jpg','little-reminders.jpg','quiet-companion.jpg','new-growth.jpg','small-beauty.jpg'];
+const CACHE='bible-and-mic-v14';
+const CORE=['./','index.html','styles.css','hero-polish.css','app.js','manifest.webmanifest','home-hero.jpg','featured-cover.jpg','icon-180.png','icon-192.png','icon-512.png','in-the-word.jpg','fresh-air.jpg','only-by-grace.jpg','redeemed.jpg','life-lately-poster.jpg','little-reminders.jpg','quiet-companion.jpg','new-growth.jpg','small-beauty.jpg'];
 
 self.addEventListener('install',e=>{
   self.skipWaiting();
@@ -16,13 +16,20 @@ self.addEventListener('activate',e=>{
 
 self.addEventListener('fetch',e=>{
   if(e.request.method!=='GET') return;
-  e.respondWith(
-    fetch(e.request)
-      .then(r=>{
-        const copy=r.clone();
-        caches.open(CACHE).then(c=>c.put(e.request,copy));
-        return r;
-      })
-      .catch(()=>caches.match(e.request).then(r=>r||caches.match('index.html')))
-  );
+  e.respondWith((async()=>{
+    try{
+      const r=await fetch(e.request);
+      const type=r.headers.get('content-type')||'';
+      if(type.includes('text/html')){
+        let html=await r.text();
+        if(!html.includes('hero-polish.css')) html=html.replace('</head>','<link rel="stylesheet" href="hero-polish.css?v=14"></head>');
+        return new Response(html,{status:r.status,statusText:r.statusText,headers:r.headers});
+      }
+      const copy=r.clone();
+      caches.open(CACHE).then(c=>c.put(e.request,copy));
+      return r;
+    }catch(err){
+      return caches.match(e.request).then(r=>r||caches.match('index.html'));
+    }
+  })());
 });
