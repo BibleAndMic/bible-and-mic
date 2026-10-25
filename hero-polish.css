@@ -1,0 +1,80 @@
+/* Mobile hero polish — keeps the original B&M image, but gives it more breathing room. */
+.hero{
+  background-color:#050505!important;
+  background-image:url("home-hero.jpg")!important;
+  background-repeat:no-repeat!important;
+  background-size:92% auto!important;
+  background-position:center 86px!important;
+}
+.hero:before{
+  background:linear-gradient(180deg,rgba(5,5,5,.02) 0%,rgba(5,5,5,.05) 28%,rgba(5,5,5,.72) 61%,#050505 100%)!important;
+}
+.hero-shade{background:linear-gradient(90deg,rgba(0,0,0,.32),transparent 64%)!important}
+
+/* Faith / Over / Fear lockup — line sits BETWEEN words, never through FAITH. */
+.faith-lockup{
+  position:relative!important;
+  display:block!important;
+  width:min(88vw,430px)!important;
+  padding-left:36px!important;
+  margin:16px 0 20px!important;
+  line-height:1!important;
+  letter-spacing:-.055em!important;
+}
+.faith-lockup:before{
+  content:"";
+  position:absolute;
+  left:15px;
+  top:2px;
+  bottom:2px;
+  width:2px;
+  background:var(--gold);
+  box-shadow:0 0 10px rgba(231,210,143,.22);
+}
+.faith-lockup:after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:clamp(67px,17.5vw,94px);
+  width:min(78vw,355px);
+  height:2px;
+  background:var(--gold);
+  box-shadow:0 0 10px rgba(231,210,143,.18);
+}
+.faith-lockup .faith-word,.faith-lockup .faith-over{display:block;position:relative;z-index:2;text-shadow:0 10px 36px #000}
+.faith-lockup .faith-top,.faith-lockup .faith-bottom{font-size:clamp(58px,17vw,88px)!important;font-weight:950!important;line-height:.92!important}
+.faith-lockup .faith-top{margin-bottom:20px!important}
+.faith-lockup .faith-over{font-size:clamp(29px,8.4vw,40px)!important;font-weight:300!important;letter-spacing:-.035em!important;line-height:1!important;margin:0 0 10px!important}
+.faith-lockup .faith-bottom{margin-top:0!important}
+
+/* Seamless inspiration ticker — two identical copies means no dead space. */
+.marquee{overflow:hidden!important}
+.marquee div{
+  display:flex!important;
+  align-items:center!important;
+  gap:0!important;
+  width:max-content!important;
+  padding:0!important;
+  animation:bmTicker 34s linear infinite!important;
+}
+.marquee div>*{display:none!important}
+.marquee div:before,.marquee div:after{
+  content:"FAITH OVER FEAR   ✦   ALL GLORY TO GOD   ✦   BIBLE & MIC   ✦   NEW CREATION   ✦   REDEEMED   ✦   GRACE   ✦   TESTIMONY   ✦   PURPOSE   ✦   HOPE   ✦   ONE DAY AT A TIME   ✦   ";
+  display:block;
+  flex:none;
+  white-space:pre;
+  padding:12px 20px;
+  font-size:8px;
+  letter-spacing:.18em;
+  color:#8d887e;
+  font-weight:800;
+}
+@keyframes bmTicker{to{transform:translateX(-50%)}}
+
+@media(max-width:430px){
+  .hero{background-size:94% auto!important;background-position:center 82px!important}
+  .hero-content{padding-top:88px!important}
+}
+@media(min-width:660px){
+  .hero{background-size:76% auto!important;background-position:center 72px!important}
+}
