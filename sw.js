@@ -1,5 +1,5 @@
-const CACHE='bible-and-mic-v28';
-const CORE=['./','index.html','styles.css','base-styles.css','hero-polish.css','app.js','manifest.webmanifest','hero-slice-01.webp','hero-slice-02.webp','hero-slice-03.webp','hero-slice-04.webp','hero-slice-05.webp','hero-slice-06.webp','hero-slice-07.webp','hero-slice-08.webp','hero-slice-09.webp','hero-slice-10.webp','hero-slice-11.webp','hero-slice-12.webp','home-hero.jpg','featured-cover.jpg','icon-180.png','icon-192.png','icon-512.png','in-the-word.jpg','fresh-air.jpg','only-by-grace.jpg','redeemed.jpg','life-lately-poster.jpg','little-reminders.jpg','quiet-companion.jpg','new-growth.jpg','small-beauty.jpg'];
+const CACHE='bible-and-mic-v29';
+const CORE=['./','index.html','styles.css','base-styles.css','hero-polish.css','app.js','manifest.webmanifest','corey-studio-hero.jpg','home-hero.jpg','featured-cover.jpg','icon-180.png','icon-192.png','icon-512.png','in-the-word.jpg','fresh-air.jpg','only-by-grace.jpg','redeemed.jpg','life-lately-poster.jpg','little-reminders.jpg','quiet-companion.jpg','new-growth.jpg','small-beauty.jpg'];
 
 self.addEventListener('install',e=>{
   self.skipWaiting();
