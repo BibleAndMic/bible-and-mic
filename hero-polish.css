@@ -1,4 +1,4 @@
-/* B&M homepage hero v41 — real mobile crop, one image, one fade */
+/* B&M homepage hero v42 — exact user-selected image, no black overlay */
 main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{order:4}main>#daily{order:5}main>#watch{order:6}main>#lyrics{order:7}main>#story{order:8}main>#updates{order:9}main>.install-card{order:10}main>#connect{order:11}
 
 .hero{
@@ -9,23 +9,13 @@ main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}m
   overflow:hidden;
   isolation:isolate;
   background-color:#050505;
-  background-image:url("bm-studio-hero.jpg");
+  background-image:url("bm-studio-hero-exact.jpg?v=42");
   background-repeat:no-repeat;
   background-size:cover;
-  background-position:69% center;
+  background-position:72% center;
 }
-
-/* Keep the studio visible. Only fade the lower part into the rest of the site. */
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  background:linear-gradient(180deg,rgba(5,5,5,.02) 0%,rgba(5,5,5,.02) 48%,rgba(5,5,5,.26) 66%,rgba(5,5,5,.82) 86%,#050505 100%);
-}
-.hero::after{content:none}
-.hero-shade,.eyebrow,.mission-line{display:none}
+.hero::before,.hero::after{content:none!important;display:none!important}
+.hero-shade,.eyebrow,.mission-line{display:none!important}
 
 .hero-content{
   position:relative;
@@ -49,7 +39,7 @@ main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}m
   place-items:center;
   filter:drop-shadow(0 7px 18px rgba(0,0,0,.62));
 }
-.faith-lockup::before,.faith-lockup::after{display:none}
+.faith-lockup::before,.faith-lockup::after{display:none!important}
 .faith-word{
   display:block;
   width:100%;
@@ -84,7 +74,6 @@ main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}m
 }
 .faith-bottom{transform:rotate(180deg) scaleX(.75);transform-origin:center}
 
-/* Replace the old sentence completely instead of displaying both strings. */
 .hero > .hero-content > p{
   position:absolute;
   left:18px;
@@ -101,7 +90,7 @@ main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}m
 .hero > .hero-content > p::before{
   content:"Just a dude from Minnesota with a Bible and a mic.";
   display:block;
-  font-size:14px;
+  font-size:14px!important;
   font-weight:500;
   line-height:1.35;
 }
@@ -122,21 +111,20 @@ main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}m
 #music{padding-top:34px;border-top:1px solid #242019;background:linear-gradient(180deg,#090807 0,#050505 110px)}
 
 @media(max-width:375px){
-  .hero{background-position:70% center}
+  .hero{background-position:73% center}
   .faith-lockup{width:184px;top:38%}
   .faith-word{font-size:64px}
-  .hero > .hero-content > p::before{font-size:13px}
+  .hero > .hero-content > p::before{font-size:13px!important}
   .primary-cta,.secondary-cta{font-size:9px;padding:0 11px}
 }
 
 @media(min-width:660px){
   .hero{background-size:cover;background-position:center center}
-  .hero::before{background:linear-gradient(180deg,rgba(5,5,5,.02) 0%,rgba(5,5,5,.02) 54%,rgba(5,5,5,.22) 70%,rgba(5,5,5,.80) 90%,#050505 100%)}
   .faith-lockup{top:31%;left:18%;width:250px;grid-template-rows:auto 28px auto}
   .faith-word{font-size:88px}
   .faith-over{height:28px;min-height:28px;font-size:11px}
   .hero > .hero-content > p{bottom:170px;max-width:380px}
-  .hero > .hero-content > p::before{font-size:16px}
+  .hero > .hero-content > p::before{font-size:16px!important}
   .hero-actions{bottom:100px}
   #music{padding-top:44px}
 }
