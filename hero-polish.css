@@ -1,4 +1,4 @@
-/* B&M homepage hero v42 — exact user-selected image, no black overlay */
+/* B&M homepage hero v43 — exact user-selected studio image, single clean background layer */
 main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{order:4}main>#daily{order:5}main>#watch{order:6}main>#lyrics{order:7}main>#story{order:8}main>#updates{order:9}main>.install-card{order:10}main>#connect{order:11}
 
 .hero{
@@ -9,7 +9,7 @@ main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}m
   overflow:hidden;
   isolation:isolate;
   background-color:#050505;
-  background-image:url("bm-studio-hero-exact.jpg?v=42");
+  background-image:url("bm-studio-hero-exact.jpg?v=43");
   background-repeat:no-repeat;
   background-size:cover;
   background-position:72% center;
