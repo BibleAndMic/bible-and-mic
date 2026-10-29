@@ -1,4 +1,4 @@
-/* B&M homepage hero v43 — exact user-selected studio image, single clean background layer */
+/* B&M homepage hero v44 — verified JPEG, offset poster composition */
 main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{order:4}main>#daily{order:5}main>#watch{order:6}main>#lyrics{order:7}main>#story{order:8}main>#updates{order:9}main>.install-card{order:10}main>#connect{order:11}
 
 .hero{
@@ -8,9 +8,7 @@ main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}m
   max-height:980px;
   overflow:hidden;
   isolation:isolate;
-  background-color:#050505;
-  background-image:url("bm-studio-hero-exact.jpg?v=43");
-  background-repeat:no-repeat;
+  background:#050505 url("bm-studio-hero-exact.jpg?v=44") no-repeat;
   background-size:cover;
   background-position:72% center;
 }
@@ -22,57 +20,61 @@ main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}m
   z-index:1;
   min-height:100%;
   width:100%;
-  display:block;
   padding:0 18px calc(82px + env(safe-area-inset-bottom));
-  text-align:center;
 }
+
 .faith-lockup{
   position:absolute;
-  top:39%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:min(192px,50vw);
+  top:16%;
+  left:18px;
+  transform:none;
+  width:min(220px,58vw);
   margin:0;
   display:grid;
-  grid-template-rows:auto 23px auto;
-  gap:3px;
-  place-items:center;
-  filter:drop-shadow(0 7px 18px rgba(0,0,0,.62));
+  grid-template-rows:auto 28px auto;
+  gap:5px;
+  justify-items:start;
+  filter:drop-shadow(0 8px 22px rgba(0,0,0,.66));
 }
 .faith-lockup::before,.faith-lockup::after{display:none!important}
 .faith-word{
   display:block;
   width:100%;
-  color:#f4efe7;
-  font-family:Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif;
-  font-size:clamp(61px,16.2vw,71px);
+  color:#f4ead8;
+  font-family:Impact,Haettenschweiler,"Arial Narrow Bold","Arial Narrow",sans-serif;
+  font-size:clamp(72px,20vw,92px);
   font-weight:900;
   line-height:.78;
-  letter-spacing:-.065em;
+  letter-spacing:-.045em;
   text-transform:uppercase;
-  text-align:center;
+  text-align:left;
   -webkit-font-smoothing:antialiased;
+  text-shadow:0 2px 0 rgba(0,0,0,.28),0 7px 22px rgba(0,0,0,.66);
 }
-.faith-top{transform:scaleX(.75);transform-origin:center}
+.faith-top{transform:scaleX(.86);transform-origin:left center}
 .faith-over{
   display:flex;
   align-items:center;
   justify-content:center;
-  width:100%;
-  height:23px;
-  min-height:23px;
+  width:86%;
+  height:28px;
+  min-height:28px;
   margin:0;
-  padding:0 6px;
-  background:#080808;
-  border:0;
-  color:#f4efe7;
-  font-size:10px;
+  padding:0 8px;
+  background:rgba(5,5,5,.88);
+  border:2px solid rgba(244,234,216,.88);
+  color:#f4ead8;
+  font-size:11px;
   font-weight:900;
   line-height:1;
-  letter-spacing:.56em;
-  text-indent:.56em;
+  letter-spacing:.52em;
+  text-indent:.52em;
+  box-shadow:0 5px 18px rgba(0,0,0,.42);
 }
-.faith-bottom{transform:rotate(180deg) scaleX(.75);transform-origin:center}
+.faith-bottom{
+  transform:rotate(180deg) scaleX(.86);
+  transform-origin:center center;
+}
 
 .hero > .hero-content > p{
   position:absolute;
@@ -91,7 +93,7 @@ main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}m
   content:"Just a dude from Minnesota with a Bible and a mic.";
   display:block;
   font-size:14px!important;
-  font-weight:500;
+  font-weight:600;
   line-height:1.35;
 }
 .hero-actions{
@@ -107,22 +109,23 @@ main{display:flex;flex-direction:column}main>.hero{order:1}main>#music{order:2}m
 .hero-actions>*{flex:1 1 0;max-width:185px}
 .primary-cta,.secondary-cta{min-height:52px;padding:0 14px;white-space:nowrap}
 .primary-cta{background:#f3eee6;color:#050505}
-.secondary-cta{background:rgba(6,6,6,.48);border:1px solid rgba(255,255,255,.20)}
+.secondary-cta{background:rgba(6,6,6,.42);border:1px solid rgba(255,255,255,.22)}
 #music{padding-top:34px;border-top:1px solid #242019;background:linear-gradient(180deg,#090807 0,#050505 110px)}
 
 @media(max-width:375px){
   .hero{background-position:73% center}
-  .faith-lockup{width:184px;top:38%}
-  .faith-word{font-size:64px}
+  .faith-lockup{left:14px;top:17%;width:min(205px,58vw)}
+  .faith-word{font-size:clamp(66px,19.5vw,80px)}
+  .faith-over{height:26px;min-height:26px;font-size:10px}
   .hero > .hero-content > p::before{font-size:13px!important}
   .primary-cta,.secondary-cta{font-size:9px;padding:0 11px}
 }
 
 @media(min-width:660px){
   .hero{background-size:cover;background-position:center center}
-  .faith-lockup{top:31%;left:18%;width:250px;grid-template-rows:auto 28px auto}
-  .faith-word{font-size:88px}
-  .faith-over{height:28px;min-height:28px;font-size:11px}
+  .faith-lockup{top:18%;left:7vw;width:300px;grid-template-rows:auto 34px auto;gap:7px}
+  .faith-word{font-size:108px}
+  .faith-over{height:34px;min-height:34px;font-size:12px;width:86%}
   .hero > .hero-content > p{bottom:170px;max-width:380px}
   .hero > .hero-content > p::before{font-size:16px!important}
   .hero-actions{bottom:100px}
