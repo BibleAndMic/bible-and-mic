@@ -9,7 +9,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   max-height:980px;
   overflow:hidden;
   isolation:isolate;
-  background:#050505 url("8CAA45EB-BF14-4A23-95F7-EA65600CBAC6.png") right center/cover no-repeat;
+  background:#050505 url("images/background.jpg") right center/cover no-repeat;
 }
 .hero::before,.hero::after{content:none!important;display:none!important}
 .hero-shade{display:none!important}
@@ -116,7 +116,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   .faith-lockup{left:20px;top:18%;width:min(225px,60vw);grid-template-rows:auto 36px auto}
   .faith-word{font-size:72px}
   .faith-over{height:36px;font-size:15px;letter-spacing:.48em;text-indent:.48em}
-  .hero > .hero-content > p{left:20px;right:20px;bottom:calc(148px + env(safe-area-inset-bottom))}
+  .hero > .hero-content > p{left:20px;right:20px;bottom:calc(148px + env(safe-area-inset-bottom));font-size:14px!important}
   .hero > .hero-content > p::before{font-size:14px!important}
   .hero-actions{left:20px;right:20px;bottom:calc(82px + env(safe-area-inset-bottom));gap:10px}
   .primary-cta,.secondary-cta{min-height:52px;font-size:9px;padding:0 11px}
