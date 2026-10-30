@@ -9,7 +9,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   max-height:980px;
   overflow:hidden;
   isolation:isolate;
-  background:#050505 url("bm-hero-portrait-v46.jpg?v=46") center center/cover no-repeat;
+  background:#050505 url("8CAA45EB-BF14-4A23-95F7-EA65600CBAC6.png") right center/cover no-repeat;
 }
 .hero::before,.hero::after{content:none!important;display:none!important}
 .hero-shade{display:none!important}
@@ -123,7 +123,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
 }
 
 @media(min-width:660px){
-  .hero{background-size:cover;background-position:center center}
+  .hero{background-size:cover;background-position:right center}
   .faith-lockup{top:15%;left:42px;width:330px;grid-template-rows:auto 52px auto}
   .faith-word{font-size:126px}
   .faith-over{height:52px;font-size:22px;letter-spacing:.7em;text-indent:.7em}
