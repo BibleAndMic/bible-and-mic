@@ -1,4 +1,4 @@
-/* B&M hero v50 — verified studio background with deeper mobile framing */
+/* B&M hero v51 — verified studio background with wide cinematic mobile framing */
 main{display:flex;flex-direction:column}
 main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{order:4}main>#daily{order:5}main>#watch{order:6}main>#lyrics{order:7}main>#story{order:8}main>#updates{order:9}main>.install-card{order:10}main>#connect{order:11}
 
@@ -111,8 +111,8 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
 
 @media(max-width:430px){
   .hero{
-    background-size:auto 72%;
-    background-position:right 0 top 10%;
+    background-size:180% auto;
+    background-position:65% 9%;
   }
   .faith-lockup{top:17%;left:24px;width:min(258px,60vw);grid-template-rows:auto 40px auto}
   .faith-word{font-size:clamp(82px,20vw,108px)}
@@ -121,8 +121,8 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
 
 @media(max-width:375px){
   .hero{
-    background-size:auto 70%;
-    background-position:right 0 top 11%;
+    background-size:185% auto;
+    background-position:64% 10%;
   }
   .hero-content{padding:0 20px calc(82px + env(safe-area-inset-bottom))}
   .faith-lockup{left:20px;top:18%;width:min(225px,60vw);grid-template-rows:auto 36px auto}
