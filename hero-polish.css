@@ -9,7 +9,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   max-height:980px;
   overflow:hidden;
   isolation:isolate;
-  background:#050505 url("images/background.jpg") right center/cover no-repeat;
+  background:#050505 url("background.jpg") right center/cover no-repeat;
 }
 .hero::before,.hero::after{content:none!important;display:none!important}
 .hero-shade{display:none!important}
