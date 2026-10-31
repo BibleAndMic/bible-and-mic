@@ -1,4 +1,4 @@
-/* B&M hero v56 — option 3 compact bordered FAITH OVER FEAR logo */
+/* B&M hero v57 — compact square bordered logo shifted left to preserve raised arm */
 main{display:flex;flex-direction:column}
 main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{order:4}main>#daily{order:5}main>#watch{order:6}main>#lyrics{order:7}main>#story{order:8}main>#updates{order:9}main>.install-card{order:10}main>#connect{order:11}
 
@@ -31,18 +31,18 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
 .faith-lockup{
   position:absolute;
   top:15%;
-  left:28px;
+  left:20px;
   transform:none;
-  width:min(330px,64vw);
+  width:min(310px,60vw);
   box-sizing:border-box;
   margin:0;
-  padding:10px 10px 9px;
+  padding:8px 8px 7px;
   display:flex;
   flex-direction:column;
   align-items:center;
-  border:2px solid #edd9aa;
-  background:rgba(5,4,3,.16);
-  box-shadow:0 0 0 1px rgba(0,0,0,.58),0 0 16px rgba(236,156,55,.16);
+  border:3px solid #edd9aa;
+  background:rgba(5,4,3,.12);
+  box-shadow:0 0 0 1px rgba(0,0,0,.58),0 0 16px rgba(236,156,55,.15);
   filter:drop-shadow(0 8px 20px rgba(0,0,0,.62));
 }
 .faith-lockup::before,.faith-lockup::after{display:none!important}
@@ -50,7 +50,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   display:block;
   width:100%;
   font-family:Impact,Haettenschweiler,"Arial Narrow Bold","Arial Narrow",sans-serif;
-  font-size:clamp(92px,21vw,132px);
+  font-size:clamp(96px,22vw,138px);
   font-weight:900;
   line-height:.9;
   letter-spacing:-.055em;
@@ -65,19 +65,19 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   text-shadow:0 2px 0 rgba(70,39,10,.16),0 0 14px rgba(225,145,45,.14);
 }
 .faith-top{
-  transform:scaleX(.9);
+  transform:scaleX(.92);
   transform-origin:center center;
-  margin:0 0 8px;
+  margin:0 0 7px;
 }
 .faith-over{
   display:flex;
   align-items:center;
   justify-content:center;
-  width:100%;
+  width:94%;
   box-sizing:border-box;
-  height:40px;
-  min-height:40px;
-  margin:0 0 9px;
+  height:38px;
+  min-height:38px;
+  margin:0 0 8px;
   padding:0 6px;
   background:#090806;
   border:2px solid #edd9aa;
@@ -91,7 +91,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   box-shadow:0 0 0 1px rgba(0,0,0,.72);
 }
 .faith-bottom{
-  transform:rotate(180deg) scaleX(.9);
+  transform:rotate(180deg) scaleX(.92);
   transform-origin:center center;
   margin:0;
 }
@@ -137,13 +137,13 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   }
   .faith-lockup{
     top:15%;
-    left:18px;
-    width:min(320px,68vw);
-    padding:9px 9px 8px;
+    left:8px;
+    width:min(290px,62vw);
+    padding:7px 7px 6px;
   }
-  .faith-word{font-size:clamp(88px,21vw,108px);line-height:.9}
-  .faith-top{margin-bottom:8px}
-  .faith-over{height:38px;min-height:38px;margin-bottom:9px;font-size:15px;letter-spacing:.58em;text-indent:.58em}
+  .faith-word{font-size:clamp(92px,22.5vw,112px);line-height:.9}
+  .faith-top{margin-bottom:7px}
+  .faith-over{width:94%;height:37px;min-height:37px;margin-bottom:8px;font-size:15px;letter-spacing:.58em;text-indent:.58em}
 }
 
 @media(max-width:375px){
@@ -152,10 +152,10 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
     background-position:64% 10%;
   }
   .hero-content{padding:0 20px calc(82px + env(safe-area-inset-bottom))}
-  .faith-lockup{top:16%;left:14px;width:min(286px,70vw);padding:8px 8px 7px}
-  .faith-word{font-size:82px;line-height:.9}
-  .faith-top{margin-bottom:7px}
-  .faith-over{height:36px;min-height:36px;margin-bottom:8px;font-size:14px;letter-spacing:.54em;text-indent:.54em}
+  .faith-lockup{top:16%;left:6px;width:min(260px,66vw);padding:6px 6px 5px}
+  .faith-word{font-size:86px;line-height:.9}
+  .faith-top{margin-bottom:6px}
+  .faith-over{width:94%;height:35px;min-height:35px;margin-bottom:7px;font-size:14px;letter-spacing:.54em;text-indent:.54em}
   .hero > .hero-content > p{left:20px;right:20px;bottom:calc(148px + env(safe-area-inset-bottom));font-size:14px!important}
   .hero > .hero-content > p::before{font-size:14px!important}
   .hero-actions{left:20px;right:20px;bottom:calc(82px + env(safe-area-inset-bottom));gap:10px}
@@ -164,10 +164,10 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
 
 @media(min-width:660px){
   .hero{background-size:cover;background-position:right center}
-  .faith-lockup{top:14%;left:42px;width:360px;padding:11px 11px 10px}
-  .faith-word{font-size:132px;line-height:.9}
-  .faith-top{margin-bottom:9px}
-  .faith-over{height:42px;min-height:42px;margin-bottom:10px;font-size:18px;letter-spacing:.64em;text-indent:.64em}
+  .faith-lockup{top:14%;left:32px;width:338px;padding:9px 9px 8px}
+  .faith-word{font-size:136px;line-height:.9}
+  .faith-top{margin-bottom:8px}
+  .faith-over{width:94%;height:40px;min-height:40px;margin-bottom:9px;font-size:18px;letter-spacing:.64em;text-indent:.64em}
   .hero > .hero-content > p{left:42px;bottom:178px}
   .hero > .hero-content > p::before{font-size:17px!important}
   .hero-actions{left:42px;bottom:100px}
