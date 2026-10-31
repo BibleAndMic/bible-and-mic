@@ -1,4 +1,4 @@
-/* B&M hero v57 — compact square bordered logo shifted left to preserve raised arm */
+/* B&M hero v58 — tighter compact bordered logo */
 main{display:flex;flex-direction:column}
 main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{order:4}main>#daily{order:5}main>#watch{order:6}main>#lyrics{order:7}main>#story{order:8}main>#updates{order:9}main>.install-card{order:10}main>#connect{order:11}
 
@@ -33,7 +33,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   top:15%;
   left:20px;
   transform:none;
-  width:min(310px,60vw);
+  width:min(285px,56vw);
   box-sizing:border-box;
   margin:0;
   padding:8px 8px 7px;
@@ -138,7 +138,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   .faith-lockup{
     top:15%;
     left:8px;
-    width:min(290px,62vw);
+    width:min(270px,56vw);
     padding:7px 7px 6px;
   }
   .faith-word{font-size:clamp(92px,22.5vw,112px);line-height:.9}
@@ -152,7 +152,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
     background-position:64% 10%;
   }
   .hero-content{padding:0 20px calc(82px + env(safe-area-inset-bottom))}
-  .faith-lockup{top:16%;left:6px;width:min(260px,66vw);padding:6px 6px 5px}
+  .faith-lockup{top:16%;left:6px;width:min(245px,60vw);padding:6px 6px 5px}
   .faith-word{font-size:86px;line-height:.9}
   .faith-top{margin-bottom:6px}
   .faith-over{width:94%;height:35px;min-height:35px;margin-bottom:7px;font-size:14px;letter-spacing:.54em;text-indent:.54em}
@@ -164,7 +164,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
 
 @media(min-width:660px){
   .hero{background-size:cover;background-position:right center}
-  .faith-lockup{top:14%;left:32px;width:338px;padding:9px 9px 8px}
+  .faith-lockup{top:14%;left:32px;width:315px;padding:9px 9px 8px}
   .faith-word{font-size:136px;line-height:.9}
   .faith-top{margin-bottom:8px}
   .faith-over{width:94%;height:40px;min-height:40px;margin-bottom:9px;font-size:18px;letter-spacing:.64em;text-indent:.64em}
