@@ -1,4 +1,4 @@
-/* B&M hero v59 — true square FAITH OVER FEAR logo */
+/* B&M hero v60 — unified FAITH OVER FEAR SVG logo */
 main{display:flex;flex-direction:column}
 main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{order:4}main>#daily{order:5}main>#watch{order:6}main>#lyrics{order:7}main>#story{order:8}main>#updates{order:9}main>.install-card{order:10}main>#connect{order:11}
 
@@ -31,71 +31,19 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
 .faith-lockup{
   position:absolute;
   top:15%;
-  left:18px;
-  width:285px;
-  aspect-ratio:1/1;
-  box-sizing:border-box;
+  left:14px;
+  width:270px;
+  height:270px;
   margin:0;
-  padding:9px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  border:3px solid #edd9aa;
-  background:rgba(5,4,3,.10);
-  box-shadow:0 0 0 1px rgba(0,0,0,.58),0 0 16px rgba(236,156,55,.15);
+  padding:0;
+  border:0;
+  font-size:0;
+  line-height:0;
+  background:transparent url("faith-over-fear.svg") center/contain no-repeat;
   filter:drop-shadow(0 8px 20px rgba(0,0,0,.62));
 }
 .faith-lockup::before,.faith-lockup::after{display:none!important}
-.faith-word{
-  display:block;
-  width:100%;
-  font-family:Impact,Haettenschweiler,"Arial Narrow Bold","Arial Narrow",sans-serif;
-  font-size:112px;
-  font-weight:900;
-  line-height:.84;
-  letter-spacing:-.06em;
-  text-transform:uppercase;
-  text-align:center;
-  color:#edd9aa;
-  background:none!important;
-  -webkit-background-clip:border-box!important;
-  background-clip:border-box!important;
-  -webkit-text-fill-color:#edd9aa!important;
-  -webkit-font-smoothing:antialiased;
-  text-shadow:0 2px 0 rgba(70,39,10,.16),0 0 14px rgba(225,145,45,.14);
-}
-.faith-top{
-  transform:scaleX(1.07);
-  transform-origin:center center;
-  margin:0 0 9px;
-}
-.faith-over{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-  box-sizing:border-box;
-  height:40px;
-  min-height:40px;
-  margin:0 0 10px;
-  padding:0 6px;
-  background:#090806;
-  border:2px solid #edd9aa;
-  color:#f5eee0;
-  font-family:Arial,Helvetica,sans-serif;
-  font-size:16px;
-  font-weight:800;
-  line-height:1;
-  letter-spacing:.62em;
-  text-indent:.62em;
-  box-shadow:0 0 0 1px rgba(0,0,0,.72);
-}
-.faith-bottom{
-  transform:rotate(180deg) scaleX(1.07);
-  transform-origin:center center;
-  margin:0;
-}
+.faith-lockup .faith-word,.faith-lockup .faith-over{display:none!important}
 
 .hero > .hero-content > p{
   position:absolute;
@@ -138,15 +86,10 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   }
   .faith-lockup{
     top:15%;
-    left:8px;
-    width:250px;
-    height:250px;
-    aspect-ratio:auto;
-    padding:8px;
+    left:6px;
+    width:242px;
+    height:242px;
   }
-  .faith-word{font-size:98px;line-height:.84}
-  .faith-top{margin-bottom:8px}
-  .faith-over{height:38px;min-height:38px;margin-bottom:9px;font-size:15px;letter-spacing:.58em;text-indent:.58em}
 }
 
 @media(max-width:375px){
@@ -155,10 +98,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
     background-position:64% 10%;
   }
   .hero-content{padding:0 20px calc(82px + env(safe-area-inset-bottom))}
-  .faith-lockup{top:16%;left:6px;width:225px;height:225px;padding:7px}
-  .faith-word{font-size:88px;line-height:.84}
-  .faith-top{margin-bottom:7px}
-  .faith-over{height:35px;min-height:35px;margin-bottom:8px;font-size:14px;letter-spacing:.54em;text-indent:.54em}
+  .faith-lockup{top:16%;left:4px;width:218px;height:218px}
   .hero > .hero-content > p{left:20px;right:20px;bottom:calc(148px + env(safe-area-inset-bottom));font-size:14px!important}
   .hero > .hero-content > p::before{font-size:14px!important}
   .hero-actions{left:20px;right:20px;bottom:calc(82px + env(safe-area-inset-bottom));gap:10px}
@@ -167,10 +107,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
 
 @media(min-width:660px){
   .hero{background-size:cover;background-position:right center}
-  .faith-lockup{top:14%;left:32px;width:315px;height:315px;aspect-ratio:auto;padding:10px}
-  .faith-word{font-size:124px;line-height:.84}
-  .faith-top{margin-bottom:9px}
-  .faith-over{height:42px;min-height:42px;margin-bottom:10px;font-size:18px;letter-spacing:.64em;text-indent:.64em}
+  .faith-lockup{top:14%;left:32px;width:315px;height:315px}
   .hero > .hero-content > p{left:42px;bottom:178px}
   .hero > .hero-content > p::before{font-size:17px!important}
   .hero-actions{left:42px;bottom:100px}
