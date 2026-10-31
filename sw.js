@@ -1,5 +1,5 @@
-const CACHE='bible-and-mic-v59';
-const CORE=['./','index.html','styles.css','base-styles.css','hero-polish.css','app.js','background.jpg','manifest.webmanifest','home-hero.jpg','featured-cover.jpg','icon-180.png','icon-192.png','icon-512.png','in-the-word.jpg','fresh-air.jpg','only-by-grace.jpg','redeemed.jpg','life-lately-poster.jpg','little-reminders.jpg','quiet-companion.jpg','new-growth.jpg','small-beauty.jpg'];
+const CACHE='bible-and-mic-v60';
+const CORE=['./','index.html','styles.css','base-styles.css','hero-polish.css','app.js','background.jpg','faith-over-fear.svg','manifest.webmanifest','home-hero.jpg','featured-cover.jpg','icon-180.png','icon-192.png','icon-512.png','in-the-word.jpg','fresh-air.jpg','only-by-grace.jpg','redeemed.jpg','life-lately-poster.jpg','little-reminders.jpg','quiet-companion.jpg','new-growth.jpg','small-beauty.jpg'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith((async()=>{try{const r=await fetch(e.request);const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return r}catch(err){return caches.match(e.request).then(r=>r||caches.match('index.html'))}})())});
