@@ -248,3 +248,38 @@ if(c4cTrack){
 
 const videoTitle = document.querySelector('.video-meta span');
 if(videoTitle) videoTitle.textContent = 'CRAZY 4 CHRIST · PROD. BY MORGAN';
+
+// Seamless marquee: duplicate the phrase sequence and translate by the exact
+// distance between the two copies. This prevents both blank gaps and snap-backs.
+const marqueeTrack = document.querySelector('.marquee > div');
+if(marqueeTrack && !marqueeTrack.dataset.seamless){
+  marqueeTrack.dataset.seamless = 'true';
+  marqueeTrack.style.animation = 'none';
+
+  const originals = [...marqueeTrack.children];
+  const originalWidth = marqueeTrack.getBoundingClientRect().width;
+  originals.forEach(node=>{
+    const clone = node.cloneNode(true);
+    clone.setAttribute('aria-hidden','true');
+    marqueeTrack.appendChild(clone);
+  });
+
+  const first = marqueeTrack.children[0];
+  const secondStart = marqueeTrack.children[originals.length];
+  const loopDistance = secondStart.offsetLeft - first.offsetLeft;
+
+  // Match the old marquee's apparent speed: it moved half of the original
+  // track width in 22 seconds, so preserve that pixels-per-second rate.
+  const oldPixelsPerMs = Math.max(originalWidth / 44000, 0.01);
+  const loopDuration = loopDistance / oldPixelsPerMs;
+  marqueeTrack.style.willChange = 'transform';
+
+  let start = null;
+  const tick = now=>{
+    if(start===null) start = now;
+    const progress = ((now - start) % loopDuration) / loopDuration;
+    marqueeTrack.style.transform = `translate3d(${-loopDistance * progress}px,0,0)`;
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
