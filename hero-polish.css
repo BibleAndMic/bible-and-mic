@@ -1,4 +1,4 @@
-/* B&M hero v60 — unified FAITH OVER FEAR SVG logo */
+/* B&M hero v63 — unified FAITH OVER FEAR SVG logo + Bible App card */
 main{display:flex;flex-direction:column}
 main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{order:4}main>#daily{order:5}main>#watch{order:6}main>#lyrics{order:7}main>#story{order:8}main>#updates{order:9}main>.install-card{order:10}main>#connect{order:11}
 
@@ -45,6 +45,62 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
 .faith-lockup::before,.faith-lockup::after{display:none!important}
 .faith-lockup .faith-word,.faith-lockup .faith-over{display:none!important}
 
+.bible-app-card{
+  position:absolute;
+  left:22px;
+  right:22px;
+  bottom:calc(238px + env(safe-area-inset-bottom));
+  min-height:76px;
+  display:grid;
+  grid-template-columns:54px minmax(0,1fr) 116px;
+  align-items:center;
+  gap:12px;
+  padding:10px 11px;
+  box-sizing:border-box;
+  border:1px solid #b98c35;
+  border-radius:8px;
+  background:linear-gradient(180deg,rgba(11,10,8,.94),rgba(6,6,6,.94));
+  box-shadow:0 0 0 1px rgba(0,0,0,.65),0 10px 30px rgba(0,0,0,.38),0 0 20px rgba(221,166,59,.08);
+  color:#f3eee4;
+  text-decoration:none;
+  z-index:2;
+  -webkit-tap-highlight-color:transparent;
+}
+.bible-app-card:active{transform:translateY(1px)}
+.bible-app-icon{
+  width:50px;
+  height:50px;
+  display:grid;
+  place-items:center;
+  color:#e7c66f;
+  border-right:1px solid rgba(231,198,111,.38);
+  padding-right:10px;
+  box-sizing:border-box;
+}
+.bible-app-icon svg{width:41px;height:auto;display:block;filter:drop-shadow(0 0 8px rgba(231,198,111,.16))}
+.bible-app-copy{min-width:0;display:flex;flex-direction:column;gap:3px;line-height:1.1}
+.bible-app-copy strong{font-size:8px;letter-spacing:.2em;color:#e7d28f;font-weight:900;white-space:nowrap}
+.bible-app-copy>span{font-size:12px;font-weight:650;color:#f0ece3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bible-app-copy small{font-size:8px;color:#8f8a80;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bible-app-button{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 8px;
+  border:1px solid #e7c66f;
+  border-radius:7px;
+  background:#f2e4b7;
+  color:#090806;
+  font-size:8px;
+  font-weight:950;
+  line-height:1.22;
+  letter-spacing:.035em;
+  box-shadow:0 0 16px rgba(231,198,111,.12);
+}
+.bible-app-button b{font-size:14px;margin-left:5px;line-height:1}
+
 .hero > .hero-content > p{
   position:absolute;
   left:28px;
@@ -90,6 +146,21 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
     width:242px;
     height:242px;
   }
+  .bible-app-card{
+    left:16px;
+    right:16px;
+    bottom:calc(236px + env(safe-area-inset-bottom));
+    min-height:72px;
+    grid-template-columns:48px minmax(0,1fr) 108px;
+    gap:9px;
+    padding:9px 10px;
+  }
+  .bible-app-icon{width:45px;height:45px;padding-right:8px}
+  .bible-app-icon svg{width:36px}
+  .bible-app-copy strong{font-size:7px}
+  .bible-app-copy>span{font-size:11px}
+  .bible-app-copy small{font-size:7px}
+  .bible-app-button{min-height:40px;font-size:7px;padding:0 6px}
 }
 
 @media(max-width:375px){
@@ -99,6 +170,11 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
   }
   .hero-content{padding:0 20px calc(82px + env(safe-area-inset-bottom))}
   .faith-lockup{top:16%;left:4px;width:218px;height:218px}
+  .bible-app-card{left:12px;right:12px;bottom:calc(232px + env(safe-area-inset-bottom));grid-template-columns:42px minmax(0,1fr) 96px;gap:7px;padding:8px}
+  .bible-app-icon{width:40px;height:40px;padding-right:7px}
+  .bible-app-icon svg{width:32px}
+  .bible-app-copy>span{font-size:10px}
+  .bible-app-button{min-height:38px;font-size:6.7px}
   .hero > .hero-content > p{left:20px;right:20px;bottom:calc(148px + env(safe-area-inset-bottom));font-size:14px!important}
   .hero > .hero-content > p::before{font-size:14px!important}
   .hero-actions{left:20px;right:20px;bottom:calc(82px + env(safe-area-inset-bottom));gap:10px}
@@ -108,6 +184,7 @@ main>.hero{order:1}main>#music{order:2}main>.marquee{order:3}main>.verse-card{or
 @media(min-width:660px){
   .hero{background-size:cover;background-position:right center}
   .faith-lockup{top:14%;left:32px;width:315px;height:315px}
+  .bible-app-card{left:42px;right:auto;width:520px;bottom:265px;grid-template-columns:58px minmax(0,1fr) 132px}
   .hero > .hero-content > p{left:42px;bottom:178px}
   .hero > .hero-content > p::before{font-size:17px!important}
   .hero-actions{left:42px;bottom:100px}
