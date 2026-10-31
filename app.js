@@ -34,7 +34,7 @@ async function loadAndPlay({src,title,art='',card=null}){
     audio.dataset.title = title;
     activeCard = card;
     miniTitle.textContent = title;
-    miniArt.style.backgroundImage = art ? `url("${art}")` : '';
+    miniArt.style.backgroundImage = art ? `url(\"${art}\")` : '';
     miniArt.querySelector('span').style.display = art ? 'none' : 'block';
     miniProgress.style.width='0%';
   } else if(card){ activeCard = card; }
@@ -51,7 +51,7 @@ document.querySelectorAll('.track-card').forEach(card=>{
 });
 
 document.querySelectorAll('[data-play]').forEach(btn=>{
-  btn.addEventListener('click',()=>loadAndPlay({src:btn.dataset.play,title:btn.dataset.title,art:btn.dataset.art,card:document.querySelector(`[data-src="${btn.dataset.play}"]`)}));
+  btn.addEventListener('click',()=>loadAndPlay({src:btn.dataset.play,title:btn.dataset.title,art:btn.dataset.art,card:document.querySelector(`[data-src=\"${btn.dataset.play}\"]`)}));
 });
 
 miniPlay.addEventListener('click',async()=>{
@@ -167,7 +167,7 @@ if(storySound){storySound.hidden=true;storySound.style.display='none';storySound
 let storyIndex=0, storyTimer=null, storyVideo=null;
 const PHOTO_MS=8000;
 function buildStoryProgress(){
-  storyProgress.innerHTML=dailyStories.map((_,i)=>`<span data-p="${i}"><i></i></span>`).join('');
+  storyProgress.innerHTML=dailyStories.map((_,i)=>`<span data-p=\"${i}\"><i></i></span>`).join('');
 }
 function setStoryProgress(ms){
   [...storyProgress.children].forEach((el,i)=>{el.className=i<storyIndex?'done':i===storyIndex?'active':'';el.style.setProperty('--story-ms',`${ms}ms`);});
@@ -221,7 +221,7 @@ if(featuredTrack){
   if(play) play.setAttribute('aria-label', "Play He's Working on Me");
 }
 
-const heroPlay = document.querySelector('[data-play="featured-song.mp3"]');
+const heroPlay = document.querySelector('[data-play=\"featured-song.mp3\"]');
 if(heroPlay) heroPlay.dataset.title = "He's Working on Me";
 
 const good2MeTrack = document.querySelector('.track-card.g2m');
@@ -282,4 +282,32 @@ if(marqueeTrack && !marqueeTrack.dataset.seamless){
     requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
+}
+
+// YouVersion Bible App resource card — option 2 treatment.
+const heroContent = document.querySelector('.hero .hero-content');
+if(heroContent && !heroContent.querySelector('.bible-app-card')){
+  const card = document.createElement('a');
+  card.className = 'bible-app-card';
+  card.href = 'https://apps.apple.com/us/app/bible/id282935706';
+  card.target = '_blank';
+  card.rel = 'noopener';
+  card.setAttribute('aria-label','Get the free YouVersion Bible App on the App Store');
+  card.innerHTML = `
+    <span class="bible-app-icon" aria-hidden="true">
+      <svg viewBox="0 0 48 40" focusable="false" aria-hidden="true">
+        <path d="M23.5 34.5c-5.2-4.6-11.6-5.6-18-3.8V6.8c6.8-1.8 13.2-.4 18 4.2v23.5Z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/>
+        <path d="M24.5 34.5c5.2-4.6 11.6-5.6 18-3.8V6.8c-6.8-1.8-13.2-.4-18 4.2v23.5Z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/>
+        <path d="M24 11v23" stroke="currentColor" stroke-width="1.7"/>
+      </svg>
+    </span>
+    <span class="bible-app-copy">
+      <strong>READ THE WORD</strong>
+      <span>Take God’s Word with you.</span>
+      <small>YouVersion Bible App</small>
+    </span>
+    <span class="bible-app-button">GET THE FREE<br>BIBLE APP <b>→</b></span>
+  `;
+  const heroLine = heroContent.querySelector('p');
+  heroContent.insertBefore(card, heroLine || null);
 }
