@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-labelledby="title desc">
+  <title id="title">Faith Over Fear</title>
+  <desc id="desc">Square cream bordered Faith Over Fear logo with Fear inverted.</desc>
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="7" y="7" width="286" height="286" fill="rgba(5,4,3,.10)" stroke="#edd9aa" stroke-width="4"/>
+  <g fill="#edd9aa" font-family="Impact, Haettenschweiler, 'Arial Narrow Bold', 'Arial Narrow', sans-serif" font-weight="900" text-anchor="middle" filter="url(#glow)">
+    <text x="150" y="109" font-size="94" textLength="252" lengthAdjust="spacingAndGlyphs">FAITH</text>
+    <g transform="translate(300 300) rotate(180)">
+      <text x="150" y="109" font-size="94" textLength="252" lengthAdjust="spacingAndGlyphs">FEAR</text>
+    </g>
+  </g>
+  <rect x="22" y="123" width="256" height="52" fill="#090806" stroke="#edd9aa" stroke-width="3"/>
+  <text x="150" y="157" fill="#f5eee0" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" text-anchor="middle" letter-spacing="13">OVER</text>
+</svg>
