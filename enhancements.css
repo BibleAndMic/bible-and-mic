@@ -31,6 +31,9 @@
 .daily-note:after{content:' · TAP A MOMENT TO OPEN';color:#7e796f;font-size:7px;letter-spacing:.13em}
 .faith-lockup{animation:faithSettle .8s cubic-bezier(.2,.7,.2,1) both}
 .nav-item{min-height:48px;justify-content:center}.nav-item[aria-current="page"]{color:var(--ink)}
+.nav-item>span{display:grid;place-items:center;min-height:20px}
+.nav-story-icon svg{width:18px;height:18px;display:block;overflow:visible}
+.nav-story-icon{color:currentColor!important;font-size:0!important}
 :where(a,button,input,summary):focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .track-share:focus-visible,.site-share:focus-visible,.prayer-booking:focus-visible{outline-offset:2px}
 
@@ -66,10 +69,9 @@
   border-right:1px solid rgba(231,198,111,.38);
   padding-right:10px;
   color:#e7c66f;
-  font-size:29px;
   line-height:1;
-  text-shadow:0 0 12px rgba(231,198,111,.18);
 }
+.romans-mini-icon svg{width:30px;height:30px;display:block;filter:drop-shadow(0 0 6px rgba(231,198,111,.12))}
 .romans-mini-copy{min-width:0;display:flex;flex-direction:column;gap:2px;line-height:1.12;transition:opacity .16s ease,transform .16s ease}
 .romans-mini-meta{display:flex;align-items:center;gap:6px;min-height:10px}
 .romans-mini-meta b{font-size:7px;letter-spacing:.16em;color:#e7d28f;font-weight:900}
@@ -119,7 +121,8 @@ html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}
     gap:9px;
     padding:9px 10px;
   }
-  .romans-mini-icon{width:45px;height:45px;padding-right:8px;font-size:26px}
+  .romans-mini-icon{width:45px;height:45px;padding-right:8px}
+  .romans-mini-icon svg{width:27px;height:27px}
   .romans-mini-copy strong{font-size:11px}
   .romans-mini-copy>span:last-child{font-size:8.5px}
   .romans-mini-next{width:36px;min-width:36px;height:42px;font-size:28px}
@@ -127,7 +130,8 @@ html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}
 
 @media(max-width:375px){
   .romans-mini-card{left:12px;right:12px;bottom:calc(310px + env(safe-area-inset-bottom));grid-template-columns:42px minmax(0,1fr) 34px;gap:7px;padding:8px}
-  .romans-mini-icon{width:40px;height:40px;padding-right:7px;font-size:23px}
+  .romans-mini-icon{width:40px;height:40px;padding-right:7px}
+  .romans-mini-icon svg{width:24px;height:24px}
   .romans-mini-copy strong{font-size:10px}
   .romans-mini-copy>span:last-child{font-size:8px;line-height:1.25}
   .romans-mini-next{width:32px;min-width:32px;height:40px;font-size:25px}
