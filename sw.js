@@ -1,4 +1,4 @@
-const VERSION='bible-and-mic-v72';
+const VERSION='bible-and-mic-v73';
 const SHELL_CACHE=`${VERSION}-shell`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const AUDIO_CACHE='bible-and-mic-audio-v1';
