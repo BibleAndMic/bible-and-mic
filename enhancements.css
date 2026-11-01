@@ -34,6 +34,11 @@
 .nav-item>span{display:grid;place-items:center;min-height:20px}
 .nav-story-icon svg{width:18px;height:18px;display:block;overflow:visible}
 .nav-story-icon{color:currentColor!important;font-size:0!important}
+/* Safari-proof Story icon: hide the original emoji glyph and draw a matching outline icon in CSS. */
+.nav-item[data-target="story"]>span{position:relative!important;width:20px;height:20px;min-height:20px;font-size:0!important;line-height:0!important;color:currentColor!important}
+.nav-item[data-target="story"]>span>svg{display:none!important}
+.nav-item[data-target="story"]>span::before{content:"";position:absolute;left:4px;top:3px;width:11px;height:13px;border:1.4px solid currentColor;border-radius:1px;box-sizing:border-box}
+.nav-item[data-target="story"]>span::after{content:"";position:absolute;left:7px;top:7px;width:5px;height:1px;background:currentColor;box-shadow:0 3px 0 currentColor}
 :where(a,button,input,summary):focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .track-share:focus-visible,.site-share:focus-visible,.prayer-booking:focus-visible{outline-offset:2px}
 
