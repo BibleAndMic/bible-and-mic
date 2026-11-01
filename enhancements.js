@@ -26,22 +26,59 @@
   syncNavState();
   document.querySelectorAll('.nav-item').forEach(item => new MutationObserver(syncNavState).observe(item,{attributes:true,attributeFilter:['class']}));
 
+  // Existing free Bible access: keep YouVersion, but make the Bible tab open inside B&M first.
+  const bibleUrl = 'https://www.youversion.com/bible-app';
   const bibleCard = document.querySelector('.bible-app-card');
   if (bibleCard) {
     bibleCard.id = 'bible';
-    bibleCard.href = 'https://www.youversion.com/bible-app';
-    bibleCard.target = '_blank';
-    bibleCard.rel = 'noopener';
-    bibleCard.setAttribute('aria-label', 'Open the free YouVersion Bible page. B&M stays open.');
+    bibleCard.href = '#bible';
+    bibleCard.removeAttribute('target');
+    bibleCard.removeAttribute('rel');
+    bibleCard.setAttribute('aria-label', 'Open Bible access');
+    const button = bibleCard.querySelector('.bible-app-button');
+    if (button) button.innerHTML = 'OPEN FREE<br>BIBLE <b>→</b>';
   }
+
+  const sheet = document.createElement('div');
+  sheet.className = 'bible-sheet';
+  sheet.id = 'bibleSheet';
+  sheet.setAttribute('aria-hidden','true');
+  sheet.innerHTML = `
+    <div class="bible-panel" role="dialog" aria-modal="true" aria-label="Free Bible access">
+      <div class="bible-panel-head">
+        <div><span class="kicker">READ THE WORD</span><h3>Free Bible.</h3></div>
+        <button class="bible-close" type="button" aria-label="Close Bible access">×</button>
+      </div>
+      <p>B&M keeps your Bible access simple. Open the free YouVersion Bible when you’re ready to read.</p>
+      <a class="bible-open" href="${bibleUrl}">OPEN YOUVERSION BIBLE →</a>
+      <p class="bible-note">YouVersion is an external Bible service. Opening it leaves the B&M page, but the Bible tab itself stays inside B&M.</p>
+    </div>`;
+  document.body.appendChild(sheet);
+
+  const showBible = () => {
+    sheet.classList.add('open');
+    sheet.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    sheet.querySelector('.bible-close')?.focus();
+  };
+  const hideBible = () => {
+    sheet.classList.remove('open');
+    sheet.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  };
 
   const bibleNav = document.querySelector('.nav-item[data-bible-nav]');
   bibleNav?.addEventListener('click', event => {
-    const target = document.getElementById('bible');
-    if (!target) return;
     event.preventDefault();
-    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    showBible();
   });
+  bibleCard?.addEventListener('click', event => {
+    event.preventDefault();
+    showBible();
+  });
+  sheet.querySelector('.bible-close')?.addEventListener('click', hideBible);
+  sheet.addEventListener('click', event => { if (event.target === sheet) hideBible(); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && sheet.classList.contains('open')) hideBible(); });
 
   import('./tracks.js').then(({ tracks }) => {
     if (!Array.isArray(tracks) || !tracks.length) return;
