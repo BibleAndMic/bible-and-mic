@@ -8,6 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="B&M" />
   <meta name="description" content="B&M | Bible & Mic — Christian hip-hop, testimony, music and video." />
+  <link rel="canonical" href="https://bibleandmic.github.io/bible-and-mic/" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="icon-180.png" />
@@ -25,6 +26,7 @@
   <meta name="twitter:title" content="B&M | Bible & Mic" />
   <meta name="twitter:description" content="Christian hip-hop rooted in faith, testimony, and truth." />
   <meta name="twitter:image" content="https://bibleandmic.github.io/bible-and-mic/home-hero.jpg" />
+  <meta name="twitter:image:alt" content="B&M | Bible & Mic" />
   <style>
     .install-card{display:none;margin:0 20px 52px;padding:24px 22px;border:1px solid #29251d;background:linear-gradient(145deg,#11100d,#090909);position:relative;overflow:hidden}
     .install-card.install-ready{display:block}
@@ -85,7 +87,23 @@
 
       <section class="marquee" aria-label="Bible and Mic themes"><div><span>FAITH OVER FEAR</span><i>✦</i><span>ALL GLORY TO GOD</span><i>✦</i><span>BIBLE &amp; MIC</span><i>✦</i><span>NEW CREATION</span><i>✦</i></div></section>
 
-      <section class="verse-card" id="verseCard" aria-label="Rotating Bible verse" tabindex="0"><div class="verse-topline"><span id="verseRef">2 CORINTHIANS 5:17</span></div><p id="verseText">“If anyone is in Christ, the new creation has come: The old has gone, the new is here!”</p><div class="verse-progress" aria-hidden="true"><i id="verseProgress"></i></div></section>
+      <section class="romans-road" id="romansRoad" aria-labelledby="romansRoadTitle">
+        <div class="romans-road-head">
+          <div><span class="kicker">THE GOSPEL</span><h2 id="romansRoadTitle">THE ROMANS ROAD</h2><p>The Gospel in 5 Key Steps</p></div>
+          <span class="romans-road-count">5 STEPS</span>
+        </div>
+        <div class="romans-steps">
+          <details class="romans-step"><summary><span class="romans-step-num">1</span><span class="romans-step-title"><strong>THE PROBLEM</strong><span>Romans 3:23</span></span><span class="romans-step-arrow" aria-hidden="true">›</span></summary><div class="romans-step-body">We've all missed the mark and fall short of God's standard.</div></details>
+          <details class="romans-step"><summary><span class="romans-step-num">2</span><span class="romans-step-title"><strong>THE COST</strong><span>Romans 6:23</span></span><span class="romans-step-arrow" aria-hidden="true">›</span></summary><div class="romans-step-body">The price of sin is separation, but the gift is eternal life.</div></details>
+          <details class="romans-step"><summary><span class="romans-step-num">3</span><span class="romans-step-title"><strong>THE PROOF</strong><span>Romans 5:8</span></span><span class="romans-step-arrow" aria-hidden="true">›</span></summary><div class="romans-step-body">God demonstrated His love by sending Jesus while we were still sinners.</div></details>
+          <details class="romans-step"><summary><span class="romans-step-num">4</span><span class="romans-step-title"><strong>THE STEP</strong><span>Romans 10:9–10</span></span><span class="romans-step-arrow" aria-hidden="true">›</span></summary><div class="romans-step-body">Believe in your heart that God raised Him from the dead and confess Jesus as Lord.</div></details>
+          <details class="romans-step"><summary><span class="romans-step-num">5</span><span class="romans-step-title"><strong>THE PROMISE</strong><span>Romans 10:13</span></span><span class="romans-step-arrow" aria-hidden="true">›</span></summary><div class="romans-step-body">Everyone who calls on the name of the Lord will be saved.</div></details>
+        </div>
+        <div class="romans-road-actions">
+          <button class="romans-call" type="button" data-romans-call>Call Upon Him Today</button>
+          <p class="romans-niv">Scripture references are from the Holy Bible, New International Version® (NIV®). Copyright © 1973, 1978, 1984, 2011 by Biblica, Inc.® Used by permission. All rights reserved worldwide.</p>
+        </div>
+      </section>
 
       <section id="daily" class="daily-walk" aria-label="Daily Walk">
         <div class="daily-head"><div><span class="kicker">DAILY WALK</span><h2>Nothing fancy.<br>Just the walk.</h2></div><p>Life, faith, music, and the little things God uses along the way.</p></div>
@@ -123,7 +141,7 @@
       <section class="install-card" aria-label="Add Bible and Mic to your home screen">
         <span class="install-kicker">TAKE B&amp;M WITH YOU</span>
         <h3>One tap away.</h3>
-        <p>Add Bible &amp; Mic to your home screen and open it like an app.</p>
+        <p>Add Bible &amp; Mic to your Home Screen so it’s always one tap away.</p>
         <button class="install-btn" id="openInstall">ADD TO HOME SCREEN</button>
       </section>
 
@@ -152,8 +170,8 @@
         </div>
         <div id="androidInstall" hidden>
           <div class="install-platform-title">ANDROID</div>
-          <div class="install-step"><span>1</span><div><b>Open the browser menu</b><small>Tap the three-dot menu.</small></div></div>
-          <div class="install-step"><span>2</span><div><b>Install B&M</b><small>Choose Install app or Add to Home screen.</small></div></div>
+          <div class="install-step"><span>1</span><div><b>Open the Chrome menu</b><small>Tap the three-dot menu.</small></div></div>
+          <div class="install-step"><span>2</span><div><b>Add to Home screen</b><small>Choose Add to Home screen or Install app.</small></div></div>
         </div>
       </div>
     </div>
@@ -167,6 +185,7 @@
   <audio id="globalAudio" preload="metadata"></audio>
   <script src="app.js"></script>
   <script src="enhancements.js"></script>
+  <script src="romans-road.js"></script>
   <script>
     (()=>{
       const open=document.getElementById('openInstall');
