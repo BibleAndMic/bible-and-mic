@@ -23,46 +23,51 @@ function setPlayingState(card, playing){
     const b = card.querySelector('.round-play,.square-play');
     if(b) b.textContent = playing ? '❚❚' : '▶';
   }
-  miniPlay.textContent = playing ? '❚❚' : '▶';
+  if(miniPlay) miniPlay.textContent = playing ? '❚❚' : '▶';
 }
 
 async function loadAndPlay({src,title,art='',card=null}){
+  if(!audio) return;
   const same = audio.dataset.src === src;
   if(!same){
     audio.src = src;
     audio.dataset.src = src;
     audio.dataset.title = title;
     activeCard = card;
-    miniTitle.textContent = title;
-    miniArt.style.backgroundImage = art ? `url("${art}")` : '';
-    miniArt.querySelector('span').style.display = art ? 'none' : 'block';
-    miniProgress.style.width='0%';
+    if(miniTitle) miniTitle.textContent = title;
+    if(miniArt){
+      miniArt.style.backgroundImage = art ? `url("${art}")` : '';
+      const mark = miniArt.querySelector('span');
+      if(mark) mark.style.display = art ? 'none' : 'block';
+    }
+    if(miniProgress) miniProgress.style.width='0%';
   } else if(card){ activeCard = card; }
-  mini.classList.add('show');
+  mini?.classList.add('show');
   try{
     if(audio.paused){ await audio.play(); setPlayingState(activeCard,true); }
     else if(same){ audio.pause(); setPlayingState(activeCard,false); }
-  }catch(e){ miniTitle.textContent='Tap play again'; }
+  }catch(e){ if(miniTitle) miniTitle.textContent='Tap play again'; }
 }
+window.loadAndPlay = loadAndPlay;
 
 document.querySelectorAll('.track-card').forEach(card=>{
   const btn = card.querySelector('.round-play,.square-play');
-  btn.addEventListener('click',()=>loadAndPlay({src:card.dataset.src,title:card.dataset.title,art:card.dataset.art,card}));
+  btn?.addEventListener('click',()=>loadAndPlay({src:card.dataset.src,title:card.dataset.title,art:card.dataset.art,card}));
 });
 
 document.querySelectorAll('[data-play]').forEach(btn=>{
   btn.addEventListener('click',()=>loadAndPlay({src:btn.dataset.play,title:btn.dataset.title,art:btn.dataset.art,card:document.querySelector(`[data-src="${btn.dataset.play}"]`)}));
 });
 
-miniPlay.addEventListener('click',async()=>{
-  if(!audio.src) return;
+miniPlay?.addEventListener('click',async()=>{
+  if(!audio?.src) return;
   if(audio.paused){ try{await audio.play();setPlayingState(activeCard,true)}catch(e){} }
   else{audio.pause();setPlayingState(activeCard,false)}
 });
 
-audio.addEventListener('timeupdate',()=>{
+audio?.addEventListener('timeupdate',()=>{
   const pct = audio.duration ? (audio.currentTime/audio.duration)*100 : 0;
-  miniProgress.style.width = `${pct}%`;
+  if(miniProgress) miniProgress.style.width = `${pct}%`;
   if(activeCard){
     const fill = activeCard.querySelector('.track-line-fill');
     const time = activeCard.querySelector('.track-time');
@@ -70,7 +75,7 @@ audio.addEventListener('timeupdate',()=>{
     if(time) time.textContent=formatTime(audio.currentTime);
   }
 });
-audio.addEventListener('ended',()=>setPlayingState(activeCard,false));
+audio?.addEventListener('ended',()=>setPlayingState(activeCard,false));
 
 const sections=[...document.querySelectorAll('.page-section')];
 const nav=[...document.querySelectorAll('.nav-item')];
@@ -80,68 +85,6 @@ const obs=new IntersectionObserver(entries=>{
   nav.forEach(n=>n.classList.toggle('active',n.dataset.target===best.target.id));
 },{rootMargin:'-30% 0px -58% 0px',threshold:[0,.15,.45]});
 sections.forEach(s=>obs.observe(s));
-
-// Rotating Scripture card — intentionally slow enough to read.
-const verses = [
-  {ref:'2 CORINTHIANS 5:17', text:'“If anyone is in Christ, the new creation has come: The old has gone, the new is here!”'},
-  {ref:'PHILIPPIANS 4:13', text:'“I can do all this through him who gives me strength.”'},
-  {ref:'PROVERBS 3:5–6', text:'“Trust in the LORD with all your heart and lean not on your own understanding.”'},
-  {ref:'ISAIAH 41:10', text:'“Do not fear, for I am with you; do not be dismayed, for I am your God.”'},
-  {ref:'PSALM 46:1', text:'“God is our refuge and strength, an ever-present help in trouble.”'},
-  {ref:'ROMANS 8:28', text:'“In all things God works for the good of those who love him.”'},
-  {ref:'JEREMIAH 29:11', text:'“For I know the plans I have for you,” declares the LORD.'},
-  {ref:'MATTHEW 11:28', text:'“Come to me, all you who are weary and burdened, and I will give you rest.”'},
-  {ref:'JOHN 3:16', text:'“For God so loved the world that he gave his one and only Son.”'},
-  {ref:'ROMANS 12:2', text:'“Be transformed by the renewing of your mind.”'},
-  {ref:'PSALM 23:4', text:'“I will fear no evil, for you are with me.”'},
-  {ref:'2 TIMOTHY 1:7', text:'“The Spirit God gave us does not make us timid, but gives us power, love and self-discipline.”'},
-  {ref:'LAMENTATIONS 3:22–23', text:'“His compassions never fail. They are new every morning; great is your faithfulness.”'},
-  {ref:'MATTHEW 4:19', text:'“Come, follow me,” Jesus said, “and I will send you out to fish for people.”'},
-  {ref:'JOHN 14:6', text:'“I am the way and the truth and the life.”'},
-  {ref:'PSALM 34:18', text:'“The LORD is close to the brokenhearted and saves those who are crushed in spirit.”'},
-  {ref:'ROMANS 5:8', text:'“While we were still sinners, Christ died for us.”'},
-  {ref:'GALATIANS 2:20', text:'“I have been crucified with Christ and I no longer live, but Christ lives in me.”'}
-]
-
-const verseCard = document.getElementById('verseCard');
-const verseRef = document.getElementById('verseRef');
-const verseText = document.getElementById('verseText');
-const verseProgress = document.getElementById('verseProgress');
-let verseIndex = 0;
-let verseTimer;
-const VERSE_MS = 12000;
-
-function showVerse(index){
-  if(!verseCard) return;
-  verseIndex = (index + verses.length) % verses.length;
-  verseCard.classList.add('changing');
-  setTimeout(()=>{
-    const v = verses[verseIndex];
-    verseRef.textContent = v.ref;
-    verseText.textContent = v.text;
-    verseCard.classList.remove('changing');
-    verseProgress.classList.remove('run');
-    void verseProgress.offsetWidth;
-    verseProgress.classList.add('run');
-  },180);
-}
-
-function restartVerseTimer(){
-  clearInterval(verseTimer);
-  verseTimer = setInterval(()=>showVerse(verseIndex + 1), VERSE_MS);
-}
-
-if(verseCard){
-  showVerse(0);
-  restartVerseTimer();
-  verseCard.addEventListener('click',()=>{ showVerse(verseIndex + 1); restartVerseTimer(); });
-  verseCard.addEventListener('keydown',e=>{
-    if(e.key==='Enter' || e.key===' '){ e.preventDefault(); showVerse(verseIndex + 1); restartVerseTimer(); }
-  });
-  document.addEventListener('visibilitychange',()=>{
-    if(document.hidden) clearInterval(verseTimer); else restartVerseTimer();
-  });
-}
 
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
 
@@ -167,17 +110,19 @@ if(storySound){storySound.hidden=true;storySound.style.display='none';storySound
 let storyIndex=0, storyTimer=null, storyVideo=null;
 const PHOTO_MS=8000;
 function buildStoryProgress(){
-  storyProgress.innerHTML=dailyStories.map((_,i)=>`<span data-p="${i}"><i></i></span>`).join('');
+  if(storyProgress) storyProgress.innerHTML=dailyStories.map((_,i)=>`<span data-p="${i}"><i></i></span>`).join('');
 }
 function setStoryProgress(ms){
+  if(!storyProgress) return;
   [...storyProgress.children].forEach((el,i)=>{el.className=i<storyIndex?'done':i===storyIndex?'active':'';el.style.setProperty('--story-ms',`${ms}ms`);});
 }
 function clearStoryMedia(){
   clearTimeout(storyTimer);
   if(storyVideo){storyVideo.muted=true;storyVideo.pause();storyVideo=null;}
-  storyViewer.classList.remove('has-video');
+  storyViewer?.classList.remove('has-video');
 }
 function showStory(i){
+  if(!storyViewer || !storyStage || !storyLabel || !storyCaption) return;
   clearStoryMedia();
   storyIndex=(i+dailyStories.length)%dailyStories.length;
   const item=dailyStories[storyIndex];
@@ -198,9 +143,11 @@ function showStory(i){
   }
 }
 function openStory(i){
+  if(!storyViewer) return;
   buildStoryProgress();storyViewer.classList.add('open');storyViewer.setAttribute('aria-hidden','false');document.body.classList.add('story-open');showStory(i);
 }
 function closeStory(){
+  if(!storyViewer || !storyStage) return;
   clearStoryMedia();storyViewer.classList.remove('open','has-video');storyViewer.setAttribute('aria-hidden','true');document.body.classList.remove('story-open');storyStage.innerHTML='';
 }
 document.querySelectorAll('[data-story]').forEach(btn=>btn.addEventListener('click',()=>openStory(Number(btn.dataset.story))));
@@ -249,13 +196,11 @@ if(c4cTrack){
 const videoTitle = document.querySelector('.video-meta span');
 if(videoTitle) videoTitle.textContent = 'CRAZY 4 CHRIST · PROD. BY MORGAN';
 
-// Seamless marquee: duplicate the phrase sequence and translate by the exact
-// distance between the two copies. This prevents both blank gaps and snap-backs.
+// Seamless marquee: duplicate the phrase sequence and translate by the exact distance between the two copies.
 const marqueeTrack = document.querySelector('.marquee > div');
 if(marqueeTrack && !marqueeTrack.dataset.seamless){
   marqueeTrack.dataset.seamless = 'true';
   marqueeTrack.style.animation = 'none';
-
   const originals = [...marqueeTrack.children];
   const originalWidth = marqueeTrack.getBoundingClientRect().width;
   originals.forEach(node=>{
@@ -263,17 +208,12 @@ if(marqueeTrack && !marqueeTrack.dataset.seamless){
     clone.setAttribute('aria-hidden','true');
     marqueeTrack.appendChild(clone);
   });
-
   const first = marqueeTrack.children[0];
   const secondStart = marqueeTrack.children[originals.length];
   const loopDistance = secondStart.offsetLeft - first.offsetLeft;
-
-  // Match the old marquee's apparent speed: it moved half of the original
-  // track width in 22 seconds, so preserve that pixels-per-second rate.
   const oldPixelsPerMs = Math.max(originalWidth / 44000, 0.01);
   const loopDuration = loopDistance / oldPixelsPerMs;
   marqueeTrack.style.willChange = 'transform';
-
   let start = null;
   const tick = now=>{
     if(start===null) start = now;
@@ -284,15 +224,13 @@ if(marqueeTrack && !marqueeTrack.dataset.seamless){
   requestAnimationFrame(tick);
 }
 
-// YouVersion Bible App resource card — option 2 treatment.
+// Existing YouVersion resource card. The Bible tab opens it through an in-app sheet in enhancements.js.
 const heroContent = document.querySelector('.hero .hero-content');
 if(heroContent && !heroContent.querySelector('.bible-app-card')){
   const card = document.createElement('a');
   card.className = 'bible-app-card';
-  card.href = 'https://apps.apple.com/us/app/bible/id282935706';
-  card.target = '_blank';
-  card.rel = 'noopener';
-  card.setAttribute('aria-label','Get the free YouVersion Bible App on the App Store');
+  card.href = '#bible';
+  card.setAttribute('aria-label','Open Bible access');
   card.innerHTML = `
     <span class="bible-app-icon" aria-hidden="true">
       <svg viewBox="0 0 48 40" focusable="false" aria-hidden="true">
@@ -304,15 +242,15 @@ if(heroContent && !heroContent.querySelector('.bible-app-card')){
     <span class="bible-app-copy">
       <strong>READ THE WORD</strong>
       <span>Take God’s Word with you.</span>
-      <small>YouVersion Bible App</small>
+      <small>YouVersion Bible</small>
     </span>
-    <span class="bible-app-button">GET THE FREE<br>BIBLE APP <b>→</b></span>
+    <span class="bible-app-button">OPEN FREE<br>BIBLE <b>→</b></span>
   `;
   const heroLine = heroContent.querySelector('p');
   heroContent.insertBefore(card, heroLine || null);
 }
 
-// Stars In The Sky — new featured release. Keep the existing visual system.
+// Stars In The Sky — current featured release. Keep the existing visual system.
 const musicSection = document.querySelector('#music');
 const feature = musicSection?.querySelector('.feature-track');
 if(feature){
