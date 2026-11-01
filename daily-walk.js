@@ -10,7 +10,7 @@
   if (eyebrow) eyebrow.textContent = 'daily walk';
   if (headline) headline.textContent = 'no filter... just the walk.';
   if (subline) subline.textContent = 'been through it all n still standin... glory to god. this is what it looks like day to day.';
-  if (footer) footer.textContent = 'straight from my day... tap n see 🙏';
+  if (footer) footer.textContent = 'straight from my day... tap n see 🙏🏽';
 
   const exactCardCopy = new Map([
     ['0', 'word first'],
