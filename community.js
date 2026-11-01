@@ -18,9 +18,9 @@ function addTrackShareButtons(){
   document.querySelectorAll('.track-card').forEach(card=>{
     if(card.querySelector('.track-share'))return;
     const title=card.dataset.title || card.querySelector('h3')?.textContent?.trim() || 'B&M track';
-    const src=card.dataset.src || '';
+    const trackId=card.dataset.trackId || card.dataset.trackId || card.dataset.src?.replace(/\.[^.]+$/,'') || '';
     const url=new URL(SITE_URL);
-    if(src)url.searchParams.set('track',src.replace(/\.[^.]+$/,''));
+    if(trackId)url.searchParams.set('track',trackId);
     const button=document.createElement('button');
     button.className='track-share';
     button.type='button';
@@ -35,6 +35,18 @@ function addTrackShareButtons(){
     });
     (card.querySelector('.feature-copy,.small-copy') || card).appendChild(button);
   });
+}
+
+function focusSharedTrack(){
+  const id=new URL(location.href).searchParams.get('track');
+  if(!id)return;
+  const card=document.querySelector(`[data-track-id="${CSS.escape(id)}"]`);
+  if(!card)return;
+  window.setTimeout(()=>{
+    card.scrollIntoView({behavior:'smooth',block:'center'});
+    card.classList.add('deep-link-focus');
+    window.setTimeout(()=>card.classList.remove('deep-link-focus'),2200);
+  },350);
 }
 
 function enhanceConnect(){
@@ -78,4 +90,4 @@ function enhanceConnect(){
   }
 }
 
-setTimeout(()=>{addTrackShareButtons();enhanceConnect();},0);
+setTimeout(()=>{addTrackShareButtons();enhanceConnect();focusSharedTrack();},0);
