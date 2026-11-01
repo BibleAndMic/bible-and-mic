@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
-/* Daily Walk only — raw testimony wall treatment. */
+/* Daily Walk only — raw testimony wall. */
 .daily-walk{
   position:relative;
   overflow:hidden;
   padding:48px 0 42px;
   background:
-    radial-gradient(circle at 18% 0%,rgba(231,198,111,.055),transparent 28%),
+    radial-gradient(circle at 18% 0%,rgba(231,198,111,.05),transparent 28%),
     #050505;
   isolation:isolate;
 }
@@ -15,9 +15,9 @@
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.075;
+  opacity:.06;
   mix-blend-mode:screen;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.34'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.32'/%3E%3C/svg%3E");
   z-index:0;
 }
 .daily-walk>*{position:relative;z-index:1}
@@ -35,8 +35,8 @@
   margin:0 0 14px!important;
   max-width:560px;
   font-size:clamp(34px,9vw,52px)!important;
-  line-height:.98!important;
-  letter-spacing:-.055em!important;
+  line-height:1!important;
+  letter-spacing:0!important;
   text-transform:none!important;
 }
 .daily-head>p{
@@ -46,6 +46,7 @@
   font-size:12px!important;
   line-height:1.6!important;
   letter-spacing:0!important;
+  text-transform:none!important;
 }
 
 .daily-strip{
@@ -53,7 +54,7 @@
   gap:16px!important;
   overflow-x:auto!important;
   overflow-y:visible!important;
-  padding:28px 42px 30px 22px!important;
+  padding:30px 54px 30px 22px!important;
   margin:0!important;
   scroll-snap-type:x mandatory;
   scroll-padding-left:22px;
@@ -62,22 +63,43 @@
   overscroll-behavior-x:contain;
 }
 .daily-strip::-webkit-scrollbar{display:none}
+
+/* Fully cancel the old circle/highlight treatment inside Daily Walk. */
+.daily-story,
+.daily-story::before,
+.daily-story::after,
+.daily-ring,
+.daily-ring::before,
+.daily-ring::after,
+.daily-ring img,
+.daily-ring video,
+.video-thumb,
+.video-thumb::before,
+.video-thumb::after{
+  border-radius:0!important;
+  -webkit-mask:none!important;
+  mask:none!important;
+  clip-path:none!important;
+}
+
 .daily-story{
   --tilt:0deg;
   position:relative!important;
-  flex:0 0 148px!important;
-  width:148px!important;
-  min-width:148px!important;
-  padding:0!important;
+  flex:0 0 154px!important;
+  width:154px!important;
+  min-width:154px!important;
+  padding:6px 6px 8px!important;
   margin:0!important;
-  border:0!important;
-  background:transparent!important;
+  border:1px solid rgba(244,241,232,.72)!important;
+  background:#11110f!important;
   color:inherit!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.38),0 2px 0 rgba(255,255,255,.03) inset!important;
   scroll-snap-align:start;
   transform:rotate(var(--tilt));
   transform-origin:50% 92%;
-  transition:transform .2s ease,filter .2s ease!important;
+  transition:transform .2s ease,filter .2s ease,box-shadow .2s ease!important;
   -webkit-tap-highlight-color:transparent;
+  overflow:visible!important;
 }
 .daily-story:nth-child(1){--tilt:-2.8deg}
 .daily-story:nth-child(2){--tilt:2.2deg}
@@ -92,143 +114,162 @@
   transform:rotate(0deg) scale(1.045)!important;
   z-index:4;
   filter:brightness(1.04);
+  box-shadow:0 16px 34px rgba(0,0,0,.44)!important;
 }
 .daily-story:focus-visible{outline:2px solid #e7c66f!important;outline-offset:6px}
+
+/* Tape: rectangular, half above the card edge, never covering the photo. */
+.daily-story::before{
+  content:"";
+  position:absolute!important;
+  z-index:8!important;
+  top:-10px!important;
+  left:50%!important;
+  width:60px!important;
+  height:18px!important;
+  transform:translateX(-50%) rotate(-2deg)!important;
+  background:linear-gradient(180deg,rgba(220,205,169,.5),rgba(175,158,121,.28))!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  box-shadow:0 2px 5px rgba(0,0,0,.18)!important;
+  opacity:.5!important;
+  pointer-events:none!important;
+}
+
 .daily-ring{
   position:relative!important;
   display:block!important;
   width:100%!important;
   height:auto!important;
-  aspect-ratio:3/4!important;
-  padding:6px 6px 36px!important;
-  border:1px solid rgba(244,241,232,.72)!important;
-  border-radius:2px!important;
-  background:#11110f!important;
-  box-shadow:0 12px 30px rgba(0,0,0,.38),0 2px 0 rgba(255,255,255,.035) inset!important;
-  overflow:visible!important;
+  aspect-ratio:4/5!important;
+  padding:0!important;
+  border:0!important;
+  background:#090909!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
 }
-.daily-ring::before{
-  content:"";
-  position:absolute;
-  z-index:5;
-  top:-10px;
-  left:50%;
-  width:58px;
-  height:18px;
-  transform:translateX(-50%) rotate(-1deg);
-  background:linear-gradient(180deg,rgba(220,205,169,.46),rgba(175,158,121,.26));
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 2px 5px rgba(0,0,0,.18);
-  backdrop-filter:blur(1px);
-}
+.daily-ring::before{content:none!important;display:none!important}
 .daily-ring img,.daily-ring video{
   display:block!important;
   width:100%!important;
   height:100%!important;
   object-fit:cover!important;
-  border-radius:0!important;
-  filter:saturate(.88) contrast(1.05) brightness(.92);
+  object-position:center!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  filter:saturate(.9) contrast(1.04) brightness(.93);
   background:#090909;
 }
+
+/* Caption strip lives under the media, never over it. */
 .daily-story>small{
-  position:absolute!important;
-  z-index:6;
-  left:12px;
-  right:12px;
-  bottom:9px;
+  position:static!important;
+  display:flex!important;
+  align-items:center!important;
+  min-height:34px!important;
   margin:0!important;
+  padding:6px 5px 0!important;
   color:#f4f1e8!important;
   font-family:'Permanent Marker','Segoe Print','Bradley Hand',cursive!important;
-  font-size:11px!important;
-  line-height:1.05!important;
+  font-size:10.5px!important;
+  line-height:1.08!important;
   letter-spacing:.01em!important;
   text-align:left!important;
-  text-transform:lowercase!important;
+  text-transform:none!important;
   pointer-events:none;
 }
+
+/* First-card new badge: small rectangle, no pill/oval treatment. */
 .daily-story:first-child::after{
   content:"new";
-  position:absolute;
-  z-index:7;
-  top:8px;
-  right:8px;
-  padding:4px 6px 3px;
-  border:1px solid rgba(231,198,111,.7);
-  border-radius:999px;
-  background:rgba(5,5,5,.82);
-  color:#e7c66f;
-  font-size:6px;
-  font-weight:900;
-  letter-spacing:.14em;
-  text-transform:lowercase;
+  position:absolute!important;
+  z-index:9!important;
+  top:8px!important;
+  right:8px!important;
+  padding:3px 5px!important;
+  border:1px solid rgba(231,198,111,.72)!important;
+  background:rgba(5,5,5,.82)!important;
+  color:#e7c66f!important;
+  font-size:6px!important;
+  font-weight:900!important;
+  letter-spacing:.12em!important;
+  text-transform:none!important;
   animation:dailyGoldPulse 2.8s ease-in-out infinite;
 }
+
+/* One worn scripture stamp, on the existing only-by-grace photo. */
 .daily-story[data-story="2"] .daily-ring::after{
   content:"by grace through faith\A Ephesians 2:8";
   white-space:pre;
-  position:absolute;
-  z-index:6;
-  left:12px;
-  top:18px;
-  max-width:92px;
-  padding:5px 6px;
-  border:1px solid rgba(231,198,111,.4);
-  color:#eadcae;
-  font-family:'Permanent Marker','Segoe Print',cursive;
-  font-size:7px;
-  line-height:1.15;
-  letter-spacing:.015em;
-  text-transform:lowercase;
-  opacity:.64;
-  transform:rotate(-3deg);
-  background:rgba(7,7,7,.28);
+  position:absolute!important;
+  z-index:6!important;
+  left:10px!important;
+  top:14px!important;
+  max-width:98px!important;
+  padding:4px 5px!important;
+  border:1px solid rgba(231,198,111,.34)!important;
+  color:#eadcae!important;
+  font-family:'Permanent Marker','Segoe Print',cursive!important;
+  font-size:7px!important;
+  line-height:1.15!important;
+  letter-spacing:.01em!important;
+  text-transform:none!important;
+  opacity:.55!important;
+  transform:rotate(-3deg)!important;
+  background:rgba(7,7,7,.2)!important;
   mix-blend-mode:screen;
+  pointer-events:none;
 }
+
+/* Video preview keeps a small square play mark only because it opens full video. */
 .video-thumb>i{
   position:absolute!important;
-  z-index:6;
-  inset:50% auto auto 50%!important;
-  transform:translate(-50%,-50%);
-  width:28px!important;
-  height:28px!important;
+  z-index:7!important;
+  left:10px!important;
+  bottom:10px!important;
+  top:auto!important;
+  right:auto!important;
+  transform:none!important;
+  width:24px!important;
+  height:24px!important;
   display:grid!important;
   place-items:center!important;
-  border:1px solid rgba(244,241,232,.72)!important;
-  border-radius:50%!important;
+  border:1px solid rgba(244,241,232,.68)!important;
   background:rgba(5,5,5,.55)!important;
   color:#f4f1e8!important;
-  font-size:9px!important;
+  font-size:8px!important;
   line-height:1!important;
   backdrop-filter:blur(4px);
   pointer-events:none;
 }
+
 .daily-note{
   margin:0!important;
   padding:0 20px!important;
   color:#7e786f!important;
   font-size:9px!important;
   line-height:1.4!important;
-  letter-spacing:.08em!important;
+  letter-spacing:.06em!important;
   text-transform:none!important;
 }
-.daily-note::after{content:none!important}
+.daily-note::before,.daily-note::after{content:none!important;display:none!important}
 
 @keyframes dailyGoldPulse{
-  0%,100%{box-shadow:0 0 0 rgba(231,198,111,0);opacity:.82}
-  50%{box-shadow:0 0 14px rgba(231,198,111,.18);opacity:1}
+  0%,100%{box-shadow:0 0 0 rgba(231,198,111,0);opacity:.84}
+  50%{box-shadow:0 0 13px rgba(231,198,111,.17);opacity:1}
 }
 
 @media(min-width:660px){
   .daily-head,.daily-note{padding-left:32px!important;padding-right:32px!important}
   .daily-strip{padding-left:34px!important;scroll-padding-left:34px;gap:20px!important}
-  .daily-story{flex-basis:162px!important;width:162px!important;min-width:162px!important}
+  .daily-story{flex-basis:166px!important;width:166px!important;min-width:166px!important}
 }
 
 @media(max-width:390px){
   .daily-walk{padding-top:44px}
   .daily-head{padding-left:18px;padding-right:18px}
-  .daily-strip{padding-left:20px!important;padding-right:54px!important;scroll-padding-left:20px}
-  .daily-story{flex-basis:142px!important;width:142px!important;min-width:142px!important}
+  .daily-strip{padding-left:20px!important;padding-right:58px!important;scroll-padding-left:20px}
+  .daily-story{flex-basis:146px!important;width:146px!important;min-width:146px!important}
   .daily-note{padding-left:18px!important;padding-right:18px!important}
 }
 
