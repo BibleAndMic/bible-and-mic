@@ -18,7 +18,7 @@ function addTrackShareButtons(){
   document.querySelectorAll('.track-card').forEach(card=>{
     if(card.querySelector('.track-share'))return;
     const title=card.dataset.title || card.querySelector('h3')?.textContent?.trim() || 'B&M track';
-    const trackId=card.dataset.trackId || card.dataset.trackId || card.dataset.src?.replace(/\.[^.]+$/,'') || '';
+    const trackId=card.dataset.trackId || card.dataset.src?.replace(/\.[^.]+$/,'') || '';
     const url=new URL(SITE_URL);
     if(trackId)url.searchParams.set('track',trackId);
     const button=document.createElement('button');
@@ -40,12 +40,13 @@ function addTrackShareButtons(){
 function focusSharedTrack(){
   const id=new URL(location.href).searchParams.get('track');
   if(!id)return;
-  const card=document.querySelector(`[data-track-id="${CSS.escape(id)}"]`);
+  const cards=[...document.querySelectorAll('.track-card')];
+  const card=cards.find(item=>item.dataset.trackId===id || item.dataset.src?.replace(/\.[^.]+$/,'')===id);
   if(!card)return;
   window.setTimeout(()=>{
     card.scrollIntoView({behavior:'smooth',block:'center'});
     card.classList.add('deep-link-focus');
-    window.setTimeout(()=>card.classList.remove('deep-link-focus'),2200);
+    window.setTimeout(()=>card.classList.remove('deep-link-focus'),2400);
   },350);
 }
 
@@ -53,7 +54,6 @@ function enhanceConnect(){
   const connect=document.getElementById('connect');
   if(!connect)return;
 
-  // Keep one Facebook destination only.
   connect.querySelector('.latest-social')?.remove();
 
   const youtube=[...connect.querySelectorAll('.link-stack a')].find(link=>link.querySelector('span')?.textContent?.trim()==='YOUTUBE');
