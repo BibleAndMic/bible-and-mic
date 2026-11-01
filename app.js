@@ -34,7 +34,7 @@ async function loadAndPlay({src,title,art='',card=null}){
     audio.dataset.title = title;
     activeCard = card;
     miniTitle.textContent = title;
-    miniArt.style.backgroundImage = art ? `url(\"${art}\")` : '';
+    miniArt.style.backgroundImage = art ? `url("${art}")` : '';
     miniArt.querySelector('span').style.display = art ? 'none' : 'block';
     miniProgress.style.width='0%';
   } else if(card){ activeCard = card; }
@@ -51,7 +51,7 @@ document.querySelectorAll('.track-card').forEach(card=>{
 });
 
 document.querySelectorAll('[data-play]').forEach(btn=>{
-  btn.addEventListener('click',()=>loadAndPlay({src:btn.dataset.play,title:btn.dataset.title,art:btn.dataset.art,card:document.querySelector(`[data-src=\"${btn.dataset.play}\"]`)}));
+  btn.addEventListener('click',()=>loadAndPlay({src:btn.dataset.play,title:btn.dataset.title,art:btn.dataset.art,card:document.querySelector(`[data-src="${btn.dataset.play}"]`)}));
 });
 
 miniPlay.addEventListener('click',async()=>{
@@ -167,7 +167,7 @@ if(storySound){storySound.hidden=true;storySound.style.display='none';storySound
 let storyIndex=0, storyTimer=null, storyVideo=null;
 const PHOTO_MS=8000;
 function buildStoryProgress(){
-  storyProgress.innerHTML=dailyStories.map((_,i)=>`<span data-p=\"${i}\"><i></i></span>`).join('');
+  storyProgress.innerHTML=dailyStories.map((_,i)=>`<span data-p="${i}"><i></i></span>`).join('');
 }
 function setStoryProgress(ms){
   [...storyProgress.children].forEach((el,i)=>{el.className=i<storyIndex?'done':i===storyIndex?'active':'';el.style.setProperty('--story-ms',`${ms}ms`);});
@@ -209,7 +209,7 @@ document.getElementById('storyPrev')?.addEventListener('click',()=>showStory(sto
 document.getElementById('storyNext')?.addEventListener('click',()=>showStory(storyIndex+1));
 document.addEventListener('keydown',e=>{if(!storyViewer?.classList.contains('open'))return;if(e.key==='Escape')closeStory();if(e.key==='ArrowRight')showStory(storyIndex+1);if(e.key==='ArrowLeft')showStory(storyIndex-1);});
 
-// Song title + producer credit refresh
+// Existing release metadata refresh.
 const featuredTrack = document.querySelector('.feature-track');
 if(featuredTrack){
   featuredTrack.dataset.title = "He's Working on Me";
@@ -221,7 +221,7 @@ if(featuredTrack){
   if(play) play.setAttribute('aria-label', "Play He's Working on Me");
 }
 
-const heroPlay = document.querySelector('[data-play=\"featured-song.mp3\"]');
+const heroPlay = document.querySelector('[data-play="featured-song.mp3"]');
 if(heroPlay) heroPlay.dataset.title = "He's Working on Me";
 
 const good2MeTrack = document.querySelector('.track-card.g2m');
@@ -310,4 +310,47 @@ if(heroContent && !heroContent.querySelector('.bible-app-card')){
   `;
   const heroLine = heroContent.querySelector('p');
   heroContent.insertBefore(card, heroLine || null);
+}
+
+// Stars In The Sky — new featured release. Keep the existing visual system.
+const musicSection = document.querySelector('#music');
+const feature = musicSection?.querySelector('.feature-track');
+if(feature){
+  feature.dataset.src = 'stars-in-the-sky.mp3';
+  feature.dataset.title = 'Stars In The Sky';
+  feature.dataset.art = 'stars-in-the-sky-cover.jpg';
+  const art = feature.querySelector('.feature-art img');
+  const tag = feature.querySelector('.release-tag');
+  const title = feature.querySelector('h3');
+  const credit = feature.querySelector('.feature-copy > p');
+  const play = feature.querySelector('.round-play');
+  if(art){ art.src='stars-in-the-sky-cover.jpg'; art.alt='Stars In The Sky cover art'; }
+  if(tag) tag.textContent='FEATURED RELEASE';
+  if(title) title.textContent='Stars In The Sky';
+  if(credit) credit.textContent='Prod. by WsW Makk';
+  if(play) play.setAttribute('aria-label','Play Stars In The Sky');
+}
+
+const musicCount = musicSection?.querySelector('.section-head .count');
+if(musicCount) musicCount.textContent='04 TRACKS';
+
+const songGrid = musicSection?.querySelector('.song-grid');
+if(songGrid && !songGrid.querySelector('.track-card.hwm')){
+  const hwm = document.createElement('article');
+  hwm.className='track-card small-track hwm';
+  hwm.dataset.src='featured-song.mp3';
+  hwm.dataset.title="He's Working on Me";
+  hwm.dataset.art='';
+  hwm.innerHTML=`<div class="letter-art"><span>HWM</span><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div><div class="small-copy"><span class="release-tag">RELEASE</span><h3>He’s Working on Me</h3><p>Prod. by Syndrome</p></div><button class="square-play" aria-label="Play He's Working on Me">▶</button>`;
+  const firstSmall = songGrid.querySelector('.track-card');
+  songGrid.insertBefore(hwm, firstSmall || null);
+  const hwmPlay = hwm.querySelector('.square-play');
+  hwmPlay?.addEventListener('click',()=>loadAndPlay({src:hwm.dataset.src,title:hwm.dataset.title,art:hwm.dataset.art,card:hwm}));
+}
+
+const latestButton = document.querySelector('[data-play]');
+if(latestButton){
+  latestButton.dataset.play='stars-in-the-sky.mp3';
+  latestButton.dataset.title='Stars In The Sky';
+  latestButton.dataset.art='stars-in-the-sky-cover.jpg';
 }
