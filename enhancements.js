@@ -26,6 +26,17 @@
   syncNavState();
   document.querySelectorAll('.nav-item').forEach(item => new MutationObserver(syncNavState).observe(item,{attributes:true,attributeFilter:['class']}));
 
+  // Keep nav icons in one clean line-icon language. Avoid OS emoji rendering.
+  const storyNavIcon = document.querySelector('.nav-item[data-target="story"] > span');
+  if (storyNavIcon) {
+    storyNavIcon.classList.add('nav-story-icon');
+    storyNavIcon.innerHTML = `
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="M6.5 4.5h8l3 3v12h-11z" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linejoin="round"/>
+        <path d="M14.5 4.5v3h3M9 11h6M9 14h6" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+  }
+
   // Existing free Bible access: keep YouVersion, but make the Bible tab open inside B&M first.
   const bibleUrl = 'https://www.youversion.com/bible-app';
   const bibleCard = document.querySelector('.bible-app-card');
