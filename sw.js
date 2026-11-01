@@ -1,4 +1,4 @@
-const VERSION='bible-and-mic-v65';
+const VERSION='bible-and-mic-v66';
 const SHELL_CACHE=`${VERSION}-shell`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const AUDIO_CACHE='bible-and-mic-audio-v1';
@@ -10,6 +10,7 @@ const APP_SHELL=[
   'base-styles.css',
   'hero-polish.css',
   'app.js',
+  'enhancements.js',
   'manifest.webmanifest',
   'background.jpg',
   'faith-over-fear.svg',
