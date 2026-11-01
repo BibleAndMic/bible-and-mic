@@ -1,0 +1,60 @@
+/* B&M final consistency pass — no redesign, just one shared visual language. */
+:root{
+  --bm-gold:#e7c66f;
+  --bm-gold-soft:#b98c35;
+  --bm-cream:#f3eee4;
+  --bm-muted:#918b81;
+  --bm-card:linear-gradient(180deg,rgba(11,10,8,.95),rgba(6,6,6,.95));
+  --bm-border:#b98c35;
+  --bm-radius:8px;
+  --bm-shadow:0 0 0 1px rgba(0,0,0,.65),0 10px 30px rgba(0,0,0,.34),0 0 18px rgba(221,166,59,.06);
+}
+
+/* One icon language across Home / Music / Bible / Story / Connect. */
+.nav-line-icon{width:20px!important;height:20px!important;min-height:20px!important;display:grid!important;place-items:center!important;font-size:0!important;line-height:0!important;color:currentColor!important;position:relative!important}
+.nav-line-icon::before,.nav-line-icon::after{content:none!important;display:none!important}
+.nav-line-icon svg{width:18px!important;height:18px!important;display:block!important;overflow:visible!important}
+.nav-line-icon svg path{fill:none!important;stroke:currentColor!important;stroke-width:1.55!important;stroke-linecap:round!important;stroke-linejoin:round!important;vector-effect:non-scaling-stroke}
+.nav-item[data-target="music"] .nav-line-icon svg path{stroke-width:1.65!important}
+.nav-item{gap:3px!important;transition:color .16s ease,opacity .16s ease}
+.nav-item small{font-size:8px!important;letter-spacing:.02em}
+.nav-item:not([aria-current="page"]){opacity:.66}
+.nav-item[aria-current="page"]{opacity:1;color:var(--bm-cream)!important}
+
+/* Romans Road + Bible should feel like two pieces of the same system. */
+.romans-mini-card,.bible-app-card{
+  border:1px solid var(--bm-border)!important;
+  border-radius:var(--bm-radius)!important;
+  background:var(--bm-card)!important;
+  box-shadow:var(--bm-shadow)!important;
+}
+.romans-mini-icon,.bible-app-icon{color:var(--bm-gold)!important;border-right-color:rgba(231,198,111,.34)!important}
+.romans-mini-next{border-left-color:rgba(231,198,111,.26)!important;color:var(--bm-gold)!important}
+.romans-mini-copy strong,.bible-app-copy>span{color:var(--bm-cream)!important}
+.romans-mini-copy>span:last-child,.bible-app-copy small{color:#918b81!important}
+.romans-mini-card,.bible-app-card,.track-card,.site-share,.prayer-booking,.track-share{transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.romans-mini-card:focus-within,.bible-app-card:focus-visible{border-color:#e0b85c!important;box-shadow:0 0 0 1px rgba(0,0,0,.65),0 10px 30px rgba(0,0,0,.34),0 0 22px rgba(231,198,111,.1)!important}
+
+/* Featured release gets presence without adding another block. */
+.feature-track .release-tag{color:var(--bm-gold)!important;letter-spacing:.16em!important}
+.feature-track{border-color:#3b3528!important}
+.feature-track .feature-copy h3{letter-spacing:-.035em}
+
+/* Shared song links land clearly without flashing or changing layout. */
+.track-card.deep-link-focus{border-color:#c9a750!important;box-shadow:0 0 0 1px rgba(231,198,111,.18),0 16px 42px rgba(0,0,0,.45),0 0 28px rgba(231,198,111,.11)!important}
+
+/* Keep sharing useful but visually quiet. */
+.track-share,.site-share,.prayer-booking{border-color:#343027!important;background:#0b0b0a!important;color:#aaa398!important}
+.track-share:active,.site-share:active,.prayer-booking:active{transform:translateY(1px)}
+
+/* Bible sheet uses the same materials as the hero resource cards. */
+.bible-panel{border-color:#4c422f!important;background:linear-gradient(180deg,#11100d,#090909)!important}
+.bible-open{border-color:#d1b565!important;background:#f0dfaa!important}
+
+/* Mini player aligns with the same spacing/radius rhythm. */
+.mini-player{border-color:#383329!important;box-shadow:0 -8px 28px rgba(0,0,0,.34)}
+.mini-art{border-radius:2px;overflow:hidden}
+
+@media(prefers-reduced-motion:reduce){
+  .nav-item,.romans-mini-card,.bible-app-card,.track-card,.site-share,.prayer-booking,.track-share{transition:none!important}
+}
