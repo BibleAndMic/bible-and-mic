@@ -13,4 +13,11 @@
 .small-track .letter-art>span{color:var(--gold)}
 .small-track .bars{color:var(--gold)}
 .track-card button{min-width:44px;min-height:44px;touch-action:manipulation}
+.behind-track{margin:9px 0 0!important;font-size:10px!important;line-height:1.45!important;color:#aaa398!important}
+.lyrics-panel{margin-top:10px;border-top:1px solid #28251f;padding-top:8px;color:#c9c3b8}
+.lyrics-panel summary{cursor:pointer;list-style:none;font-size:8px;font-weight:900;letter-spacing:.16em;color:var(--gold);padding:5px 0;touch-action:manipulation}
+.lyrics-panel summary::-webkit-details-marker{display:none}
+.lyrics-panel summary:after{content:' +';color:#77736b}.lyrics-panel[open] summary:after{content:' −'}
+.lyrics-reference{font-size:8px;letter-spacing:.13em;color:var(--gold);margin:7px 0}
+.lyrics-text{white-space:pre-wrap;font-size:11px;line-height:1.65;color:#bcb5aa;padding:3px 0 7px}
 @media(max-width:390px){.mini-player{grid-template-columns:44px minmax(0,1fr) 44px}.mini-art{width:44px;height:44px}.mini-seek{gap:5px}.mini-seek time{font-size:6.5px;min-width:26px}}
