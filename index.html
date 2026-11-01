@@ -26,7 +26,8 @@
   <meta name="twitter:description" content="Christian hip-hop rooted in faith, testimony, and truth." />
   <meta name="twitter:image" content="https://bibleandmic.github.io/bible-and-mic/home-hero.jpg" />
   <style>
-    .install-card{margin:0 20px 52px;padding:24px 22px;border:1px solid #29251d;background:linear-gradient(145deg,#11100d,#090909);position:relative;overflow:hidden}
+    .install-card{display:none;margin:0 20px 52px;padding:24px 22px;border:1px solid #29251d;background:linear-gradient(145deg,#11100d,#090909);position:relative;overflow:hidden}
+    .install-card.install-ready{display:block}
     .install-card:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-90px;top:-105px;background:radial-gradient(circle,#e7d28f22,transparent 68%);pointer-events:none}
     .install-card .install-kicker{font-size:8px;letter-spacing:.22em;color:#e7d28f;font-weight:800}
     .install-card h3{font-size:30px;line-height:.98;letter-spacing:-.05em;margin:10px 0 10px}
@@ -39,11 +40,16 @@
     .install-panel .install-kicker{font-size:8px;letter-spacing:.22em;color:#e7d28f;font-weight:800}
     .install-panel h3{font-size:28px;line-height:1;margin:9px 0 8px;letter-spacing:-.045em}
     .install-panel>p{color:#918c83;font-size:12px;line-height:1.55;margin:0 0 18px}
-    .install-close{border:0;background:#181818;color:#ddd;width:34px;height:34px;border-radius:50%;font-size:20px}
+    .install-platform-title{font-size:8px;letter-spacing:.18em;color:#e7d28f;font-weight:900;margin:12px 0 2px}
+    .install-close{border:0;background:#181818;color:#ddd;width:44px;height:44px;border-radius:50%;font-size:20px}
     .install-step{display:flex;align-items:center;gap:12px;padding:14px 0;border-top:1px solid #232323}
     .install-step:first-of-type{border-top:0}
     .install-step span{width:28px;height:28px;border:1px solid #4a4332;border-radius:50%;display:grid;place-items:center;color:#e7d28f;font-size:10px;font-weight:800;flex:0 0 auto}
     .install-step b{font-size:13px;display:block;margin-bottom:3px}.install-step small{font-size:10px;color:#8f8a80;line-height:1.4}
+    button,a{touch-action:manipulation}
+    .bottom-nav{padding-bottom:max(12px,env(safe-area-inset-bottom))!important}
+    .mini-player{bottom:calc(58px + max(14px,env(safe-area-inset-bottom)))!important}
+    @media(display-mode:standalone){html,body{overscroll-behavior-y:none}}
     @media(min-width:660px){.install-card{margin-left:32px;margin-right:32px}}
   </style>
 </head>
@@ -138,14 +144,16 @@
     <div class="install-sheet" id="installSheet" aria-hidden="true">
       <div class="install-panel" role="dialog" aria-modal="true" aria-label="Add B&M to home screen">
         <div class="install-panel-head"><div><span class="install-kicker">B&amp;M ON YOUR HOME SCREEN</span><h3>Keep it close.</h3></div><button class="install-close" id="closeInstall" aria-label="Close">×</button></div>
-        <p>Two quick steps. No app store needed.</p>
+        <p>Choose your phone below. B&M stays free.</p>
         <div id="iosInstall">
+          <div class="install-platform-title">IPHONE / IPAD</div>
           <div class="install-step"><span>1</span><div><b>Tap Share</b><small>Use the Share button in Safari.</small></div></div>
           <div class="install-step"><span>2</span><div><b>Add to Home Screen</b><small>Scroll down, tap it, then choose Add.</small></div></div>
         </div>
         <div id="androidInstall" hidden>
+          <div class="install-platform-title">ANDROID</div>
           <div class="install-step"><span>1</span><div><b>Open the browser menu</b><small>Tap the three-dot menu.</small></div></div>
-          <div class="install-step"><span>2</span><div><b>Add to Home screen</b><small>Choose Add to Home screen or Install app.</small></div></div>
+          <div class="install-step"><span>2</span><div><b>Install B&M</b><small>Choose Install app or Add to Home screen.</small></div></div>
         </div>
       </div>
     </div>
@@ -161,17 +169,78 @@
   <script>
     (()=>{
       const open=document.getElementById('openInstall');
+      const card=document.querySelector('.install-card');
       const sheet=document.getElementById('installSheet');
       const close=document.getElementById('closeInstall');
       const ios=document.getElementById('iosInstall');
       const android=document.getElementById('androidInstall');
+      const audio=document.getElementById('globalAudio');
+      const miniTitle=document.getElementById('miniTitle');
       const isAndroid=/Android/i.test(navigator.userAgent);
+      const isStandalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+      let deferredInstall=null;
+      let installRevealed=false;
+
       if(isAndroid){ios.hidden=true;android.hidden=false;}
-      const show=()=>{sheet.classList.add('open');sheet.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'};
-      const hide=()=>{sheet.classList.remove('open');sheet.setAttribute('aria-hidden','true');document.body.style.overflow=''};
-      open?.addEventListener('click',show);close?.addEventListener('click',hide);
-      sheet?.addEventListener('click',e=>{if(e.target===sheet)hide()});
-      document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});
+
+      const showSheet=()=>{
+        if(isStandalone) return;
+        sheet.classList.add('open');
+        sheet.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+      };
+      const hideSheet=()=>{
+        sheet.classList.remove('open');
+        sheet.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+      };
+      const revealInstall=()=>{
+        if(isStandalone || installRevealed) return;
+        installRevealed=true;
+        card?.classList.add('install-ready');
+      };
+      const hideInstall=()=>{
+        card?.classList.remove('install-ready');
+        hideSheet();
+      };
+
+      window.addEventListener('beforeinstallprompt',event=>{
+        event.preventDefault();
+        deferredInstall=event;
+      });
+      window.addEventListener('appinstalled',()=>{
+        deferredInstall=null;
+        hideInstall();
+      });
+
+      open?.addEventListener('click',async event=>{
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        if(deferredInstall){
+          deferredInstall.prompt();
+          await deferredInstall.userChoice.catch(()=>null);
+          deferredInstall=null;
+          return;
+        }
+        showSheet();
+      },true);
+      close?.addEventListener('click',hideSheet);
+      sheet?.addEventListener('click',event=>{if(event.target===sheet) hideSheet();});
+      document.addEventListener('keydown',event=>{if(event.key==='Escape') hideSheet();});
+
+      audio?.addEventListener('ended',()=>setTimeout(revealInstall,500),{passive:true});
+      document.querySelectorAll('a[href="#story"]').forEach(link=>link.addEventListener('click',()=>setTimeout(revealInstall,500),{passive:true}));
+
+      audio?.addEventListener('play',()=>{
+        const src=audio.dataset.src || audio.currentSrc || audio.src;
+        if(!src || !navigator.serviceWorker?.controller) return;
+        navigator.serviceWorker.controller.postMessage({type:'CACHE_AUDIO',url:src});
+      });
+      audio?.addEventListener('error',()=>{
+        if(!navigator.onLine && miniTitle) miniTitle.textContent='Internet needed the first time for this track';
+      });
+
+      if(isStandalone) hideInstall();
     })();
   </script>
 </body>
