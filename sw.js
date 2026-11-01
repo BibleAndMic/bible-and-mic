@@ -1,10 +1,10 @@
-const VERSION='bible-and-mic-v75';
+const VERSION='bible-and-mic-v76';
 const SHELL_CACHE=`${VERSION}-shell`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const AUDIO_CACHE='bible-and-mic-audio-v1';
 
 const APP_SHELL=[
-  './','index.html','styles.css','base-styles.css','hero-polish.css','enhancements.css','app.js','enhancements.js','romans-road.js','tracks.js','community.js','site-config.js','manifest.webmanifest','background.jpg','faith-over-fear.svg','home-hero.jpg','featured-cover.jpg','stars-in-the-sky-cover.jpg','icon.svg','icon-180.png','icon-192.png','icon-512.png','in-the-word.jpg','fresh-air.jpg','only-by-grace.jpg','redeemed.jpg','life-lately-poster.jpg','little-reminders.jpg','quiet-companion.jpg','new-growth.jpg','small-beauty.jpg'
+  './','index.html','styles.css','base-styles.css','hero-polish.css','enhancements.css','finish-pass.css','app.js','enhancements.js','romans-road.js','tracks.js','community.js','site-config.js','manifest.webmanifest','background.jpg','faith-over-fear.svg','home-hero.jpg','featured-cover.jpg','stars-in-the-sky-cover.jpg','icon.svg','icon-180.png','icon-192.png','icon-512.png','in-the-word.jpg','fresh-air.jpg','only-by-grace.jpg','redeemed.jpg','life-lately-poster.jpg','little-reminders.jpg','quiet-companion.jpg','new-growth.jpg','small-beauty.jpg'
 ];
 
 self.addEventListener('install',event=>{self.skipWaiting();event.waitUntil(caches.open(SHELL_CACHE).then(cache=>cache.addAll(APP_SHELL)));});
