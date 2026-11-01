@@ -19,6 +19,24 @@
     const label = button.querySelector('small')?.textContent?.trim();
     if (label && !button.getAttribute('aria-label')) button.setAttribute('aria-label', `Open Daily Walk: ${label}`);
   });
+
+  // One icon language across the entire fixed nav: simple stroked SVGs, no OS emoji.
+  const navIcons = {
+    home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 11.2 12 5l7.5 6.2v7.3h-5v-5h-5v5h-5z"/></svg>',
+    music: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5 17 12l-8 5.5z"/></svg>',
+    bible: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.5c3.2-.8 5.7-.2 7.5 1.7v11c-1.8-1.9-4.3-2.5-7.5-1.7zM19.5 5.5c-3.2-.8-5.7-.2-7.5 1.7v11c1.8-1.9 4.3-2.5 7.5-1.7z"/></svg>',
+    story: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4.5h8l3 3v12h-11zM14.5 4.5v3h3M9 11h6M9 14h6"/></svg>',
+    connect: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M10 6h8v8"/></svg>'
+  };
+  document.querySelectorAll('.nav-item').forEach(item => {
+    const key = item.dataset.bibleNav !== undefined ? 'bible' : item.dataset.target;
+    const span = item.querySelector(':scope > span');
+    if (span && navIcons[key]) {
+      span.className = 'nav-line-icon';
+      span.innerHTML = navIcons[key];
+    }
+  });
+
   const syncNavState = () => document.querySelectorAll('.nav-item').forEach(item => {
     if (item.classList.contains('active')) item.setAttribute('aria-current', 'page');
     else item.removeAttribute('aria-current');
@@ -26,18 +44,7 @@
   syncNavState();
   document.querySelectorAll('.nav-item').forEach(item => new MutationObserver(syncNavState).observe(item,{attributes:true,attributeFilter:['class']}));
 
-  // Keep nav icons in one clean line-icon language. Avoid OS emoji rendering.
-  const storyNavIcon = document.querySelector('.nav-item[data-target="story"] > span');
-  if (storyNavIcon) {
-    storyNavIcon.classList.add('nav-story-icon');
-    storyNavIcon.innerHTML = `
-      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-        <path d="M6.5 4.5h8l3 3v12h-11z" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linejoin="round"/>
-        <path d="M14.5 4.5v3h3M9 11h6M9 14h6" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`;
-  }
-
-  // Existing free Bible access: keep YouVersion, but make the Bible tab open inside B&M first.
+  // Existing free Bible access: both the hero card and nav open the same in-B&M sheet.
   const bibleUrl = 'https://www.youversion.com/bible-app';
   const bibleCard = document.querySelector('.bible-app-card');
   if (bibleCard) {
@@ -66,19 +73,23 @@
     </div>`;
   document.body.appendChild(sheet);
 
+  const bibleNav = document.querySelector('.nav-item[data-bible-nav]');
   const showBible = () => {
     sheet.classList.add('open');
     sheet.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
+    bibleNav?.classList.add('active');
+    syncNavState();
     sheet.querySelector('.bible-close')?.focus();
   };
   const hideBible = () => {
     sheet.classList.remove('open');
     sheet.setAttribute('aria-hidden','true');
     document.body.style.overflow = '';
+    bibleNav?.classList.remove('active');
+    syncNavState();
   };
 
-  const bibleNav = document.querySelector('.nav-item[data-bible-nav]');
   bibleNav?.addEventListener('click', event => {
     event.preventDefault();
     showBible();
@@ -129,6 +140,7 @@
 
     const featured = tracks[0];
     if (feature) {
+      feature.dataset.trackId = featured.id;
       feature.dataset.src = featured.audio;
       feature.dataset.title = featured.title;
       feature.dataset.art = featured.cover || '';
@@ -141,9 +153,11 @@
       }
       const title = feature.querySelector('h3');
       const producer = feature.querySelector('.feature-copy > p');
+      const tag = feature.querySelector('.release-tag');
       const play = feature.querySelector('.round-play');
       if (title) title.textContent = featured.title;
       if (producer) producer.textContent = `Prod. by ${featured.producer}`;
+      if (tag) tag.textContent = featured.releaseDate ? `NEW RELEASE · ${featured.releaseDate}` : 'NEW RELEASE';
       if (play) play.setAttribute('aria-label', `Play ${featured.title}`);
       const old = feature.querySelector('.round-play');
       const replacement = old?.cloneNode(true);
