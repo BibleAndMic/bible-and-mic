@@ -5,13 +5,34 @@
   css.href = 'enhancements.css';
   document.head.appendChild(css);
 
+  // Lightweight loading + basic accessibility hygiene.
+  document.querySelectorAll('img').forEach(img => {
+    img.decoding = 'async';
+    if (!img.closest('.feature-art')) img.loading = 'lazy';
+  });
+  const featuredImage = document.querySelector('.feature-art img');
+  if (featuredImage) featuredImage.fetchPriority = 'high';
+  document.querySelectorAll('button').forEach(button => {
+    if (!button.getAttribute('type')) button.type = 'button';
+  });
+  document.querySelectorAll('.daily-story').forEach(button => {
+    const label = button.querySelector('small')?.textContent?.trim();
+    if (label && !button.getAttribute('aria-label')) button.setAttribute('aria-label', `Open Daily Walk: ${label}`);
+  });
+  const syncNavState = () => document.querySelectorAll('.nav-item').forEach(item => {
+    if (item.classList.contains('active')) item.setAttribute('aria-current', 'page');
+    else item.removeAttribute('aria-current');
+  });
+  syncNavState();
+  document.querySelectorAll('.nav-item').forEach(item => new MutationObserver(syncNavState).observe(item,{attributes:true,attributeFilter:['class']}));
+
   const bibleCard = document.querySelector('.bible-app-card');
   if (bibleCard) {
     bibleCard.id = 'bible';
     bibleCard.href = 'https://www.youversion.com/bible-app';
     bibleCard.target = '_blank';
     bibleCard.rel = 'noopener';
-    bibleCard.setAttribute('aria-label', 'Open the free YouVersion Bible App page. B&M stays open.');
+    bibleCard.setAttribute('aria-label', 'Open the free YouVersion Bible page. B&M stays open.');
   }
 
   const bibleNav = document.querySelector('.nav-item[data-bible-nav]');
@@ -67,6 +88,8 @@
       if (image && featured.cover) {
         image.src = featured.cover;
         image.alt = `${featured.title} cover art`;
+        image.decoding = 'async';
+        image.fetchPriority = 'high';
       }
       const title = feature.querySelector('h3');
       const producer = feature.querySelector('.feature-copy > p');
@@ -87,7 +110,7 @@
         <article class="track-card small-track" data-track-id="${track.id}" data-src="${track.audio}" data-title="${track.title.replace(/"/g,'&quot;')}" data-art="${track.cover || ''}">
           ${monogramMarkup(track)}
           <div class="small-copy"><span class="release-tag">RELEASE</span><h3>${track.title}</h3><p>Prod. by ${track.producer}</p></div>
-          <button class="square-play" aria-label="Play ${track.title}">▶</button>
+          <button type="button" class="square-play" aria-label="Play ${track.title}">▶</button>
         </article>`).join('');
       grid.querySelectorAll('.track-card').forEach(bindTrackButton);
     }
