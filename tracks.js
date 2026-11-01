@@ -50,7 +50,6 @@ export const tracks = [
 ];
 
 // Optional song context is intentionally invisible until Corey supplies it.
-// This runs after the music catalog renderer has finished rebuilding the cards.
 setTimeout(() => {
   document.getElementById('lyrics')?.remove();
 
@@ -81,4 +80,6 @@ setTimeout(() => {
       copy.appendChild(panel);
     }
   });
+
+  import('./community.js').catch(() => {});
 }, 0);
