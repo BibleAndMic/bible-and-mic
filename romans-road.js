@@ -48,7 +48,11 @@
   card.className = 'romans-mini-card';
   card.setAttribute('aria-label', 'Romans Road, step-by-step Gospel summary');
   card.innerHTML = `
-    <span class="romans-mini-icon" aria-hidden="true">✝</span>
+    <span class="romans-mini-icon" aria-hidden="true">
+      <svg viewBox="0 0 28 28" focusable="false" aria-hidden="true">
+        <path d="M14 4v20M8.5 10.5h11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </span>
     <span class="romans-mini-copy" aria-live="polite">
       <span class="romans-mini-meta"><b id="romansMiniProgress">START</b><i>NIV</i></span>
       <strong id="romansMiniTitle">THE ROMANS ROAD</strong>
