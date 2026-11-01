@@ -33,6 +33,44 @@
 .nav-item{min-height:48px;justify-content:center}.nav-item[aria-current="page"]{color:var(--ink)}
 :where(a,button,input,summary):focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .track-share:focus-visible,.site-share:focus-visible,.prayer-booking:focus-visible{outline-offset:2px}
+
+/* Compact Romans Road — replaces the rotating verse card without changing the home hero. */
+.romans-road{margin:18px 20px 0;border:1px solid #51482f;background:linear-gradient(145deg,#11100d,#090909);box-shadow:0 18px 50px #0008,inset 0 0 0 1px #e7d28f08;overflow:hidden}
+.romans-road-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:17px 17px 13px;border-bottom:1px solid #28251f}
+.romans-road-head .kicker{display:block;margin-bottom:5px}
+.romans-road-head h2{margin:0!important;font-size:21px!important;line-height:1!important;letter-spacing:-.035em!important}
+.romans-road-head p{margin:6px 0 0;font-size:10px;color:#8f8a80;line-height:1.35}
+.romans-road-count{font-size:7px;letter-spacing:.16em;color:#a79f91;border:1px solid #33302a;border-radius:999px;padding:6px 8px;white-space:nowrap}
+.romans-steps{display:grid}
+.romans-step{border-bottom:1px solid #24221d}
+.romans-step:last-child{border-bottom:0}
+.romans-step summary{min-height:47px;display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:10px;padding:0 14px;cursor:pointer;list-style:none;touch-action:manipulation}
+.romans-step summary::-webkit-details-marker{display:none}
+.romans-step-num{width:25px;height:25px;border:1px solid #655b3d;border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:8px;font-weight:900}
+.romans-step-title{display:flex;align-items:baseline;gap:7px;min-width:0}
+.romans-step-title strong{font-size:10px;letter-spacing:.11em;color:#f1ece1;white-space:nowrap}
+.romans-step-title span{font-size:9px;color:#8f8a80;white-space:nowrap}
+.romans-step-arrow{color:var(--gold);font-size:17px;line-height:1;transition:transform .2s ease}
+.romans-step[open] .romans-step-arrow{transform:rotate(90deg)}
+.romans-step-body{padding:0 14px 14px 52px;font-size:12px;line-height:1.5;color:#c9c2b7;max-width:560px}
+.romans-step[open]{background:linear-gradient(90deg,#e7d28f08,transparent 60%)}
+.romans-road-actions{padding:13px 14px 14px;display:grid;gap:9px}
+.romans-call{min-height:44px;border:1px solid #7a6b43;background:linear-gradient(180deg,#f0d98f,#d9bd69);color:#080706;font-size:9px;font-weight:950;letter-spacing:.13em;text-transform:uppercase}
+.romans-niv{margin:0;font-size:6.5px;line-height:1.45;color:#666159;letter-spacing:.01em}
+
+/* Bible tab opens a local sheet first so navigating the PWA never unexpectedly ejects the user. */
+.bible-sheet{position:fixed;inset:0;z-index:130;display:none;align-items:flex-end;justify-content:center;background:#000c;backdrop-filter:blur(8px);padding:12px}
+.bible-sheet.open{display:flex}
+.bible-panel{width:min(720px,100%);background:#0d0d0d;border:1px solid #3a3427;border-radius:18px 18px 8px 8px;padding:22px 20px calc(20px + env(safe-area-inset-bottom));box-shadow:0 -18px 60px #000}
+.bible-panel-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.bible-panel .kicker{display:block;margin-bottom:8px}.bible-panel h3{margin:0;font-size:28px;line-height:1;letter-spacing:-.045em}.bible-panel p{font-size:12px;line-height:1.55;color:#9b958b;margin:10px 0 18px;max-width:420px}
+.bible-close{width:44px;height:44px;border:0;border-radius:50%;background:#181818;color:#ddd;font-size:20px}
+.bible-open{min-height:46px;display:flex;align-items:center;justify-content:center;border:1px solid #514935;background:#f4f1e8;color:#070707;font-size:9px;font-weight:950;letter-spacing:.12em}
+.bible-note{margin-top:10px!important;font-size:8px!important;color:#68635b!important}
+
+html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}
+
 @keyframes faithSettle{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.faith-lockup{animation:none}.verse-card p,.daily-story{transition:none}.marquee>div{animation:none!important}.bars i{animation:none!important}}
-@media(max-width:390px){.mini-player{grid-template-columns:44px minmax(0,1fr) 44px}.mini-art{width:44px;height:44px}.mini-seek{gap:5px}.mini-seek time{font-size:6.5px;min-width:26px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.faith-lockup{animation:none}.verse-card p,.daily-story{transition:none}.marquee>div{animation:none!important}.bars i{animation:none!important}.romans-step-arrow{transition:none}}
+@media(min-width:660px){.romans-road{margin-left:32px;margin-right:32px}}
+@media(max-width:390px){.mini-player{grid-template-columns:44px minmax(0,1fr) 44px}.mini-art{width:44px;height:44px}.mini-seek{gap:5px}.mini-seek time{font-size:6.5px;min-width:26px}.romans-road{margin-left:14px;margin-right:14px}.romans-road-head{padding:15px 14px 12px}.romans-road-head h2{font-size:19px!important}.romans-step summary{grid-template-columns:26px 1fr auto;padding:0 12px}.romans-step-title{display:block}.romans-step-title strong,.romans-step-title span{display:block}.romans-step-title span{margin-top:2px}.romans-step-body{padding-left:48px;padding-right:12px}}
