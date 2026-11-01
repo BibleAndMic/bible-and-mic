@@ -90,4 +90,10 @@ function enhanceConnect(){
   }
 }
 
-setTimeout(()=>{addTrackShareButtons();enhanceConnect();focusSharedTrack();import('./finish-polish.js').catch(()=>{});},0);
+setTimeout(()=>{
+  addTrackShareButtons();
+  enhanceConnect();
+  focusSharedTrack();
+  import('./finish-polish.js').catch(()=>{});
+  import('./daily-walk.js').catch(()=>{});
+},0);
