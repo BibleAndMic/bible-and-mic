@@ -10,20 +10,21 @@
   if (eyebrow) eyebrow.textContent = 'daily walk';
   if (headline) headline.textContent = 'no filter... just the walk.';
   if (subline) subline.textContent = 'been through it all n still standin... glory to god. this is what it looks like day to day.';
-  if (footer) footer.textContent = 'real moments. no script. tap n see 🙏';
+  if (footer) footer.textContent = 'straight from my day... tap n see 🙏';
 
-  const cardCopy = new Map([
+  const exactCardCopy = new Map([
     ['0', 'word first'],
     ['1', 'clearin my head'],
     ['2', "shouldn't be here... but god"],
     ['3', 'not done yet'],
-    ['4', 'real life. no script.']
+    ['4', "life lately... ain't always pretty"]
   ]);
 
   section.querySelectorAll('.daily-story').forEach(card => {
-    const label = cardCopy.get(card.dataset.story);
     const small = card.querySelector('small');
-    if (label && small) small.textContent = label;
+    if (!small) return;
+    const exact = exactCardCopy.get(card.dataset.story);
+    small.textContent = exact || small.textContent.trim().toLowerCase();
   });
 
   const preview = section.querySelector('.daily-story[data-story="4"] video');
@@ -40,23 +41,19 @@
     preview.setAttribute('playsinline', '');
     const tryPlay = () => preview.play().catch(() => {});
     preview.addEventListener('loadeddata', tryPlay, { once: true });
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && preview.paused) tryPlay();
+    });
     if (preview.readyState >= 2) tryPlay();
   }
 
-  // Keep the existing full-screen story viewer, but use the same first-five captions there too.
+  // Keep the existing story viewer and mirror the first-five Daily Walk captions there.
   const viewerLabels = {
     'IN THE WORD': 'word first',
     'FRESH AIR': 'clearin my head',
     'ONLY BY GRACE': "shouldn't be here... but god",
     'STILL GROWING': 'not done yet',
-    'LIFE LATELY': 'real life. no script.'
-  };
-  const viewerCaptions = {
-    'word first': 'word first',
-    'clearin my head': 'clearin my head',
-    "shouldn't be here... but god": "shouldn't be here... but god",
-    'not done yet': 'not done yet',
-    'real life. no script.': 'real life. no script.'
+    'LIFE LATELY': "life lately... ain't always pretty"
   };
   const storyLabel = document.getElementById('storyLabel');
   const storyCaption = document.getElementById('storyCaption');
@@ -66,7 +63,7 @@
     const mapped = viewerLabels[storyLabel.textContent.trim().toUpperCase()];
     if (!mapped) return;
     storyLabel.textContent = mapped;
-    storyCaption.textContent = viewerCaptions[mapped];
+    storyCaption.textContent = mapped;
   };
 
   if (storyLabel) {
