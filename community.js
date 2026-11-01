@@ -95,5 +95,5 @@ setTimeout(()=>{
   enhanceConnect();
   focusSharedTrack();
   import('./finish-polish.js').catch(()=>{});
-  import('./daily-walk.js').catch(()=>{});
+  import('./daily-walk.js?v=80').catch(()=>{});
 },0);
