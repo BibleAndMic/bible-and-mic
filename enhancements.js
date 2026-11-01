@@ -4,6 +4,10 @@
   css.rel = 'stylesheet';
   css.href = 'enhancements.css';
   document.head.appendChild(css);
+  const finishCss = document.createElement('link');
+  finishCss.rel = 'stylesheet';
+  finishCss.href = 'finish-pass.css';
+  document.head.appendChild(finishCss);
 
   // Lightweight loading + basic accessibility hygiene.
   document.querySelectorAll('img').forEach(img => {
