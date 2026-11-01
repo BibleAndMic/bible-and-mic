@@ -2,28 +2,31 @@
   "name": "B&M | Bible & Mic",
   "short_name": "B&M",
   "description": "Christian hip-hop rooted in faith, testimony, and truth.",
-  "start_url": "./",
-  "scope": "./",
+  "id": "/bible-and-mic/",
+  "start_url": "/bible-and-mic/",
+  "scope": "/bible-and-mic/",
   "display": "standalone",
   "background_color": "#050505",
   "theme_color": "#050505",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "icon-180.png",
       "sizes": "180x180",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ],
-  "id": "./",
-  "orientation": "portrait-primary"
+  ]
 }
