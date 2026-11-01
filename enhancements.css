@@ -30,6 +30,9 @@
 .daily-story{transition:transform .18s ease,opacity .18s ease}.daily-story:active{transform:scale(.97)}
 .daily-note:after{content:' · TAP A MOMENT TO OPEN';color:#7e796f;font-size:7px;letter-spacing:.13em}
 .faith-lockup{animation:faithSettle .8s cubic-bezier(.2,.7,.2,1) both}
+.nav-item{min-height:48px;justify-content:center}.nav-item[aria-current="page"]{color:var(--ink)}
+:where(a,button,input,summary):focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.track-share:focus-visible,.site-share:focus-visible,.prayer-booking:focus-visible{outline-offset:2px}
 @keyframes faithSettle{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.faith-lockup{animation:none}.verse-card p,.daily-story{transition:none}.marquee>div{animation:none!important}.bars i{animation:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.faith-lockup{animation:none}.verse-card p,.daily-story{transition:none}.marquee>div{animation:none!important}.bars i{animation:none!important}}
 @media(max-width:390px){.mini-player{grid-template-columns:44px minmax(0,1fr) 44px}.mini-art{width:44px;height:44px}.mini-seek{gap:5px}.mini-seek time{font-size:6.5px;min-width:26px}}
