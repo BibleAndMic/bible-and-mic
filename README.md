@@ -1,41 +1,31 @@
-# B&M | Bible & Mic — Version 1
+# B&M | Bible & Mic
 
-A free, mobile-first static website designed to feel like an iPhone app and deploy on GitHub Pages.
+Mobile-first Christian hip-hop / testimony site published with GitHub Pages and designed to feel app-like on iPhone.
 
-## What is included
-- Home / hero section
-- Featured song
-- Custom music player
-- Lyrics
-- Story / testimony
-- Updates
-- Fixed bottom navigation
-- Web app manifest + service worker for Home Screen / app-like behavior
+## Current core files
+- `index.html` — page structure and content
+- `styles.css` — stylesheet entry point
+- `base-styles.css` — main site styling
+- `hero-polish.css` — current homepage/hero overrides
+- `app.js` — active JavaScript, music player, Daily Walk stories, navigation, and PWA behavior
+- `sw.js` — service worker / offline cache
+- `manifest.webmanifest` — installable web-app settings
 
-## Easiest content updates
-Open `app.js` and edit the `site` object at the top. This controls:
-- Featured song title
-- Artist name
-- Audio filename
-- Lyrics
-- Story paragraphs
-- Updates
+## Important editing rule
+Before changing or removing a file, verify that it is referenced by `index.html`, CSS, JavaScript, the manifest, or the service worker. Avoid creating numbered duplicate files such as `app-1.js` or `styles-2.css` for normal updates.
 
-## Add your featured song
-Put your MP3 at:
-`assets/featured-song.mp3`
+## Homepage image
+The current homepage still uses the sliced hero system in `hero-polish.css`. The cleanup goal is to replace that with one dependable hero asset so future background swaps are simple and predictable.
 
-Or change the `audio` value in `app.js` to another filename.
+## Media
+The repository currently stores images, video, and MP3 files alongside the site files. A future cleanup can move these into clear media folders after all references are updated together.
 
-## Publish with GitHub Pages
-1. Create a public GitHub repository (for example `bible-and-mic`).
-2. Add these files to the repository's default branch.
-3. Open repository **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Choose the default branch (usually `main`) and `/ (root)`, then Save.
+## Publishing
+The live site is served from the `main` branch through GitHub Pages.
 
-The live project-site URL will normally be:
-`https://YOUR-USERNAME.github.io/REPOSITORY/`
+## Safe cleanup branches
+- `backup-before-cleanup-2026-10-26` — protected snapshot before cleanup work
+- `cleanup-site-structure` — cleanup work in progress; changes here do not affect the live site until merged
 
-## Install on iPhone
-Open the live site in Safari → Share → Add to Home Screen → turn on **Open as Web App** → Add.
+## Working principle
+Keep the live design stable while simplifying the code underneath it. Make one controlled change at a time, verify mobile behavior, and only then publish it to `main`.
